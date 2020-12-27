@@ -1,0 +1,48 @@
+[25-Dec-2020 12:59:39 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: array * int in C:\Users\User\Desktop\s\lst\cataloghandler.php:25
+Stack trace:
+#0 C:\Users\User\Desktop\s\lst\cataloghandler.php(60): initParamReq(Array)
+#1 C:\Users\User\Desktop\s\lst\cataloghandler.php(240): getParamReq(0, Array)
+#2 C:\Users\User\Desktop\s\lst\catalog.php(50): require('C:\\Users\\User\\D...')
+#3 {main}
+  thrown in C:\Users\User\Desktop\s\lst\cataloghandler.php on line 25
+[25-Dec-2020 13:03:17 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: array * int in C:\Users\User\Desktop\s\lst\cataloghandler.php:25
+Stack trace:
+#0 C:\Users\User\Desktop\s\lst\cataloghandler.php(60): initParamReq(Array)
+#1 C:\Users\User\Desktop\s\lst\cataloghandler.php(240): getParamReq(0, Array)
+#2 C:\Users\User\Desktop\s\lst\catalog.php(50): require('C:\\Users\\User\\D...')
+#3 {main}
+  thrown in C:\Users\User\Desktop\s\lst\cataloghandler.php on line 25
+[25-Dec-2020 13:04:39 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: array * int in C:\Users\User\Desktop\s\lst\cataloghandler.php:25
+Stack trace:
+#0 C:\Users\User\Desktop\s\lst\cataloghandler.php(60): initParamReq(Array)
+#1 C:\Users\User\Desktop\s\lst\cataloghandler.php(240): getParamReq(0, Array)
+#2 C:\Users\User\Desktop\s\lst\catalog.php(50): require('C:\\Users\\User\\D...')
+#3 {main}
+  thrown in C:\Users\User\Desktop\s\lst\cataloghandler.php on line 25
+[25-Dec-2020 13:04:59 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: array * int in C:\Users\User\Desktop\s\lst\cataloghandler.php:25
+Stack trace:
+#0 C:\Users\User\Desktop\s\lst\cataloghandler.php(60): initParamReq(Array)
+#1 C:\Users\User\Desktop\s\lst\cataloghandler.php(240): getParamReq(0, Array)
+#2 C:\Users\User\Desktop\s\lst\catalog.php(50): require('C:\\Users\\User\\D...')
+#3 {main}
+  thrown in C:\Users\User\Desktop\s\lst\cataloghandler.php on line 25
+[25-Dec-2020 13:10:48 UTC] PHP Warning:  Undefined variable $getProductsAmount in C:\Users\User\Desktop\s\lst\include\header.php on line 21
+[25-Dec-2020 13:10:48 UTC] PHP Fatal error:  Uncaught Error: Value of type null is not callable in C:\Users\User\Desktop\s\lst\include\header.php:21
+Stack trace:
+#0 C:\Users\User\Desktop\s\lst\cartpage.php(83): require()
+#1 {main}
+  thrown in C:\Users\User\Desktop\s\lst\include\header.php on line 21
+[25-Dec-2020 14:46:44 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+ in E:\www\include\db.php:10
+Stack trace:
+#0 E:\www\include\db.php(10): PDO->__construct('mysql:host=109....', 'admin', 'admin', Array)
+#1 E:\www\index.php(8): require('E:\\www\\include\\...')
+#2 {main}
+  thrown in E:\www\include\db.php on line 10
+[25-Dec-2020 16:09:07 UTC] PHP Parse error:  syntax error, unexpected '}', expecting end of file in E:\www\productpage.php on line 21
+[25-Dec-2020 16:35:30 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')' in E:\www\include\session.php on line 49
+[25-Dec-2020 17:24:48 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ']' in E:\www\include\session.php on line 59
+[26-Dec-2020 03:02:08 UTC] PHP Warning:  Invalid argument supplied for foreach() in E:\www\include\session.php on line 69
+[26-Dec-2020 03:51:42 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in E:\www\include\session.php on line 16
+[26-Dec-2020 03:52:20 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in E:\www\include\session.php on line 16
+[26-Dec-2020 03:52:33 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in E:\www\include\session.php on line 16

@@ -1,0 +1,156 @@
+let cartAmountSpan = document.querySelector('.header__cart').children[1];
+let addToCartBtns = document.querySelectorAll('.add-to-cart');
+let cartItem = document.querySelectorAll('.cart__product')
+
+
+for (var i = addToCartBtns.length - 1; i >= 0; i--) {
+	let productId = addToCartBtns[i].dataset.productId;
+	addToCartBtns[i].addEventListener('click', ()=> {		
+		addToCart(productId);
+	});
+}
+
+for (var i = cartItem.length - 1; i >= 0; i--) {
+	showAmount(cartItem[i]);
+	let productId = cartItem[i].id;
+	let cartCount = cartItem[i].querySelector('.cart__count');
+	cartItem[i].querySelector('.delete-from-cart').addEventListener('click', ()=> deleteFromCart(productId));	
+	cartCount.children[0].addEventListener('click', () => decreaseQuantity(cartCount.children[1], productId));
+	cartCount.children[2].addEventListener('click', () => increaseQuantity(cartCount.children[1], productId));
+}
+
+
+let tPrice = getTotalPrice();
+setTotalPrice(tPrice);
+setTotality(tPrice, 1);
+
+function showAmount(cartItem){
+	product_id = cartItem.id;
+	var params = 'action=getAmount&product_id=' + product_id;
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'include/session.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	xhr.onload = function () {
+		if(this.status == 200){	
+			let answer = JSON.parse(this.responseText);
+			let cartCount = cartItem.querySelector('.cart__count');
+			cartCount.children[1].innerText = answer.amount;
+			if(answer.amount == 0){
+				deleteFromCart(product_id);				
+			}
+		}
+	}
+	xhr.send(params);
+}
+
+
+function addToCart (product_id) {
+
+		//Ajax Req
+
+		var params = 'action=add&product_id=' + product_id;
+		var xhr = new XMLHttpRequest();		
+		xhr.open('POST', '../include/session.php', true);		
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+		xhr.onload = function () {
+			if(this.status == 200){
+
+		//analyze ajax answer
+				
+
+		//if ok cartSpanAmount++
+				cartAmountSpan.innerText = Number(cartAmountSpan.innerText) + 1;
+
+		//if not OK alert
+			}
+		}
+		xhr.send(params);
+};
+
+
+
+function deleteFromCart(product_id)
+{
+
+	var params = 'action=delete&product_id=' + product_id;
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'include/session.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	xhr.onload = function () {
+		if(this.status == 200){	
+			let answer = JSON.parse(this.responseText);
+			cartAmountSpan.innerText = answer.amount;
+			document.getElementById(product_id).remove();
+			setTotalPrice(answer.totalPrice);
+			setTotality(answer.totalPrice);
+			
+			if(answer.amount == 0){
+				let strEmptyCart = '<div class="cart__empty"><i>Корзина пуста...</i></div>';
+				document.querySelector(".cart__product-container").insertAdjacentHTML('beforeend', strEmptyCart);
+				document.querySelector('.cart__form').remove();
+				document.querySelector('.cart__total').remove();				
+			}
+		}
+	}
+	xhr.send(params);
+}
+
+function getTotalPrice(){
+	var params = 'action=getTotalPrice';
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'include/session.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	let totalPrice;
+
+	xhr.onload = function () {
+		if(this.status == 200){	
+			let answer = JSON.parse(this.responseText);
+			totalPrice = answer.totalPrice;
+			setTotalPrice(totalPrice);
+		}
+	}
+	xhr.send(params);
+}
+
+
+function setTotalPrice(totalPrice){
+	if(totalPrice){
+		document.querySelector('.cart__total').children[0].innerText = totalPrice;
+	}
+}
+
+function setTotality(totalPrice, deliveryCost = 300){
+	console.log(totalPrice);
+	if(totalPrice){
+
+		let totality = totalPrice + deliveryCost;
+		document.querySelector('.cart__totality').children[0].innerText = totality;
+		console.log(totality);
+	}
+}
+
+function increaseQuantity (amountSpan, product_id) {
+	addToCart(product_id);
+	amountSpan.innerText = Number(amountSpan.innerText) + 1;
+	setTotalPrice(getTotalPrice());
+}
+
+function decreaseQuantity (amountSpan, product_id) {
+	if(Number(amountSpan.innerText) > 1){
+		var params = 'action=decrease&product_id=' + product_id;
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'include/session.php', true);
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+		xhr.onload = function () {
+			if(this.status == 200){	
+				setTotalPrice(getTotalPrice());
+				amountSpan.innerText = Number(amountSpan.innerText) - 1;
+				}
+			}
+		xhr.send(params);
+	}
+}
