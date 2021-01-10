@@ -177,6 +177,7 @@ function showForm($totalPrice){
 			<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 			<script src="../js/productswiper.js"></script>
 			<script type="text/javascript" src="js/cartpage.js"></script>
+			<script type="text/javascript">window.isCartPage = true;</script>
 			<script type="text/javascript" src="/js/cart.js"></script>
 		</body>
 	</html>

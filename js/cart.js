@@ -19,10 +19,9 @@ for (var i = cartItem.length - 1; i >= 0; i--) {
 	cartCount.children[2].addEventListener('click', () => increaseQuantity(cartCount.children[1], productId));
 }
 
-
-let tPrice = getTotalPrice();
-setTotalPrice(tPrice);
-setTotality(tPrice, 1);
+if(window.isCartPage){
+	getTotalPrice();
+}
 
 function showAmount(cartItem){
 	product_id = cartItem.id;
@@ -110,6 +109,7 @@ function getTotalPrice(){
 			let answer = JSON.parse(this.responseText);
 			totalPrice = answer.totalPrice;
 			setTotalPrice(totalPrice);
+			setTotality(totalPrice);
 		}
 	}
 	xhr.send(params);
@@ -123,12 +123,10 @@ function setTotalPrice(totalPrice){
 }
 
 function setTotality(totalPrice, deliveryCost = 300){
-	console.log(totalPrice);
 	if(totalPrice){
-
 		let totality = totalPrice + deliveryCost;
 		document.querySelector('.cart__totality').children[0].innerText = totality;
-		console.log(totality);
+		
 	}
 }
 

@@ -1,6 +1,5 @@
 <?php
 require_once 'session.php';
-global $cartProductsAmount;
 ?>
 
 
@@ -9,18 +8,9 @@ global $cartProductsAmount;
 	<div class="header__burger">
 		<span></span>
 	</div>
-		<a href='index.php' class="header__logo">
-			krasivo
-		</a>
-	<div class="header__right">
-		<a href="catalog.php" class="header__search">
-			<img class="image" src="svg/search.svg">
-		</a>
-		<a href="cartpage.php" class="header__cart">
-			<img class="image" src="svg/cart.svg">
-			<span><?=getProductsAmount()?></span>
-		</a>
-	</div>							
+	<a href='index.php' class="header__logo">
+		krasivo
+	</a>
 	<nav class="header__menu">
 		<ul class="header__list">
 			<li>
@@ -64,6 +54,16 @@ global $cartProductsAmount;
 			</li>
 		</ul>
 	</nav>
+	<div class="header__right">
+		<a href="catalog.php" class="header__search">
+			<img class="image" src="svg/search.svg">
+		</a>
+		<a href="cartpage.php" class="header__cart">
+			<img class="image" src="svg/cart.svg">
+			<span><?=getProductsAmount()?></span>
+		</a>
+	</div>							
+	
 </div>	
 
 
