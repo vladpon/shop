@@ -1,5 +1,5 @@
 let burger = document.querySelector('.header__burger');
-let menu = document.querySelector('.header__menu');
+let menu = document.querySelector('.header__burger-menu');
 let bdy = document.querySelector('body');
 
 burger.addEventListener('click', function (){

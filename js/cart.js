@@ -1,4 +1,4 @@
-let cartAmountSpan = document.querySelector('.header__cart').children[1];
+let cartAmountSpan = document.querySelector('.header__cart-btn').children[1];
 let addToCartBtns = document.querySelectorAll('.add-to-cart');
 let cartItem = document.querySelectorAll('.cart__product')
 

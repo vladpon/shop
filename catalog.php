@@ -41,7 +41,7 @@ require_once 'include/const.php';
 					<div class="content container">
 
 						<div class="breadcrumbs">
-							<a href="#">Главная / </a>
+							<a href="index.php">Главная / </a>
 							<a href="#">Каталог / </a>
 						</div>
 
