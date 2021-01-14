@@ -48,3 +48,4 @@ Stack trace:
 [26-Dec-2020 03:52:33 UTC] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in E:\www\include\session.php on line 16
 [01-Jan-2021 14:35:17 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo failed: ���� ���� ����������.  in Unknown on line 0
 [10-Jan-2021 06:10:18 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo failed: ���� ���� ����������.  in Unknown on line 0
+[14-Jan-2021 09:09:29 UTC] PHP Parse error:  syntax error, unexpected '{' in E:\www\cataloghandler.php on line 58

@@ -49,6 +49,7 @@ html, body {
 
 
 .header__logo {
+	flex-basis: 170px;
 	overflow: hidden;
 	z-index: 3;
 	font-size: 35px;
@@ -56,8 +57,29 @@ html, body {
 	color: black;
 }
 
+.header__logo.active {
+}
+
 .header__search {
 	z-index: 3;
+	display: none;
+	width: 100%;
+	padding: 0px 50px;
+}
+
+.header__search input {
+	width: 100%;
+	border: 0;
+	border-bottom: 1px solid #777;
+	border-radius: 0px;
+	background: transparent;
+	color: #000;
+	outline: 0;
+	padding: 3px 0;
+}
+
+.header__search.active {
+	display: block;
 }
 
 
@@ -93,7 +115,10 @@ html, body {
 .header__main-menu {
 	flex-basis: 500px;
 	z-index: 3;
+}
 
+.header__main-menu.active {
+	display: none;
 }
 
 .header__main-menu a{
@@ -188,6 +213,11 @@ html, body {
 	.header__body {
 		height: 75px;
 
+	}
+
+
+	.header__logo.active {
+		display: none;
 	}
 
 

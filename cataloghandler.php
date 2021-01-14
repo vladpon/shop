@@ -16,7 +16,6 @@ $page = (isset($_GET['page'])) ? (int) $_GET['page'] : 0;
 $isAjaxReq = ($page) ? true : false;
 
 
-
 function initParamReq($page = 0, $sortBy = 'product_name') {
 	global $columnString;
 	global $limit;
@@ -52,9 +51,16 @@ function getParamReq($getArr, $page = 0, $sortBy = 'product_name'){
 					$str .= $atr . ' LIKE "%' . urldecode($val) . '%" OR ';
 				}
 				$str = substr_replace($str, ') ', -3);
-			}
-		}
+			} 
+		} 
 	}
+
+	if (isset($getArr['search'])){
+				$iStr = iSearch($getArr['search']);
+				$str .= $iStr;
+				$isSetAnyParam = true;
+	}
+
 	if(!$isSetAnyParam) {
 		$str = initParamReq($page);
 		return $str;
@@ -63,6 +69,15 @@ function getParamReq($getArr, $page = 0, $sortBy = 'product_name'){
 	$str .= ' LIMIT ' . ($page * $limit) . ', ' . $limit . ';';
 
 	return $str;
+}
+
+
+function iSearch ($searchStr){
+	//echo $searchStr;
+	return 'manufacturer LIKE "%' . $searchStr . '%" OR
+			stone LIKE "%' . $searchStr . '%" OR
+			product_name LIKE "%' . $searchStr . '%" OR
+			cover LIKE "%' . $searchStr . '%";';
 }
 
 function countReq($sqlString){
@@ -232,7 +247,7 @@ if (empty($_GET)){
 	$sqlRequestString = getParamReq($_GET, $page);
 } else {	
 	$sqlRequestString = getParamReq($_GET, $page);
-	// echo $sqlRequestString . PHP_EOL;
+	//echo $sqlRequestString . PHP_EOL;
 	$amount = getData(countReq($sqlRequestString))[0];
 	showCatalogHeader(current($amount));
 	showFilter();

@@ -103,12 +103,14 @@ require_once 'session.php';
 		</ul>
 	</nav>
 	<div class="header__search">
-		<input type="search" name="">
+		<form action="catalog.php" method='GET'>
+			<input type="search" name="search">
+		</form>
 	</div>
 	<div class="header__right">
-		<a href="catalog.php" class="header__search-btn">
+		<div href="catalog.php" class="header__search-btn">
 			<img class="image" src="svg/search.svg">
-		</a>
+		</div>
 		<a href="cartpage.php" class="header__cart-btn">
 			<img class="image" src="svg/cart.svg">
 			<span><?=getProductsAmount()?></span>
@@ -119,4 +121,4 @@ require_once 'session.php';
 
 
 
-<script src="js/burger.js"></script>
+<script src="js/header.js"></script>
