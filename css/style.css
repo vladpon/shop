@@ -4,6 +4,9 @@ html, body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+body.lock {
+	overflow: hidden;
+}
 
 .wrapper {	
 	min-height: 100%;
@@ -110,6 +113,10 @@ html, body {
 
 .image {
 	height: 25px;
+}
+
+.header__search-btn {
+	cursor: pointer;
 }
 
 .header__main-menu {
@@ -621,6 +628,9 @@ html, body {
 }
 
 
+#filter-btn {
+	cursor: pointer;
+}
 
 .filter {
 	padding: 25px 20px 25px 20px;
@@ -732,17 +742,20 @@ html, body {
 	color: white;
 	background-color: #ff9ab7;
 	margin-top: 25px;
+	cursor: pointer;
 }
 
 
 .filter__close-btn {
 	width: 22px;
 	height: 22px;
+	cursor: pointer;
 }
 
 .filter__cancel-btn {
 	width: 25px;
 	height: 25px;
+	cursor: pointer;
 }
 
 .filter__size-ring {
@@ -826,6 +839,10 @@ html, body {
 	padding: 0 5%;
 }
 
+.cart__count span:nth-child(odd){
+	cursor: pointer;
+}
+
 .cart__product-right{
 	width: calc(60% - 30px);
 	display: flex;
@@ -840,8 +857,13 @@ html, body {
 	line-height: 1.7;
 }
 
+.cart__product-describe p{
+/*	text-align: right;*/
+}
+
 .cart__product-describe p:first-child {
 	font-weight: 600;
+	font-size: 17px;
 	text-align: center;
 	margin-bottom: 5px;
 }
@@ -976,7 +998,7 @@ html, body {
 }
 
 .up-btn {
-	display: block;
+	display: none;
 	position: fixed;
 	bottom: 25px;
 	right: 25px;
@@ -988,6 +1010,10 @@ html, body {
 	padding: 10px;
 	opacity: 0.7;
 	transition: opacity, ease, 0.3s;
+}
+
+.up-btn.active {
+	display: block;
 }
 
 .up-btn:hover{
@@ -1003,4 +1029,5 @@ html, body {
 }
 
 .delete-from-cart{
+	cursor: pointer;
 }

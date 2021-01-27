@@ -1,12 +1,11 @@
-<?php 
+<?php
 
-require_once 'include/session.php';
-require_once 'include/const.php';
-	
+ require_once 'include/session.php';
 
 
- ?>
 
+
+?>
 
 <!DOCTYPE html>
 	<html>
@@ -25,45 +24,27 @@ require_once 'include/const.php';
 		</head>
 		<body>
 			<div class="wrapper">
-
-
-
-				<!-- HEADER -->
-
-
 				<header class="header">
 					<div class="container">
 						<?php require("include/header.php")?>
+
 					</div>
 				</header>
-
-
-					<div class="content container">
-
-						<div class="breadcrumbs">
-							<a href="index.php">Главная / </a>
-							<a href="#">Каталог / </a>
-						</div>
-
-
-						<div class="catalog">
-							<?php require('cataloghandler.php'); ?>	
-						</div>							
-						
-							
-						<div class="up-btn">Наверх</div>
-					</div> 
-
+				<div class="content container">
+<!-- 					<div class="breadcrumbs">
+						<a href="#">Главная / </a>
+						<a href="#">Каталог / </a>
+						<a href="#"><?php echo $var[0]['cat_id'] ?></a>
+					</div> -->
 
 
 
 				<?php require('include/footer.php'); ?>
 				
-			</div>
-		
+				</div>
+			</div>			
 			<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-			<script src="js/productSwiper.js"></script>
-			<script type="text/javascript" src="js/catalog.js"></script>
-			<script type="text/javascript" src="js/cart.js"></script>
+			<script src="../js/productswiper.js"></script>
+			<script type="text/javascript" src="/js/cart.js"></script>
 		</body>
 	</html>

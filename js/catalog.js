@@ -87,14 +87,11 @@ function endPage () {
 		}
 
 		xhr.send();
-
-
-		// Show new data
-
-
-
-
 	};
+
+	if (window.pageYOffset >= bdy.clientHeight*2){
+		upBtn.classList.add('active');
+	} else upBtn.classList.remove('active');
 };
 
 window.addEventListener('scroll', endPage);

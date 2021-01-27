@@ -49,3 +49,4 @@ Stack trace:
 [01-Jan-2021 14:35:17 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo failed: ���� ���� ����������.  in Unknown on line 0
 [10-Jan-2021 06:10:18 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo failed: ���� ���� ����������.  in Unknown on line 0
 [14-Jan-2021 09:09:29 UTC] PHP Parse error:  syntax error, unexpected '{' in E:\www\cataloghandler.php on line 58
+[15-Jan-2021 03:47:58 UTC] PHP Warning:  session_start(): Cannot start session when headers already sent in E:\www\include\session.php on line 2

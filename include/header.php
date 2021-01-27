@@ -57,7 +57,7 @@ require_once 'session.php';
 	<nav class="header__main-menu main-menu">
 		<ul class="main-menu__list">
 			<li>
-				<a href="" class="main-menu__link header__link">Каталог</a>
+				<a href="catalog.php" class="main-menu__link header__link">Каталог</a>
 				<ul class="main-sub-menu__list">
 					<li>
 						<a href="catalog.php?cat_id%5B%5D=131" class="main-sub-menu__link">Серьги</a>
