@@ -516,6 +516,8 @@ body.lock {
 	padding: 10px;
 	cursor: pointer;
 	border: none;
+	border-radius: 0;
+	-webkit-appearance: none;
 }
 
 
