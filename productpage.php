@@ -113,8 +113,8 @@ if (isset($_GET['product_id'])){
 				
 				</div>
 			</div>			
-			<script src="js/swiper-bundle.min.js"></script>
-			<script src="../js/productswiper.js"></script>
+			<script src="/js/swiper-bundle.min.js"></script>
+			<script src="/js/productSwiper.js"></script>
 			<script type="text/javascript" src="/js/cart.js"></script>
 		</body>
 	</html>
