@@ -5,6 +5,7 @@ let searchBtn = document.querySelector('.header__search-btn');
 let search = document.querySelector(".header__search");
 let headerLogo = document.querySelector('.header__logo');
 let headerMainMenu = document.querySelector('.header__main-menu');
+let searchInput = document.querySelector('.search-input');
 
 burger.addEventListener('click', function (){
 	burger.classList.toggle('active');
@@ -13,8 +14,21 @@ burger.addEventListener('click', function (){
 });
 
 
-searchBtn.addEventListener('click', function (){
+searchBtn.addEventListener('click', onSearch);
+
+bdy.addEventListener('click', bdyClick, this);
+
+function bdyClick(target){
+	if(target.target != searchInput && target.target != searchBtn.firstElementChild) {
+		if(search.classList.contains('active')){
+			onSearch();
+		}
+	}
+}
+
+
+function onSearch () {
 	search.classList.toggle('active');
 	headerLogo.classList.toggle('active');
 	headerMainMenu.classList.toggle('active');
-})
+}

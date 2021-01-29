@@ -104,7 +104,7 @@ require_once 'session.php';
 	</nav>
 	<div class="header__search">
 		<form action="catalog.php" method='GET'>
-			<input type="search" name="search">
+			<input type="search" name="search" class="search-input">
 		</form>
 	</div>
 	<div class="header__right">

@@ -36,7 +36,7 @@ if (isset($_GET['product_id'])){
 			<link rel="stylesheet"  href="../css/reset.css" >
 			<link rel="stylesheet"  href="../css/style.css" > 
 
-			<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+			<link rel="stylesheet" href="css/swiper-bundle.min.css">
 		</head>
 		<body>
 			<div class="wrapper">
@@ -113,7 +113,7 @@ if (isset($_GET['product_id'])){
 				
 				</div>
 			</div>			
-			<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+			<script src="js/swiper-bundle.min.js"></script>
 			<script src="../js/productswiper.js"></script>
 			<script type="text/javascript" src="/js/cart.js"></script>
 		</body>

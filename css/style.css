@@ -1010,6 +1010,7 @@ body.lock {
 	padding: 10px;
 	opacity: 0.7;
 	transition: opacity, ease, 0.3s;
+	cursor: pointer;
 }
 
 .up-btn.active {
