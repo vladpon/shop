@@ -5,11 +5,9 @@ require_once 'session.php';
 
 
 <div class="header__body">
-	<div class="header__burger">
-		<span></span>
-	</div>
+	
 	<a href='index.php' class="header__logo">
-		krasivo
+		<img src="logo.svg">
 	</a>
 	<nav class="header__burger-menu">
 		<ul class="header__list">
@@ -119,8 +117,12 @@ require_once 'session.php';
 				?>
 
 		</a>
-	</div>							
+		<div class="header__burger">
+		<span></span>
+	</div>					
 	
+	</div>		
+
 </div>	
 
 

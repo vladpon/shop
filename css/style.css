@@ -60,6 +60,10 @@ body.lock {
 	color: black;
 }
 
+.header__logo img{
+	height: 45px;
+}
+
 .header__logo.active {
 }
 
@@ -88,7 +92,7 @@ body.lock {
 
 
 .header__right {
-	width: 80px;
+	width: 95px;
 	z-index: 3;
 	display: flex;
 	justify-content: space-between;
@@ -233,8 +237,8 @@ body.lock {
 	.header__burger {
 		display: block;
 		position: relative;
-		width: 30px;
-		height: 20px;
+		width: 27px;
+		height: 18px;
 		z-index: 3;
 	}
 
@@ -308,6 +312,15 @@ body.lock {
 	.header__link {
 		font-size: 18px;
 	}
+
+
+	.header__search-btn {		
+	}
+
+	.image {
+		height: 18px;
+}
+
 }
 
 
