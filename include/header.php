@@ -113,7 +113,11 @@ require_once 'session.php';
 		</div>
 		<a href="cartpage.php" class="header__cart-btn">
 			<img class="image" src="svg/cart.svg">
-			<span><?=getProductsAmount()?></span>
+
+				<?php	$productAmount = getProductsAmount();
+						echo '<span>' . $productAmount . '</span>';
+				?>
+
 		</a>
 	</div>							
 	

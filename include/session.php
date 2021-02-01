@@ -2,13 +2,10 @@
 session_start();
 
 require_once 'const.php';
-// session_unset();
-////	require 'Product.php';
-//	require 'CartItem.php';
-//	require 'Cart.php';
-// session_unset();
 
-// print_r($_SESSION);
+
+
+		// POST actions
 
 if(isset($_POST['action'])){
 	$fl = false;

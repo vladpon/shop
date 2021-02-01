@@ -99,6 +99,7 @@ body.lock {
 }
 
 .header__cart-btn span{
+	display: none;
 	position: absolute;
 	right: 12%;
 	top: 12%;

@@ -108,7 +108,7 @@ $aAtrItems = array ('cat_id' => array(
 				);
 
 
-$limit = 8;
+$limit = 21;
 
 
 function myPrice ($price){

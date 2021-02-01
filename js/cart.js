@@ -3,6 +3,14 @@ let addToCartBtns = document.querySelectorAll('.add-to-cart');
 let cartItem = document.querySelectorAll('.cart__product')
 
 
+refreshAmountSpan();
+
+function refreshAmountSpan () {
+	if (Number(cartAmountSpan.innerText)){
+		cartAmountSpan.style.display = 'block';
+	} else cartAmountSpan.style.display = 'none';
+}
+
 for (var i = addToCartBtns.length - 1; i >= 0; i--) {
 	let productId = addToCartBtns[i].dataset.productId;
 	addToCartBtns[i].addEventListener('click', ()=> {		
@@ -58,9 +66,10 @@ function addToCart (product_id) {
 
 		//analyze ajax answer
 				
-
 		//if ok cartSpanAmount++
+
 				cartAmountSpan.innerText = Number(cartAmountSpan.innerText) + 1;
+				refreshAmountSpan();
 
 		//if not OK alert
 			}
@@ -90,7 +99,8 @@ function deleteFromCart(product_id)
 				let strEmptyCart = '<div class="cart__empty"><i>Корзина пуста...</i></div>';
 				document.querySelector(".cart__product-container").insertAdjacentHTML('beforeend', strEmptyCart);
 				document.querySelector('.cart__form').remove();
-				document.querySelector('.cart__total').remove();				
+				document.querySelector('.cart__total').remove();
+				refreshAmountSpan();				
 			}
 		}
 	}
@@ -134,6 +144,7 @@ function increaseQuantity (amountSpan, product_id) {
 	addToCart(product_id);
 	amountSpan.innerText = Number(amountSpan.innerText) + 1;
 	setTotalPrice(getTotalPrice());
+	refreshAmountSpan();	
 }
 
 function decreaseQuantity (amountSpan, product_id) {
@@ -147,6 +158,7 @@ function decreaseQuantity (amountSpan, product_id) {
 			if(this.status == 200){	
 				setTotalPrice(getTotalPrice());
 				amountSpan.innerText = Number(amountSpan.innerText) - 1;
+				refreshAmountSpan();	
 				}
 			}
 		xhr.send(params);
