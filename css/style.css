@@ -52,10 +52,10 @@ body.lock {
 
 
 .header__logo {
-	flex-basis: 170px;
+/*	flex-basis: 170px;*/
 	overflow: hidden;
 	z-index: 3;
-	font-size: 35px;
+	font-size: 0px;
 	text-decoration: none;
 	color: black;
 }
@@ -238,7 +238,7 @@ body.lock {
 		display: block;
 		position: relative;
 		width: 27px;
-		height: 18px;
+		height: 20px;
 		z-index: 3;
 	}
 
