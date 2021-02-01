@@ -19,13 +19,13 @@ let braceletSizes = document.querySelector('.filter__size-bracelet');
 let chainSizes = document.querySelector('.filter__size-chain');
 
 
-ringCB.addEventListener('change', () =>{
+ringCB.addEventListener('change', () => {
 	ringSizes.classList.toggle('active');
 })
-braceletCB.addEventListener('change', () =>{
+braceletCB.addEventListener('change', () => {
 	braceletSizes.classList.toggle('active');
 })
-chainCB.addEventListener('change', () =>{
+chainCB.addEventListener('change', () => {
 	chainSizes.classList.toggle('active');
 })
 
