@@ -2,6 +2,8 @@
 html, body {
 	height: 100%;
 	font-family: 'Montserrat', sans-serif;
+	font-smoothing: always;
+	/*image-rendering: pixelated;*/
 }
 
 body.lock {
@@ -61,7 +63,8 @@ body.lock {
 }
 
 .header__logo img{
-	height: 45px;
+	height: 47px;
+	/*text-rendering: geometricPrecision;*/
 }
 
 .header__logo.active {
@@ -208,6 +211,10 @@ body.lock {
 	min-height: 100%;
 }
 
+.content__text {
+	font-size: 18px;
+	line-height: 1.5;
+}
 
 @media (max-width: 767px) {
 
@@ -240,6 +247,7 @@ body.lock {
 		width: 27px;
 		height: 20px;
 		z-index: 3;
+		margin-left: 1px;
 	}
 
 	.header__burger span{

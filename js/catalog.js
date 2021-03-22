@@ -95,3 +95,15 @@ function endPage () {
 };
 
 window.addEventListener('scroll', endPage);
+
+
+function getGetParams () {
+	let searchStr = window.location.search;
+	if(searchStr){
+		searchStr = searchStr.slice(1, searchStr.length);
+		let arr = searchStr.split('&');
+		console.log(arr);
+	}
+}
+
+getGetParams();

@@ -52,10 +52,37 @@ $createUsersString = 'CREATE TABLE users(
 							rights INT
 						);';
 
+$createHitsString = 'CREATE TABLE hits(
+							product_id INT,
+							small_pic VARCHAR(255),
+							product_name VARCHAR(256)
+						);';
 
 
 
 $pass = password_hash('admin', PASSWORD_DEFAULT);
+
+
+
+
+
+$sqlString = 'INSERT shop.hits(product_id, small_pic, product_name) VALUES(' . '4444' . ', "' . '12333' . '", "' . '32111' . '");';
+
+global $pdo;
+try{	
+	$stmt = $pdo->prepare($sqlString);
+	$state = $stmt->execute();
+	$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	echo $answer . "bom bom";
+	return;
+} catch (Exception $e) {
+    echo $e->getMessage() . 'catch';
+    exit;
+}
+
+
+
+
 
 if(isset($_SESSION['user'])){
 	if($_SESSION['user'] == 'admin'){
@@ -100,6 +127,28 @@ if(isset($_SESSION['user'])){
 							</form>
 						</div>
 
+						<div class="new-hit-block">
+							<form class="new-hit-block__form" name="newHitForm">
+								<input type="text" name="productId" id="productId-field" value="product id"><br/>
+								<input type="text" name="smallPic" id="smallPic-field" value="small pic path"><br/>
+								<input type="text" name="productName" id="productName-field" value="product name"><br/>
+								<input type="button" name="submit" value="add" id="add-hit-btn">
+							</form>
+						</div>
+
+						<div class="hits-block">
+							<div class="hit">
+								<img src="https://tdserebro.ru/media/cache/thumb_300//product_images/8/8/e/1_88e9b659-e8c8-11e9-80f6-00155d009e0e_e4cf0a8b-e8fd-11e9-80f6-00155d009e0e.jpeg">
+								<span>Product Name Name Product</span>
+							</div>
+							<div class="hit">
+								<img src="https://tdserebro.ru/media/cache/thumb_300//product_images/8/8/e/1_88e9b659-e8c8-11e9-80f6-00155d009e0e_e4cf0a8b-e8fd-11e9-80f6-00155d009e0e.jpeg">
+							</div>
+<!-- 							<div class="hit hit_add-btn">
+								<span></span>
+								<span></span>
+							</div> -->
+						</div>
 
 
 
@@ -134,14 +183,136 @@ if(isset($_SESSION['user'])){
 							}
 
 							.create-table-block__string.active{
-								display: block
+								display: block;
 							}
+
+							.new-hit-block {
+								display: flex;
+								flex-direction: row;								
+								margin: 0 auto;
+								margin-top: 40px;
+								width: 1100px;
+								background-color: #eee;
+								border: 1px solid #ccc;
+								border-radius: 5px;
+								padding: 5px;
+							}
+
+							.new-hit-block__form{
+							}
+
+							.new-hit-block__form input {
+								margin-bottom: 8px;
+								width: 540px;
+								padding: 5px;
+
+							}
+
+							.hits-block {
+								display: flex;
+								flex-direction: row;								
+								margin: 0 auto;
+								margin-top: 40px;
+								width: 1100px;
+								background-color: #eee;
+								border: 1px solid #ccc;
+								border-radius: 5px;
+								padding: 5px;
+							}
+
+							.hit {
+								height: 110px;
+								width: 80px;
+								background-color: white;
+								margin-right: 5px;
+								overflow: hidden;
+								border: 1px solid #aaa;
+								border-radius: 5px;
+							}
+
+							.hit:hover{
+								box-shadow: 5px 5px 5px rgba(120, 120, 120, 0.5);
+								border: 1px solid rgba(200, 120, 120, 0.5);
+							}
+
+							.hit img{
+								width: 100%;								
+								object-fit: cover;
+							}
+
+							.hit span {
+								font-size: 12px;
+							}
+
+/*							.hit:last-child	{
+								position: relative;
+							}
+
+							.hit:last-child:before {
+								content: '';
+								position: absolute;
+								width: 60px;
+								height: 10px;
+								background-color: #aaa;
+								left: 10px;
+								top: 50px;
+							}
+
+							.hit:last-child:after {
+								content: '';
+								position: absolute;
+								width: 60px;
+								height: 10px;
+								background-color: #aaa;
+								left: 10px;
+								top: 50px;
+								transform: rotate(90deg);
+							}*/
+
 
 						</style>
 
 						<script type="text/javascript">
 							let ctBtns = document.querySelectorAll('.create-table-block__btn');
 							let ctStrings = document.querySelectorAll('.create-table-block__string');
+							let addHitBtn = document.querySelector('#add-hit-btn');
+							let hitsBlock = document.querySelector('.hits-block');
+							// let productIdField = document.querySelector('#productId-field'); 
+
+							addHitBtn.addEventListener('click', newHitFormSubmit);
+
+							function newHitFormSubmit (){								
+								// console.log(productIdField.value);
+								let newHitFormData = new FormData(document.forms.newHitForm);
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								newHitFormData.append('action', 'addHit');
+								xhr.send(newHitFormData);
+								xhr.onload = () => {
+									redrawHitsBlock();
+									console.log(newHitFormData);
+									console.log(xhr.response);
+								}
+							}	
+
+							function redrawHitsBlock () {
+								hitsBlock.innerHTML = "";
+								let getHitsReqFormData = new FormData();
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								getHitsReqFormData.append('action', 'getHits');
+								xhr.send(getHitsReqFormData);
+								xhr.responseType = 'json';								
+								xhr.onload = () => {
+									let hitsData=xhr.response;
+									for (let i = 0; i < hitsData.length; i++ ){
+										let htmlString = '<div class="hit"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + "</span></div>";
+										hitsBlock.insertAdjacentHTML('beforeEnd', htmlString);
+									}
+								}
+							}
+
+
 
 							<?php for ($i = 4; $i >= 0; $i--) {?>
 								ctBtns[<?=$i?>].addEventListener('mouseover', () => {

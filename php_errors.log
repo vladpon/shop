@@ -55,3 +55,4 @@ Stack trace:
 #0 E:\www\index.php(39): include()
 #1 {main}
   thrown in E:\www\include\header.php on line 117
+[04-Feb-2021 02:26:42 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo failed: ���� ���� ����������.  in Unknown on line 0
