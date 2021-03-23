@@ -66,24 +66,6 @@ $pass = password_hash('admin', PASSWORD_DEFAULT);
 
 
 
-$sqlString = 'INSERT shop.hits(product_id, small_pic, product_name) VALUES(' . '4444' . ', "' . '12333' . '", "' . '32111' . '");';
-
-global $pdo;
-try{	
-	$stmt = $pdo->prepare($sqlString);
-	$state = $stmt->execute();
-	$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	echo $answer . "bom bom";
-	return;
-} catch (Exception $e) {
-    echo $e->getMessage() . 'catch';
-    exit;
-}
-
-
-
-
-
 if(isset($_SESSION['user'])){
 	if($_SESSION['user'] == 'admin'){
 		if(password_verify($_SESSION['password'], $pass)){
@@ -137,17 +119,6 @@ if(isset($_SESSION['user'])){
 						</div>
 
 						<div class="hits-block">
-							<div class="hit">
-								<img src="https://tdserebro.ru/media/cache/thumb_300//product_images/8/8/e/1_88e9b659-e8c8-11e9-80f6-00155d009e0e_e4cf0a8b-e8fd-11e9-80f6-00155d009e0e.jpeg">
-								<span>Product Name Name Product</span>
-							</div>
-							<div class="hit">
-								<img src="https://tdserebro.ru/media/cache/thumb_300//product_images/8/8/e/1_88e9b659-e8c8-11e9-80f6-00155d009e0e_e4cf0a8b-e8fd-11e9-80f6-00155d009e0e.jpeg">
-							</div>
-<!-- 							<div class="hit hit_add-btn">
-								<span></span>
-								<span></span>
-							</div> -->
 						</div>
 
 
@@ -221,13 +192,52 @@ if(isset($_SESSION['user'])){
 							}
 
 							.hit {
+								position: relative;
 								height: 110px;
 								width: 80px;
 								background-color: white;
 								margin-right: 5px;
-								overflow: hidden;
+								/*overflow: hidden;*/
 								border: 1px solid #aaa;
 								border-radius: 5px;
+							}
+
+							.hit__close {
+								position: absolute;
+								right: -5px;
+								top: -5px;
+								height: 20px;
+								width: 20px;
+								background-color: #cba;
+								border-radius: 50%;
+							}
+
+							.hit__close:hover{
+								border: 1px solid #a77;
+							}
+
+							.hit__close:hover.hit__close:before,
+							.hit__close:hover.hit__close:after {
+								background-color: #966;
+							}
+
+							.hit__close:before,
+							.hit__close:after {
+								position: absolute;
+								content: "";
+								width: 14px;
+								height: 2px;
+								background-color: #a99;
+								top: 9px;
+								left: 3px;								
+							}
+
+							.hit__close:before {
+								transform: rotate(45deg);
+							}
+
+							.hit__close:after {
+								transform: rotate(-45deg);
 							}
 
 							.hit:hover{
@@ -244,31 +254,6 @@ if(isset($_SESSION['user'])){
 								font-size: 12px;
 							}
 
-/*							.hit:last-child	{
-								position: relative;
-							}
-
-							.hit:last-child:before {
-								content: '';
-								position: absolute;
-								width: 60px;
-								height: 10px;
-								background-color: #aaa;
-								left: 10px;
-								top: 50px;
-							}
-
-							.hit:last-child:after {
-								content: '';
-								position: absolute;
-								width: 60px;
-								height: 10px;
-								background-color: #aaa;
-								left: 10px;
-								top: 50px;
-								transform: rotate(90deg);
-							}*/
-
 
 						</style>
 
@@ -278,6 +263,8 @@ if(isset($_SESSION['user'])){
 							let addHitBtn = document.querySelector('#add-hit-btn');
 							let hitsBlock = document.querySelector('.hits-block');
 							// let productIdField = document.querySelector('#productId-field'); 
+
+							redrawHitsBlock();
 
 							addHitBtn.addEventListener('click', newHitFormSubmit);
 
@@ -306,7 +293,7 @@ if(isset($_SESSION['user'])){
 								xhr.onload = () => {
 									let hitsData=xhr.response;
 									for (let i = 0; i < hitsData.length; i++ ){
-										let htmlString = '<div class="hit"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + "</span></div>";
+										let htmlString = '<div class="hit"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + '</span><div class = "hit__close"><span></span><span></span></div>';
 										hitsBlock.insertAdjacentHTML('beforeEnd', htmlString);
 									}
 								}
