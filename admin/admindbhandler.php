@@ -52,6 +52,23 @@ if(isset($_SESSION['user'])){
 						}
 				}
 
+				if($_POST['action'] == 'deleteHit'){
+					///SEND HITS
+					$product_id = $_POST['product_id'];
+					$sqlString = 'DELETE FROM shop.hits WHERE product_id = ' . $product_id . ';';
+
+						global $pdo;
+						try{	
+							$stmt = $pdo->prepare($sqlString);
+							$state = $stmt->execute();
+							$hitsArr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+							echo json_encode($hitsArr);
+						} catch (Exception $e) {
+						    echo $e->getMessage();
+						    exit;
+						}
+				}
+
 
 
 			}

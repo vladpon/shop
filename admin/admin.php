@@ -200,6 +200,7 @@ if(isset($_SESSION['user'])){
 								/*overflow: hidden;*/
 								border: 1px solid #aaa;
 								border-radius: 5px;
+								cursor: pointer;
 							}
 
 							.hit__close {
@@ -263,6 +264,9 @@ if(isset($_SESSION['user'])){
 							let addHitBtn = document.querySelector('#add-hit-btn');
 							let hitsBlock = document.querySelector('.hits-block');
 							// let productIdField = document.querySelector('#productId-field'); 
+							let hitsArr;
+							
+
 
 							redrawHitsBlock();
 
@@ -292,10 +296,35 @@ if(isset($_SESSION['user'])){
 								xhr.responseType = 'json';								
 								xhr.onload = () => {
 									let hitsData=xhr.response;
+									console.log(hitsData);
 									for (let i = 0; i < hitsData.length; i++ ){
-										let htmlString = '<div class="hit"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + '</span><div class = "hit__close"><span></span><span></span></div>';
+										let htmlString = '<div class="hit" id = "' + hitsData[i]['product_id'] + '"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + '</span><div class = "hit__close"><span></span><span></span></div>';
 										hitsBlock.insertAdjacentHTML('beforeEnd', htmlString);
+										closeBtnInit();
 									}
+								}
+							}
+
+							function closeBtnInit () {
+								hitsArr = document.querySelectorAll('.hit');
+								hitsArr.forEach(function(item, i, arr){
+									let productId = item.id;
+									item.querySelector('.hit__close').addEventListener('click', () => deleteHitItem(productId));
+									console.log('click on close button id =' + productId);
+								})
+							}
+
+							function deleteHitItem (productId){
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								let newHitFormData = new FormData();
+								newHitFormData.append('action', 'deleteHit');
+								newHitFormData.append('product_id', productId);
+								xhr.send(newHitFormData);
+								xhr.onload = () => {
+									redrawHitsBlock();
+									console.log(newHitFormData);
+									console.log(xhr.response);
 								}
 							}
 
