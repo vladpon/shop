@@ -282,7 +282,7 @@ if(isset($_SESSION['user'])){
 								xhr.onload = () => {
 									redrawHitsBlock();
 									console.log(newHitFormData);
-									console.log(xhr.response);
+									// console.log(xhr.response);
 								}
 							}	
 
@@ -299,9 +299,9 @@ if(isset($_SESSION['user'])){
 									console.log(hitsData);
 									for (let i = 0; i < hitsData.length; i++ ){
 										let htmlString = '<div class="hit" id = "' + hitsData[i]['product_id'] + '"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + '</span><div class = "hit__close"><span></span><span></span></div>';
-										hitsBlock.insertAdjacentHTML('beforeEnd', htmlString);
-										closeBtnInit();
+										hitsBlock.insertAdjacentHTML('beforeEnd', htmlString);										
 									}
+									closeBtnInit();
 								}
 							}
 
@@ -309,12 +309,12 @@ if(isset($_SESSION['user'])){
 								hitsArr = document.querySelectorAll('.hit');
 								hitsArr.forEach(function(item, i, arr){
 									let productId = item.id;
-									item.querySelector('.hit__close').addEventListener('click', () => deleteHitItem(productId));
-									console.log('click on close button id =' + productId);
+									item.querySelector('.hit__close').addEventListener('click', () => deleteHitItem(productId));									
 								})
 							}
 
 							function deleteHitItem (productId){
+								console.log('click on close button id =' + productId);
 								let xhr = new XMLHttpRequest();
 								xhr.open('POST', 'admindbhandler.php');
 								let newHitFormData = new FormData();
@@ -324,7 +324,7 @@ if(isset($_SESSION['user'])){
 								xhr.onload = () => {
 									redrawHitsBlock();
 									console.log(newHitFormData);
-									console.log(xhr.response);
+									// console.log(xhr.response);
 								}
 							}
 

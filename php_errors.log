@@ -56,3 +56,9 @@ Stack trace:
 #1 {main}
   thrown in E:\www\include\header.php on line 117
 [04-Feb-2021 02:26:42 UTC] PHP Warning:  Unknown: php_network_getaddresses: getaddrinfo failed: ���� ���� ����������.  in Unknown on line 0
+[30-Mar-2021 10:02:33 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера in C:\www\shop\include\db.php:10
+Stack trace:
+#0 C:\www\shop\include\db.php(10): PDO->__construct('mysql:host=192....', 'admin', 'admin', Array)
+#1 C:\www\shop\index.php(8): require('C:\\www\\shop\\inc...')
+#2 {main}
+  thrown in C:\www\shop\include\db.php on line 10
