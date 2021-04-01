@@ -5,3 +5,4 @@
 [28-Jan-2021 11:47:45 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in E:\www\admin\admin.php on line 152
 [28-Jan-2021 11:47:45 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in E:\www\admin\admin.php on line 152
 [28-Jan-2021 11:47:45 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in E:\www\admin\admin.php on line 152
+[01-Apr-2021 15:48:31 UTC] PHP Warning:  file_get_contents(): Filename cannot be empty in E:\www\admin\handler.php on line 174

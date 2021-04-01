@@ -12,7 +12,7 @@ $createProductsString = 'CREATE TABLE products (
 						    fineness VARCHAR (16),
 						    stone VARCHAR (256),
 						    weight DECIMAL (5,2),
-						    size VARCHAR (128),
+						    size VARCHAR (256),
 						    cover VARCHAR (32),
 						    big_pic VARCHAR(512),
 						    small_pic VARCHAR(255),
@@ -109,21 +109,34 @@ if(isset($_SESSION['user'])){
 							</form>
 						</div>
 
-						<div class="new-hit-block">
-							<form class="new-hit-block__form" name="newHitForm">
-								<input type="text" name="productId" id="productId-field" value="product id"><br/>
-								<input type="text" name="smallPic" id="smallPic-field" value="small pic path"><br/>
-								<input type="text" name="productName" id="productName-field" value="product name"><br/>
-								<input type="button" name="submit" value="add" id="add-hit-btn">
-							</form>
+
+						<div class="wrapper">
+							<div class="new-hit-block">
+								<form class="new-hit-block__form" name="newHitForm">
+									<input type="text" name="productId" id="productId-field" value="product id"><br/>
+									<input type="text" name="smallPic" id="smallPic-field" value="small pic path"><br/>
+									<input type="text" name="productName" id="productName-field" value="product name"><br/>
+									<input type="button" name="submit" value="add" id="add-hit-btn">
+								</form>
+								<div class="hits-block">
+								</div>
+							</div>
 						</div>
 
-						<div class="hits-block">
-						</div>
+						
 
 
 
 						<style type="text/css">
+
+							* {
+								box-sizing: border-box;
+							}
+
+							.wrapper {
+
+							}
+
 							.create-table-block {
 								display: flex;
 								width: 100%;
@@ -159,10 +172,10 @@ if(isset($_SESSION['user'])){
 
 							.new-hit-block {
 								display: flex;
-								flex-direction: row;								
-								margin: 0 auto;
+								flex-direction: column;								
+								/*margin: 0 auto;*/
 								margin-top: 40px;
-								width: 1100px;
+								width: 450px;
 								background-color: #eee;
 								border: 1px solid #ccc;
 								border-radius: 5px;
@@ -170,11 +183,12 @@ if(isset($_SESSION['user'])){
 							}
 
 							.new-hit-block__form{
+								width: 100%;
 							}
 
 							.new-hit-block__form input {
 								margin-bottom: 8px;
-								width: 540px;
+								width: 100%;
 								padding: 5px;
 
 							}
@@ -184,20 +198,22 @@ if(isset($_SESSION['user'])){
 								flex-direction: row;								
 								margin: 0 auto;
 								margin-top: 40px;
-								width: 1100px;
+								width: 100%;
 								background-color: #eee;
 								border: 1px solid #ccc;
 								border-radius: 5px;
 								padding: 5px;
+								overflow: auto;
 							}
 
 							.hit {
 								position: relative;
 								height: 110px;
 								width: 80px;
+								min-width: 80px;
 								background-color: white;
 								margin-right: 5px;
-								/*overflow: hidden;*/
+								overflow: hidden;
 								border: 1px solid #aaa;
 								border-radius: 5px;
 								cursor: pointer;
@@ -344,7 +360,6 @@ if(isset($_SESSION['user'])){
 				</html>
 
 			<?php
-			phpinfo();
 			//END OF ADMIN PAGE
 		} else echo '<h1>Access denied</h1>';
 	} else echo "<h1>User is {$_SESSION['user']}</h1>";

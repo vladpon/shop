@@ -62,3 +62,25 @@ Stack trace:
 #1 C:\www\shop\index.php(8): require('C:\\www\\shop\\inc...')
 #2 {main}
   thrown in C:\www\shop\include\db.php on line 10
+[30-Mar-2021 12:19:54 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1130] Host '_gateway' is not allowed to connect to this MySQL server in E:\www\include\db.php:10
+Stack trace:
+#0 E:\www\include\db.php(10): PDO->__construct('mysql:host=109....', 'admin', 'admin', Array)
+#1 E:\www\index.php(8): require('E:\\www\\include\\...')
+#2 {main}
+  thrown in E:\www\include\db.php on line 10
+[30-Mar-2021 12:19:55 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1130] Host '_gateway' is not allowed to connect to this MySQL server in E:\www\include\db.php:10
+Stack trace:
+#0 E:\www\include\db.php(10): PDO->__construct('mysql:host=109....', 'admin', 'admin', Array)
+#1 E:\www\index.php(8): require('E:\\www\\include\\...')
+#2 {main}
+  thrown in E:\www\include\db.php on line 10
+[30-Mar-2021 12:41:07 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1235 This version of MySQL doesn't yet support 'LIMIT & IN/ALL/ANY/SOME subquery' in E:\www\index.php:13
+Stack trace:
+#0 E:\www\index.php(13): PDOStatement->execute()
+#1 {main}
+  thrown in E:\www\index.php on line 13
+[30-Mar-2021 12:44:03 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 in E:\www\index.php:13
+Stack trace:
+#0 E:\www\index.php(13): PDOStatement->execute()
+#1 {main}
+  thrown in E:\www\index.php on line 13
