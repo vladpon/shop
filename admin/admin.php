@@ -213,7 +213,7 @@ if(isset($_SESSION['user'])){
 								min-width: 80px;
 								background-color: white;
 								margin-right: 5px;
-								overflow: hidden;
+								/*overflow: hidden;*/
 								border: 1px solid #aaa;
 								border-radius: 5px;
 								cursor: pointer;
@@ -268,7 +268,10 @@ if(isset($_SESSION['user'])){
 							}
 
 							.hit span {
+								width: 100%;
+								height: 20px;
 								font-size: 12px;
+								overflow: hidden;
 							}
 
 
