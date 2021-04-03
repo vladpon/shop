@@ -121,6 +121,21 @@ if(isset($_SESSION['user'])){
 								<div class="hits-block">
 								</div>
 							</div>
+							<div class="filter-block">
+								<form class="filter-block__form" name="add-product">
+									<input type="text" name="product_id">
+									<br>
+									<input type="button" id="add-product__btn" value="add">
+								</form>
+								<form class="filter-block__form" name="remove-product">
+									<input type="text" name="product_id">
+									<br>
+									<input type="button" id="remove-product__btn" value="remove">
+								</form>
+								<div class="filter-block__count">
+									1
+								</div>
+							</div>
 						</div>
 
 						
@@ -134,7 +149,8 @@ if(isset($_SESSION['user'])){
 							}
 
 							.wrapper {
-
+								display: flex;
+								flex-direction: row;
 							}
 
 							.create-table-block {
@@ -174,7 +190,7 @@ if(isset($_SESSION['user'])){
 								display: flex;
 								flex-direction: column;								
 								/*margin: 0 auto;*/
-								margin-top: 40px;
+								margin: 10px;
 								width: 450px;
 								background-color: #eee;
 								border: 1px solid #ccc;
@@ -275,6 +291,43 @@ if(isset($_SESSION['user'])){
 							}
 
 
+							.filter-block {
+								margin: 10px;
+								width: 350px;
+								/*min-height: 350px;*/
+								border: 1px solid #522;
+								border-radius: 5px;
+								background-color: #c9c9c9;
+								display: flex;
+								flex-direction: column;
+								justify-content:  space-between;
+								padding: 15px;
+							}
+
+
+							.filter-block__form {
+								width: 100%;
+							}	
+
+							.filter-block__form input {
+								margin-top: 5px;
+								width: 100%;
+							}
+
+							.filter-block__count {
+								margin-top: 10px;
+								width: 100%;
+								/*min-height: 100px;*/
+								padding: 15px;
+								border: 1px solid #396;
+								background-color: #ddd;
+								font-size: 45px;
+								font-family: "Arial";
+								font-weight: 700;
+								text-align: center;
+								vertical-align: baseline;
+							}
+
 						</style>
 
 						<script type="text/javascript">
@@ -282,14 +335,20 @@ if(isset($_SESSION['user'])){
 							let ctStrings = document.querySelectorAll('.create-table-block__string');
 							let addHitBtn = document.querySelector('#add-hit-btn');
 							let hitsBlock = document.querySelector('.hits-block');
+							let addToFilterBtn = document.querySelector('#add-product__btn');
+							let removeFromFilterBtn = document.querySelector('#remove-product__btn');
+							let filterBlockCount = document.querySelector('.filter-block__count');
 							// let productIdField = document.querySelector('#productId-field'); 
 							let hitsArr;
 							
 
 
 							redrawHitsBlock();
+							redrawFilterCount();
 
 							addHitBtn.addEventListener('click', newHitFormSubmit);
+							addToFilterBtn.addEventListener('click', addToFilter);
+							removeFromFilterBtn.addEventListener('click', removeFromFilter);
 
 							function newHitFormSubmit (){								
 								// console.log(productIdField.value);
@@ -315,7 +374,7 @@ if(isset($_SESSION['user'])){
 								xhr.responseType = 'json';								
 								xhr.onload = () => {
 									let hitsData=xhr.response;
-									console.log(hitsData);
+									// console.log(hitsData);
 									for (let i = 0; i < hitsData.length; i++ ){
 										let htmlString = '<div class="hit" id = "' + hitsData[i]['product_id'] + '"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + '</span><div class = "hit__close"><span></span><span></span></div>';
 										hitsBlock.insertAdjacentHTML('beforeEnd', htmlString);										
@@ -347,6 +406,50 @@ if(isset($_SESSION['user'])){
 								}
 							}
 
+
+							function addToFilter () {
+								// console.log('addToFilter function');
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								let filterFormData = new FormData();
+								filterFormData.append('action', 'addFilterItem');
+								let productId = addToFilterBtn.parentElement.product_id.value;
+								filterFormData.append('product_id', productId);
+								xhr.send(filterFormData);
+								xhr.onload = () => {
+									redrawFilterCount();
+								}
+							}
+
+							function removeFromFilter () {
+
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								let filterFormData = new FormData();
+								filterFormData.append('action', 'removeFilterItem');
+								let productId = removeFromFilterBtn.parentElement.product_id.value;
+								// console.log('removeFromFilter function ' + productId);
+								filterFormData.append('product_id', productId);
+								xhr.send(filterFormData);
+								xhr.onload = () => {
+									redrawFilterCount();
+								}
+							}
+
+							
+							function redrawFilterCount () {
+								filterBlockCount.innerHTML = '';
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								let filterFormData = new FormData();
+								filterFormData.append('action', 'getFilterCount');
+								xhr.send(filterFormData);
+								xhr.responseType = 'json';	
+								xhr.onload = () => {
+									let filterCount = xhr.response;
+									filterBlockCount.innerHTML = filterCount[0]['count'];
+								}
+							}
 
 
 							<?php for ($i = 4; $i >= 0; $i--) {?>

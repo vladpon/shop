@@ -69,6 +69,54 @@ if(isset($_SESSION['user'])){
 						}
 				}
 
+				if($_POST['action'] == 'addFilterItem'){
+
+					$sqlString = 'INSERT shop.filter(product_id) VALUES(' . $_POST['product_id'] . ');';
+
+						global $pdo;
+						try{	
+							$stmt = $pdo->prepare($sqlString);
+							$state = $stmt->execute();
+							$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
+							echo $answer . "bom bom";
+						} catch (Exception $e) {
+						    echo $e->getMessage();
+						    exit;
+						}
+				}
+
+				if($_POST['action'] == 'removeFilterItem'){	
+
+					$sqlString = 'DELETE FROM shop.filter WHERE product_id = ' . $_POST['product_id'] . ';';;
+
+						global $pdo;
+						try{	
+							$stmt = $pdo->prepare($sqlString);
+							$state = $stmt->execute();
+							$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
+							echo $answer . "bom bom";
+						} catch (Exception $e) {
+						    echo $e->getMessage();
+						    exit;
+						}
+				}
+
+				if($_POST['action'] == 'getFilterCount'){	
+					$sqlString = 'SELECT COUNT(product_id) AS count FROM shop.filter WHERE TRUE;';
+
+						global $pdo;
+						try{	
+							$stmt = $pdo->prepare($sqlString);
+							$state = $stmt->execute();
+							$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
+							echo json_encode($answer);
+						} catch (Exception $e) {
+						    echo $e->getMessage();
+						    exit;
+						}
+				}
+
+
 
 
 			}
