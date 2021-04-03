@@ -451,6 +451,19 @@ if(isset($_SESSION['user'])){
 								}
 							}
 
+							function getFilterItems () {
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								let filterFormData = new FormData();
+								filterFormData.append('action', 'getFilterItems');
+								xhr.send(filterFormData);
+								xhr.responseType = 'json';
+								xhr.onload = () => {
+									let filterItems = xhr.response;
+									// console.log(filterItems);
+								}
+							}
+
 
 							<?php for ($i = 4; $i >= 0; $i--) {?>
 								ctBtns[<?=$i?>].addEventListener('mouseover', () => {

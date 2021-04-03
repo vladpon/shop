@@ -116,6 +116,20 @@ if(isset($_SESSION['user'])){
 						}
 				}
 
+				if($_POST['action'] == 'getFilterItems'){
+					$sqlString = 'SELECT product_id FROM shop.filter WHERE TRUE;';
+						global $pdo;
+						try{
+							$stmt = $pdo->prepare($sqlString);
+							$state = $stmt->execute();
+							$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
+							echo json_encode($answer);
+						} catch (Exception $e) {
+						    echo $e->getMessage();
+						    exit;
+						}
+				}
+
 
 
 
