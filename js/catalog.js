@@ -67,7 +67,6 @@ let page = 0;
 
 function endPage () {
 
-
 	if (window.pageYOffset >= (bdy.scrollHeight - (bdy.clientHeight + 200))){
 
 		// AJAX Request
@@ -78,7 +77,7 @@ function endPage () {
 		xhr = new XMLHttpRequest();
 		xhr.open('GET', url, true);
 		
-
+		console.log(url);
 		xhr.onload = function () {
 			if(this.status == 200){
 				catalogContent.insertAdjacentHTML('beforeend', this.responseText);
