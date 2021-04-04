@@ -15,6 +15,8 @@ body.lock {
 }
 
 
+/*    ---------------HEADER--------------*/
+
 .header {
 	position: fixed;
 	width: 100%;
@@ -36,14 +38,6 @@ body.lock {
 	z-index: 2;
 }
 
-
-.container {
-	max-width: 1180px;
-	margin: 0px auto;
-	padding: 0px 15px;
-}
-
-
 .header__body {
 	position: relative;
 	display: flex;
@@ -63,7 +57,8 @@ body.lock {
 }
 
 .header__logo img{
-	height: 47px;
+	/*height: 47px;*/
+	width: 170px;
 	/*text-rendering: geometricPrecision;*/
 }
 
@@ -74,11 +69,11 @@ body.lock {
 	z-index: 3;
 	display: none;
 	width: 100%;
-	padding: 0px 50px;
+	/*padding: 0px 50px;*/
 }
 
 .header__search input {
-	width: 100%;
+	width: 450px;
 	border: 0;
 	border-bottom: 1px solid #777;
 	border-radius: 0;
@@ -120,8 +115,10 @@ body.lock {
 	text-align: center;
 }
 
-.image {
-	height: 25px;
+.container {
+	max-width: 1180px;
+	margin: 0px auto;
+	padding: 0px 15px;
 }
 
 .header__search-btn {
@@ -205,6 +202,21 @@ body.lock {
 	font-size: 18px; 
 	text-decoration: none;
 }
+
+
+
+/*   ------------------------END OF HEADER----------------------*/
+
+
+
+
+
+
+.image {
+	height: 25px;
+}
+
+
 
 .content {
 	padding-top: 80px;
