@@ -118,16 +118,37 @@ if(isset($_SESSION['user'])){
 
 				if($_POST['action'] == 'getFilterItems'){
 					$sqlString = 'SELECT product_id FROM shop.filter WHERE TRUE;';
+					$jsonFile = fopen('filteritems.json', 'w');					
 						global $pdo;
 						try{
 							$stmt = $pdo->prepare($sqlString);
 							$state = $stmt->execute();
 							$answer = $stmt->fetchAll(PDO::FETCH_ASSOC);
 							echo json_encode($answer);
+							fwrite($jsonFile, json_encode($answer));
+							fclose($jsonFile);
 						} catch (Exception $e) {
 						    echo $e->getMessage();
 						    exit;
 						}
+				}
+
+				if($_POST['action'] == 'getFilterArr'){
+					$jsonFile = fopen('filteritems.json', 'r');
+					$filterItems;
+					while (!feof($jsonFile)) {
+						$filterItems .= fgets($jsonFile);
+					}
+					fclose($jsonFile);					
+					$filterItemsArr = json_decode($filterItems, true);
+					// $filterItemsArr = $filterItems;
+
+					function getItem ($a){
+						return $a['product_id'];
+					}
+
+					$filterItemsArr = array_map('getItem', $filterItemsArr);
+					echo var_dump($filterItemsArr);
 				}
 
 

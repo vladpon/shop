@@ -6,3 +6,31 @@
 [28-Jan-2021 11:47:45 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in E:\www\admin\admin.php on line 152
 [28-Jan-2021 11:47:45 UTC] PHP Warning:  Use of undefined constant php - assumed 'php' (this will throw an Error in a future version of PHP) in E:\www\admin\admin.php on line 152
 [01-Apr-2021 15:48:31 UTC] PHP Warning:  file_get_contents(): Filename cannot be empty in E:\www\admin\handler.php on line 174
+[04-Apr-2021 06:04:12 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1130] Host '_gateway' is not allowed to connect to this MySQL server in E:\www\include\db.php:10
+Stack trace:
+#0 E:\www\include\db.php(10): PDO->__construct('mysql:host=109....', 'admin', 'admin', Array)
+#1 E:\www\admin\admin.php(3): require('E:\\www\\include\\...')
+#2 {main}
+  thrown in E:\www\include\db.php on line 10
+[04-Apr-2021 06:04:20 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1130] Host '_gateway' is not allowed to connect to this MySQL server in E:\www\include\db.php:10
+Stack trace:
+#0 E:\www\include\db.php(10): PDO->__construct('mysql:host=109....', 'admin', 'admin', Array)
+#1 E:\www\admin\admin.php(3): require('E:\\www\\include\\...')
+#2 {main}
+  thrown in E:\www\include\db.php on line 10
+[04-Apr-2021 06:04:22 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1130] Host '_gateway' is not allowed to connect to this MySQL server in E:\www\include\db.php:10
+Stack trace:
+#0 E:\www\include\db.php(10): PDO->__construct('mysql:host=109....', 'admin', 'admin', Array)
+#1 E:\www\admin\admin.php(3): require('E:\\www\\include\\...')
+#2 {main}
+  thrown in E:\www\include\db.php on line 10
+[04-Apr-2021 07:55:21 UTC] PHP Warning:  Use of undefined constant filterItemsArr - assumed 'filterItemsArr' (this will throw an Error in a future version of PHP) in E:\www\admin\admindbhandler.php on line 144
+[04-Apr-2021 07:55:21 UTC] PHP Warning:  array_map(): Expected parameter 2 to be an array, string given in E:\www\admin\admindbhandler.php on line 144
+[04-Apr-2021 07:57:41 UTC] PHP Fatal error:  Uncaught Error: Cannot use object of type stdClass as array in E:\www\admin\admindbhandler.php:146
+Stack trace:
+#0 [internal function]: getItem(Object(stdClass))
+#1 E:\www\admin\admindbhandler.php(149): array_map('getItem', Array)
+#2 {main}
+  thrown in E:\www\admin\admindbhandler.php on line 146
+[04-Apr-2021 08:05:37 UTC] PHP Warning:  Use of undefined constant TURE - assumed 'TURE' (this will throw an Error in a future version of PHP) in E:\www\admin\admindbhandler.php on line 143
+[04-Apr-2021 08:14:35 UTC] PHP Warning:  file_get_contents(): Filename cannot be empty in E:\www\admin\handler.php on line 35

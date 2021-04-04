@@ -84,3 +84,9 @@ Stack trace:
 #0 E:\www\index.php(13): PDOStatement->execute()
 #1 {main}
   thrown in E:\www\index.php on line 13
+[04-Apr-2021 06:04:11 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1130] Host '_gateway' is not allowed to connect to this MySQL server in E:\www\include\db.php:10
+Stack trace:
+#0 E:\www\include\db.php(10): PDO->__construct('mysql:host=109....', 'admin', 'admin', Array)
+#1 E:\www\index.php(8): require('E:\\www\\include\\...')
+#2 {main}
+  thrown in E:\www\include\db.php on line 10

@@ -112,6 +112,7 @@ if(isset($_SESSION['user'])){
 
 						<div class="wrapper">
 							<div class="new-hit-block">
+								<h2>Hits</h2>
 								<form class="new-hit-block__form" name="newHitForm">
 									<input type="text" name="productId" id="productId-field" value="product id"><br/>
 									<input type="text" name="smallPic" id="smallPic-field" value="small pic path"><br/>
@@ -122,6 +123,7 @@ if(isset($_SESSION['user'])){
 								</div>
 							</div>
 							<div class="filter-block">
+								<h2>Filter count</h2>
 								<form class="filter-block__form" name="add-product">
 									<input type="text" name="product_id">
 									<br>
@@ -132,10 +134,13 @@ if(isset($_SESSION['user'])){
 									<br>
 									<input type="button" id="remove-product__btn" value="remove">
 								</form>
+								
 								<div class="filter-block__count">
-									1
+									<h2>Filter Items</h2>
 								</div>
 							</div>
+							<div class="filter-block__items">
+								</div>
 						</div>
 
 						
@@ -145,7 +150,16 @@ if(isset($_SESSION['user'])){
 						<style type="text/css">
 
 							* {
-								box-sizing: border-box;
+								box-sizing: border-box;								
+							}
+
+							body, html {
+								font-family: 'Arial';
+							}
+
+							h2 {
+								text-align: center;
+								color: #636;
 							}
 
 							.wrapper {
@@ -314,6 +328,28 @@ if(isset($_SESSION['user'])){
 								width: 100%;
 							}
 
+							.filter-block__items {
+								margin: 10px;
+								width: 100%;
+								background-color: #ccc;
+								border: 1px solid #c45;
+								border-radius: 5px;
+								display: flex;
+								flex-wrap: wrap;
+								align-content: start;
+							}
+
+							.filter-block__item {
+								min-width: 30px;
+								height: 15px;
+								font-size: 11px;
+								border: 1px solid #555;
+								border-radius: 2px;
+								margin: 1px;
+								padding: 1px;
+								text-align: center;
+							}
+
 							.filter-block__count {
 								margin-top: 10px;
 								width: 100%;
@@ -328,6 +364,8 @@ if(isset($_SESSION['user'])){
 								vertical-align: baseline;
 							}
 
+
+
 						</style>
 
 						<script type="text/javascript">
@@ -338,6 +376,7 @@ if(isset($_SESSION['user'])){
 							let addToFilterBtn = document.querySelector('#add-product__btn');
 							let removeFromFilterBtn = document.querySelector('#remove-product__btn');
 							let filterBlockCount = document.querySelector('.filter-block__count');
+							let filterBlockItems = document.querySelector('.filter-block__items');
 							// let productIdField = document.querySelector('#productId-field'); 
 							let hitsArr;
 							
@@ -418,6 +457,7 @@ if(isset($_SESSION['user'])){
 								xhr.send(filterFormData);
 								xhr.onload = () => {
 									redrawFilterCount();
+
 								}
 							}
 
@@ -438,6 +478,8 @@ if(isset($_SESSION['user'])){
 
 							
 							function redrawFilterCount () {
+								getFilterItems();
+
 								filterBlockCount.innerHTML = '';
 								let xhr = new XMLHttpRequest();
 								xhr.open('POST', 'admindbhandler.php');
@@ -452,6 +494,7 @@ if(isset($_SESSION['user'])){
 							}
 
 							function getFilterItems () {
+								filterBlockItems.innerHTML = '';
 								let xhr = new XMLHttpRequest();
 								xhr.open('POST', 'admindbhandler.php');
 								let filterFormData = new FormData();
@@ -460,7 +503,25 @@ if(isset($_SESSION['user'])){
 								xhr.responseType = 'json';
 								xhr.onload = () => {
 									let filterItems = xhr.response;
+									filterItems.forEach((currentValue) => {
+										let str = '<div class = "filter-block__item">' + currentValue['product_id'] + '</div>';
+										filterBlockItems.insertAdjacentHTML('beforeend', str);
+									});
 									// console.log(filterItems);
+								}
+							}
+
+							function getFilterArr () {
+								filterBlockItems.innerHTML = '';
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								let filterFormData = new FormData();
+								filterFormData.append('action', 'getFilterArr');
+								xhr.send(filterFormData);
+								// xhr.responseType = 'json';
+								xhr.onload = () => {
+									let filterArr = xhr.response;									
+									console.log(filterArr);
 								}
 							}
 

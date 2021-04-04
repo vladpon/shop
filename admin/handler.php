@@ -46,6 +46,19 @@
 	function importCSV($file) {
 		try{
 			global $pdo;
+			$jsonFile = fopen('filteritems.json', 'r');
+			$filterItems = '';
+			while (!feof($jsonFile)) {
+				$filterItems .= fgets($jsonFile);
+			}
+			fclose($jsonFile);
+			$filterItemsArr = json_decode($filterItems, true);
+
+			function getItem ($a){
+				return $a['product_id'];
+			}
+
+			$filterItemsArr = array_map('getItem', $filterItemsArr);
 
 			$handle = fopen('php://memory', 'w+');
 			fwrite($handle, iconv('CP1251', 'UTF-8', file_get_contents($file)));
@@ -62,57 +75,59 @@
 		//		$bigPic = $row[8];
 				$smallPic = $row[9];
 
-				$spec = [
-					'manufacturer' => '',
-					'fineness' => '',
-					'stone' => '',
-					'size' => '',
-					'cover' => ''
-				];
+				if (in_array($productId, $filterItemsArr)) {
+					$spec = [
+						'manufacturer' => '',
+						'fineness' => '',
+						'stone' => '',
+						'size' => '',
+						'cover' => ''
+					];
 
-				$arr = explode('#',$other);
-				foreach($arr as $var){
-					$value = explode('/', $var);
-					switch($value[0]){
-						case 'Производитель':
-							$spec['manufacturer'] = (strlen($value[1])<32) ? ($value[1]) : (mb_substr($value[1], 0, 30, 'UTF-8'));
-							break;
-						case 'Проба':
-							$spec['fineness'] = $value[1];
-							break;
-						case 'Вставка':
-							$spec['stone'] .= $value[1]. '; ';
-							break;
-						case 'Размер':
-							$spec['size'] .= $value[1] . '; ';
-							break;
-						case 'Покрытие':
-							$spec['cover'] = $value[1];
+					$arr = explode('#',$other);
+					foreach($arr as $var){
+						$value = explode('/', $var);
+						switch($value[0]){
+							case 'Производитель':
+								$spec['manufacturer'] = (strlen($value[1])<32) ? ($value[1]) : (mb_substr($value[1], 0, 30, 'UTF-8'));
+								break;
+							case 'Проба':
+								$spec['fineness'] = $value[1];
+								break;
+							case 'Вставка':
+								$spec['stone'] .= $value[1]. '; ';
+								break;
+							case 'Размер':
+								$spec['size'] .= $value[1] . '; ';
+								break;
+							case 'Покрытие':
+								$spec['cover'] = $value[1];
+						}
 					}
-				}
 
-				
-				$sql = "INSERT INTO products (product_id, product_name, manufacturer, cat_id,  price, vendor_code, fineness, stone, size, cover, small_pic, link_products)
-									VALUES(:productId, :productName, :manufacturer, :category, :price, :vendorCode, :fineness, :stone, :size, :cover, :smallPic, :linkProducts);";
-				$stmt = $pdo->prepare($sql);
-				$state = $stmt->execute([
-										'productId'=> $productId,									
-										'productName' => $productName, 
-										'manufacturer' => $spec['manufacturer'], 
-										'category' => $category, 
-										'price'=> $price, 
-										'vendorCode' => $vendorCode, 
-										'fineness' => $spec['fineness'], 
-										'stone' => $spec['stone'], 
-										'size' => $spec['size'],
-										'cover' => $spec['cover'],
-		//								'bigPic' => $bigPic, 
-										'smallPic' => $smallPic, 
-										'linkProducts' => $linkProducts
-									]);
-				if(!$state) {
-					echo "FAILED to add product id$productId</br>";
-				}	else echo '<span style="font-size: 10px">' . $productId . ' </span>';
+					
+					$sql = "INSERT INTO products (product_id, product_name, manufacturer, cat_id,  price, vendor_code, fineness, stone, size, cover, small_pic, link_products)
+										VALUES(:productId, :productName, :manufacturer, :category, :price, :vendorCode, :fineness, :stone, :size, :cover, :smallPic, :linkProducts);";
+					$stmt = $pdo->prepare($sql);
+					$state = $stmt->execute([
+											'productId'=> $productId,									
+											'productName' => $productName, 
+											'manufacturer' => $spec['manufacturer'], 
+											'category' => $category, 
+											'price'=> $price, 
+											'vendorCode' => $vendorCode, 
+											'fineness' => $spec['fineness'], 
+											'stone' => $spec['stone'], 
+											'size' => $spec['size'],
+											'cover' => $spec['cover'],
+			//								'bigPic' => $bigPic, 
+											'smallPic' => $smallPic, 
+											'linkProducts' => $linkProducts
+										]);
+					if(!$state) {
+						echo "FAILED to add product id$productId</br>";
+					}	else echo '<span style="font-size: 10px">' . $productId . ' </span>';
+				}
 
 				
 			}

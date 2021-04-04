@@ -71,7 +71,7 @@
 
 							<!-- НОВИНКИ -->
 
-						<div class="content__hits hits">
+						<!-- <div class="content__hits hits">
 							<div class="hits__title">Новинки</div>
 							<div class="hits__slider swiper-container">
 								<div class="swiper-wrapper">										
@@ -89,13 +89,13 @@
 
 								</div>
 							</div>
-						</div>
-						<div class="gift-card">
+						</div> -->
+				<!-- 		<div class="gift-card">
 							<div class="gift-card__item"></div>
-						</div>
+						</div> -->
 
 						<div class="insta">
-							<div class="insta__item"></div>
+							<a href="https://instagram.com/krasivo_krsk"><div class="insta__item"></div></a>
 						</div>						
 					</div>
 				</div>
