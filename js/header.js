@@ -6,6 +6,7 @@ let search = document.querySelector(".header__search");
 let headerLogo = document.querySelector('.header__logo');
 let headerMainMenu = document.querySelector('.header__main-menu');
 let searchInput = document.querySelector('.search-input');
+let cartBtn = document.querySelector('.header__cart-btn');
 
 burger.addEventListener('click', function (){
 	burger.classList.toggle('active');
@@ -31,4 +32,6 @@ function onSearch () {
 	search.classList.toggle('active');
 	headerLogo.classList.toggle('active');
 	headerMainMenu.classList.toggle('active');
+	searchBtn.classList.toggle('hide');
+	cartBtn.classList.toggle('hide');
 }
