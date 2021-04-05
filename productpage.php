@@ -1,6 +1,7 @@
 <?php
 
 require_once 'include/session.php';
+require_once 'include/const.php';
 
 
 if (isset($_GET['product_id'])){
@@ -48,9 +49,25 @@ if (isset($_GET['product_id'])){
 				</header>
 				<div class="content container">
 					<div class="breadcrumbs">
-						<a href="#">Главная / </a>
-						<a href="#">Каталог / </a>
-						<a href="#"><?php echo $var[0]['cat_id'] ?></a>
+						<a href="index.php">Главная / </a>
+						<a href="catalog.php">Каталог / </a>
+
+						<?php 
+							$catName;
+							try{
+								require_once 'include/db.php';
+								global $pdo;
+								$sql = "SELECT cat_name FROM shop.categories WHERE cat_id = :cat_id;";
+								$stmt = $pdo->prepare($sql);
+								$state = $stmt->execute(['cat_id'=> $var[0]['cat_id']]);
+								$catName = $stmt->fetchAll(PDO::FETCH_ASSOC);
+							} catch (Exception $e) {
+							    echo $e->getMessage();
+							    exit;
+							}
+						?>
+
+						<a href="catalog.php?cat_id%5B%5D=<?=$var[0]['cat_id']?>"><?=$catName[0]['cat_name']?></a>
 					</div>
 
 
