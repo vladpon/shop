@@ -10,8 +10,46 @@ body.lock {
 	overflow: hidden;
 }
 
+
+h1 {
+	font-size: 18px;
+	text-transform: uppercase;
+	margin-top: 60px;
+	margin-bottom: 30px;
+	/*text-align: center;*/
+}
+
 .wrapper {	
 	min-height: 100%;
+}
+
+
+.image {
+	height: 25px;
+}
+
+
+
+.content {
+	padding-top: 80px;
+	min-height: 100%;
+}
+
+.content__text {
+	margin-top: 120px;
+	font-size: 14px;
+	line-height: 1.5;
+	max-width: 1000px;
+	/*text-align: center;*/
+}
+
+.content__text p {
+	margin-top: 20px;
+}
+
+.content__text ul {
+	list-style-type: disclosure-closed;
+	margin-left: 20px;
 }
 
 
@@ -214,24 +252,6 @@ body.lock {
 
 
 
-.image {
-	height: 25px;
-}
-
-
-
-.content {
-	padding-top: 80px;
-	min-height: 100%;
-}
-
-.content__text {
-	margin-top: 40px;
-	font-size: 18px;
-	line-height: 1.5;
-	max-width: 1000px;
-	text-align: center;
-}
 
 
 
