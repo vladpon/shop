@@ -77,11 +77,10 @@ function endPage () {
 		xhr = new XMLHttpRequest();
 		xhr.open('GET', url, true);
 		
-		console.log(url);
+		// console.log(url);
 		xhr.onload = function () {
 			if(this.status == 200){
 				catalogContent.insertAdjacentHTML('beforeend', this.responseText);
-
 			}
 		}
 
@@ -105,4 +104,4 @@ function getGetParams () {
 	}
 }
 
-getGetParams();
+// getGetParams();

@@ -77,7 +77,7 @@ function iSearch ($searchStr){
 	return 'manufacturer LIKE "%' . $searchStr . '%" OR
 			stone LIKE "%' . $searchStr . '%" OR
 			product_name LIKE "%' . $searchStr . '%" OR
-			cover LIKE "%' . $searchStr . '%";';
+			cover LIKE "%' . $searchStr . '%" ';
 }
 
 function countReq($sqlString){
