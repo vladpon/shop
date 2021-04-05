@@ -11,12 +11,12 @@ require_once 'session.php';
 	</a>
 	<nav class="header__burger-menu">
 		<ul class="header__list">
-			<li>
+	<!-- 		<li>
 				<a href="catalog.php" class="header__link"><b>NEW</b></a>
 			</li>
 			<li>
 				<a href="catalog.php" class="header__link"><b>SALE</b></a>
-			</li>
+			</li> -->
 			<li>
 				<a href="catalog.php?cat_id%5B%5D=131" class="header__link">Серьги</a>
 			</li>
@@ -91,14 +91,14 @@ require_once 'session.php';
 						<a href="catalog.php?cat_id%5B%5D=134" class="main-sub-menu__link">Часы</a>
 					</li>
 				</ul>
-			</li>
-			<li>
-				<a href="" class="main-menu__link header__link">New</a>
-			</li>
-			<li>
-				<a href="" class="main-menu__link header__link">Sale</a>
-			</li>
-		</ul>
+					<!-- </li>
+					<li>
+						<a href="" class="main-menu__link header__link">New</a>
+					</li>
+					<li>
+						<a href="" class="main-menu__link header__link">Sale</a>
+					</li>
+				</ul> -->
 	</nav>
 	<div class="header__search">
 		<form action="catalog.php" method='GET'>

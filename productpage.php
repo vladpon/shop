@@ -108,15 +108,31 @@ if (isset($_GET['product_id'])){
 									<span>Покрытие</span>
 									<span></span>
 								</div>
-								<form class="other__item">
-									<span>Размер</span>
-									<select>
-										<option>Выбрать размер</option>
-										<option>16</option>
-										<option>16,5</option>
-										<option>17</option>
-									</select>
-								</form>
+
+								<?php
+									$sizingCats = array(
+											127, 135, 137, 138, 140, 141, 142, 143, 148, 152, 264, 265
+											);
+									if(in_array($var[0]['cat_id'], $sizingCats)){	?>
+
+										<form class="other__item">
+											<span>Размер</span>
+											<select>
+												<option>Выбрать размер</option>
+
+												<?php
+													// var_dump($var[0]['size']);
+													$sizeArr = explode(';', $var[0]['size'], -1);													
+													foreach ($sizeArr as $key => $value) {
+														$value = preg_replace('/[^0-9^,]/', '', $value);
+														echo '<option>' . $value . '</option>';
+													}
+												?>
+
+											</select>
+										</form>
+									<?php }
+								?>
 							</div>
 						</div>
 					</div>

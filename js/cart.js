@@ -99,9 +99,9 @@ function deleteFromCart(product_id)
 				let strEmptyCart = '<div class="cart__empty"><i>Корзина пуста...</i></div>';
 				document.querySelector(".cart__product-container").insertAdjacentHTML('beforeend', strEmptyCart);
 				document.querySelector('.cart__form').remove();
-				document.querySelector('.cart__total').remove();
-				refreshAmountSpan();				
+				document.querySelector('.cart__total').remove();					
 			}
+		refreshAmountSpan();
 		}
 	}
 	xhr.send(params);
@@ -158,9 +158,10 @@ function decreaseQuantity (amountSpan, product_id) {
 			if(this.status == 200){	
 				setTotalPrice(getTotalPrice());
 				amountSpan.innerText = Number(amountSpan.innerText) - 1;
+				cartAmountSpan.innerText = Number(cartAmountSpan.innerText) - 1;
 				refreshAmountSpan();	
-				}
 			}
+		}
 		xhr.send(params);
 	}
 }
