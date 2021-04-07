@@ -32,6 +32,10 @@
 				</header>
 				<div class="content container">
 
+					<img src="img/doc1.jpeg">
+					<img src="img/doc2.jpeg">
+					<img src="img/doc3.jpeg">
+
 					<a name='terms_of_use'></a>
 					<pre>
 

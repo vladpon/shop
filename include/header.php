@@ -6,7 +6,7 @@ require_once 'session.php';
 
 <div class="header__body">
 	
-	<a href='index.php' class="header__logo">
+	<a href='/' class="header__logo">
 		<img src="logo.svg">
 	</a>
 	<nav class="header__burger-menu">
