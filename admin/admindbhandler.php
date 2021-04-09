@@ -152,7 +152,7 @@ if(isset($_SESSION['user'])){
 				}
 
 				if($_POST['action'] == 'loadAvailFile'){
-					var_dump($_FILE);
+					var_dump($_FILES);
 				}
 
 

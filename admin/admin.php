@@ -115,7 +115,7 @@ if(isset($_SESSION['user'])){
 							<form name="availability" class="avail-form">
 								<input type="file" name="availfilechoose">
 								<br>
-								<input type="button" name="submit-avail" value="submit">
+								<input type="button" name="submitAvail" value="submit">
 							</form>
 						</div>
 
@@ -414,6 +414,7 @@ if(isset($_SESSION['user'])){
 							
 
 
+
 							redrawHitsBlock();
 							redrawFilterCount();
 
@@ -557,11 +558,14 @@ if(isset($_SESSION['user'])){
 								}
 							}
 
-							function loadAvailFile () {
 
+
+							document.availability.submitAvail.addEventListener('click', loadAvailFile);
+
+							function loadAvailFile () {
 								let xhr = new XMLHttpRequest();
 								xhr.open('POST', 'admindbhandler.php');
-								let filterFormData = new FormData();
+								let filterFormData = new FormData(document.availability);
 								filterFormData.append('action', 'loadAvailFile');
 								// filterFormData.append('file', document.)
 								xhr.send(filterFormData);
