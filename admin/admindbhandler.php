@@ -151,6 +151,10 @@ if(isset($_SESSION['user'])){
 					echo var_dump($filterItemsArr);
 				}
 
+				if($_POST['action'] == 'loadAvailFile'){
+					var_dump($_FILE);
+				}
+
 
 
 

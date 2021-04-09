@@ -109,6 +109,16 @@ if(isset($_SESSION['user'])){
 							</form>
 						</div>
 
+						<h2>Availability block</h2>
+
+						<div class="avail-form-block">
+							<form name="availability" class="avail-form">
+								<input type="file" name="availfilechoose">
+								<br>
+								<input type="button" name="submit-avail" value="submit">
+							</form>
+						</div>
+
 
 						<div class="wrapper">
 							<div class="new-hit-block">
@@ -199,6 +209,28 @@ if(isset($_SESSION['user'])){
 							.create-table-block__string.active{
 								display: block;
 							}
+
+							.avail-form-block {
+								background-color: #aaa;
+								display: flex;
+								padding: 10px;
+								margin-top: 10px;
+								border: 1px solid #492;
+							}
+
+							.avail-form {
+								/*margin-top: 25px;*/
+								/*margin-bottom: 25px;*/
+								background-color: #bbb;
+								border: 1px solid #888;
+							}
+
+							.avail-form input {
+								margin: 10px;
+								width: 300px;
+							}
+
+
 
 							.new-hit-block {
 								display: flex;
@@ -522,6 +554,21 @@ if(isset($_SESSION['user'])){
 								xhr.onload = () => {
 									let filterArr = xhr.response;									
 									console.log(filterArr);
+								}
+							}
+
+							function loadAvailFile () {
+
+								let xhr = new XMLHttpRequest();
+								xhr.open('POST', 'admindbhandler.php');
+								let filterFormData = new FormData();
+								filterFormData.append('action', 'loadAvailFile');
+								// filterFormData.append('file', document.)
+								xhr.send(filterFormData);
+								// xhr.responseType = 'json';
+								xhr.onload = () => {
+									let answer = xhr.response;									
+									console.log(answer);
 								}
 							}
 
