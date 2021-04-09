@@ -151,8 +151,63 @@ if(isset($_SESSION['user'])){
 					echo var_dump($filterItemsArr);
 				}
 
+
+
+
 				if($_POST['action'] == 'loadAvailFile'){
 					var_dump($_FILES);
+
+					try{
+						global $pdo;
+						
+						$handle = fopen('php://memory', 'w+');
+						fwrite($handle, iconv('CP1251', 'UTF-8', file_get_contents($_FILES['availfile']['tmp_name'])));
+						rewind($handle);
+						$row = fgetcsv($handle, 2048, ';');
+						while (($row = fgetcsv($handle, 2048, ';')) !== false){
+							$productId = (int) $row[0];
+					// 		$category = (int) $row[1];
+							$productName = $row[1];
+							$price = (float) $row[8];
+							$vendorCode = $row[2];				
+					// 		$linkProducts = (strlen($row[6])<64) ? $row[6] : (mb_substr($row[6], 0, 60, 'UTF-8'));
+					// 		$other = $row[7];
+					// //		$bigPic = $row[8];
+					// 		$smallPic = $row[9];
+
+							// if (in_array($productId, $filterItemsArr)) {
+							// 	$spec = [
+							// 		'manufacturer' => '',
+							// 		'fineness' => '',
+							// 		'stone' => '',
+							// 		'size' => '',
+							// 		'cover' => ''
+							// 	];
+
+								
+								$sql = "INSERT INTO shop.products (product_id, product_name, price, vendor_code) VALUES(:productId, :productName, :price, :vendorCode);";
+								$stmt = $pdo->prepare($sql);
+								$state = $stmt->execute([
+														'productId'=> $productId,									
+														'productName' => $productName, 														
+														'price'=> $price, 
+														'vendorCode' => $vendorCode
+													]);
+								if(!$state) {
+									echo "FAILED to add product id$productId</br>";
+								}	else echo $productId . ' added ';
+							}
+
+							
+					
+						fclose($handle);
+
+					}
+					catch (Exception $e) {
+				    echo $e->getMessage();
+				    echo '<br>' . $product_id;
+				    exit;
+					}
 				}
 
 

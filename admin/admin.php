@@ -113,7 +113,7 @@ if(isset($_SESSION['user'])){
 
 						<div class="avail-form-block">
 							<form name="availability" class="avail-form">
-								<input type="file" name="availfilechoose">
+								<input type="file" name="availfile">
 								<br>
 								<input type="button" name="submitAvail" value="submit">
 							</form>
