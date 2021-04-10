@@ -44,3 +44,9 @@ Stack trace:
 [09-Apr-2021 01:40:21 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in E:\www\admin\admindbhandler.php on line 164
 [09-Apr-2021 01:40:35 UTC] PHP Warning:  file_get_contents(): Filename cannot be empty in E:\www\admin\admindbhandler.php on line 164
 [09-Apr-2021 01:55:27 UTC] PHP Warning:  file_get_contents(): Filename cannot be empty in E:\www\admin\admindbhandler.php on line 164
+[10-Apr-2021 08:05:20 UTC] PHP Parse error:  syntax error, unexpected ''smallPic'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in E:\www\admin\admindbhandler.php on line 195
+[10-Apr-2021 08:05:20 UTC] PHP Parse error:  syntax error, unexpected ''smallPic'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in E:\www\admin\admindbhandler.php on line 195
+[10-Apr-2021 08:05:20 UTC] PHP Parse error:  syntax error, unexpected ''smallPic'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in E:\www\admin\admindbhandler.php on line 195
+[10-Apr-2021 08:05:23 UTC] PHP Parse error:  syntax error, unexpected ''smallPic'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in E:\www\admin\admindbhandler.php on line 195
+[10-Apr-2021 08:05:23 UTC] PHP Parse error:  syntax error, unexpected ''smallPic'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in E:\www\admin\admindbhandler.php on line 195
+[10-Apr-2021 08:05:23 UTC] PHP Parse error:  syntax error, unexpected ''smallPic'' (T_CONSTANT_ENCAPSED_STRING), expecting ']' in E:\www\admin\admindbhandler.php on line 195

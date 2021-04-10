@@ -166,39 +166,38 @@ if(isset($_SESSION['user'])){
 						$row = fgetcsv($handle, 2048, ';');
 						while (($row = fgetcsv($handle, 2048, ';')) !== false){
 							$productId = (int) $row[0];
-					// 		$category = (int) $row[1];
 							$productName = $row[1];
-							$price = (float) $row[8];
-							$vendorCode = $row[2];				
-					// 		$linkProducts = (strlen($row[6])<64) ? $row[6] : (mb_substr($row[6], 0, 60, 'UTF-8'));
-					// 		$other = $row[7];
-					// //		$bigPic = $row[8];
-					// 		$smallPic = $row[9];
-
-							// if (in_array($productId, $filterItemsArr)) {
-							// 	$spec = [
-							// 		'manufacturer' => '',
-							// 		'fineness' => '',
-							// 		'stone' => '',
-							// 		'size' => '',
-							// 		'cover' => ''
-							// 	];
-
+							$manufacturer = $row[2];
+							$catId = $row[3];
+							$price = (float) $row[4];
+							$vendorCode = $row[5];
+							$fineness = $row[6];
+							$stone = $row[7];
+							$size = $row[8];
+							$cover = $row[9];
+							$bigPic = 'pic/' . $row[5] . '.jpeg';
 								
-								$sql = "INSERT INTO shop.products (product_id, product_name, price, vendor_code) VALUES(:productId, :productName, :price, :vendorCode);";
-								$stmt = $pdo->prepare($sql);
-								$state = $stmt->execute([
-														'productId'=> $productId,									
-														'productName' => $productName, 														
-														'price'=> $price, 
-														'vendorCode' => $vendorCode
-													]);
-								if(!$state) {
-									echo "FAILED to add product id$productId</br>";
-								}	else echo $productId . ' added ';
-							}
-
-							
+							$sql = "INSERT INTO shop.products(product_id, product_name, manufacturer, cat_id, price, vendor_code, fineness, stone, size, cover, big_pic, small_pic) 
+								VALUES(:productId, :productName, :manufacturer, :catId, :price, :vendorCode, :fineness, :stone, :size, :cover, :bigPic, :smallPic);";
+							$stmt = $pdo->prepare($sql);
+							$state = $stmt->execute([
+													'productId'=> $productId,									
+													'productName' => $productName, 
+													'manufacturer' => $manufacturer,
+													'catId' => $catId,
+													'price'=> $price, 
+													'vendorCode' => $vendorCode,
+													'fineness' => $fineness,
+													'stone' => $stone,
+													'size' => $size,
+													'cover' => $cover,
+													'bigPic' => $bigPic,
+													'smallPic' => $bigPic
+												]);
+							if(!$state) {
+								echo "FAILED to add product id$productId</br>";
+							}	else echo $productId . ' added ';
+						}							
 					
 						fclose($handle);
 
