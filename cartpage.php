@@ -49,7 +49,7 @@ function showCartItem($product){
 				</div>
 				<div class="cart__price">							
 					<span><?=myPrice($product['price'])?></span>
-					<img class='delete-from-cart' data-product-id=<?=$product['product_id'];?> src="svg/trash.svg">
+					<img class='delete-from-cart' data-product-id=<?=$product['product_id'];?> src="svg/close.svg">
 				</div>
 			</div>
 			<div class="cart__line"></div>
