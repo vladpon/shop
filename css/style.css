@@ -612,6 +612,7 @@ h1 {
 }
 
 .big-button {
+	box-sizing: border-box;
 	margin-top: 20px;
 	width: 100%;
 	background-color: #ff9ab7;
@@ -628,6 +629,12 @@ h1 {
 	-webkit-appearance: none;
 }
 
+.big-button.white {
+	padding: 8px;
+	color: #000;
+	border: 2px solid #000;
+	background-color: #FFF;
+}
 
 .swiper-slide img {
 }

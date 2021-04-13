@@ -138,7 +138,7 @@ if (isset($_GET['product_id'])){
 					</div>
 					<form id="add-to-cart-form" onsubmit = 'return false;'>
 						<input type="hidden" name="product_id" id="product_id" value=<?='"' . $var[0]['product_id'] . '"';?>>
-						<input type="submit" class="big-button add-to-cart" data-product-id=<?='"' . $var[0]['product_id'] . '"';?> value="В КОРЗИНУ" >
+						<input type="submit" class="big-button add-to-cart" data-product-id=<?='"' . $var[0]['product_id'] . '"';?> value="ДОБАВИТЬ В КОРЗИНУ" >
 					</form>
 					
 

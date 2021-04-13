@@ -11,12 +11,32 @@ function refreshAmountSpan () {
 	} else cartAmountSpan.style.display = 'none';
 }
 
-for (var i = addToCartBtns.length - 1; i >= 0; i--) {
-	let productId = addToCartBtns[i].dataset.productId;
-	addToCartBtns[i].addEventListener('click', ()=> {		
+// for (var i = addToCartBtns.length - 1; i >= 0; i--) {
+// 	let productId = addToCartBtns[i].dataset.productId;
+// 	addToCartBtns[i].addEventListener('click', ()=> {
+// 		this.classList.add('white');	
+// 		addToCart(productId);
+// 	});
+// }
+
+// function addToCartBtnHandler () {
+// 	let productId = addToCartBtns[0].dataset.productId;
+// 	addToCart(productId);
+// 	addToCartBtns[0].classList.add('white');
+// 	addToCartBtns[0].value = 'ПЕРЕЙТИ В КОРЗИНУ';
+// }
+
+addToCartBtns[0].addEventListener('click', function() {
+		let productId = addToCartBtns[0].dataset.productId;
 		addToCart(productId);
-	});
-}
+		addToCartBtns[0].classList.add('white');
+		addToCartBtns[0].value = 'ПЕРЕЙТИ В КОРЗИНУ';
+		addToCartBtns[0].addEventListener('click', function(){
+			document.location.href = "cartpage.php";
+		})
+	}
+	, {once: true});
+
 
 for (var i = cartItem.length - 1; i >= 0; i--) {
 	showAmount(cartItem[i]);
