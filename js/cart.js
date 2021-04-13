@@ -32,7 +32,7 @@ addToCartBtns.forEach(function(element) {
 		addToCart(productId);
 		element.classList.add('white');
 		element.value = 'ПЕРЕЙТИ В КОРЗИНУ';
-		aelement.addEventListener('click', function(){
+		element.addEventListener('click', function(){
 			document.location.href = "cartpage.php";
 		})
 	}
