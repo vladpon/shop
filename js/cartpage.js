@@ -34,6 +34,7 @@
 let wrapper = document.querySelector('.wrapper');
 let orderConfirmBlock = document.querySelector('.order-confirm');
 let orderConfirmCloseBtn = orderConfirmBlock.querySelector('img');
+let orderConfirmSubmitBtn = orderConfirmBlock.querySelector('.big-button');
 let form = document.clientData;
 
 orderConfirmCloseBtn.addEventListener('click', () => {
@@ -76,8 +77,12 @@ function fillConfirmBlock () {
 		deliveryMethod = 'курьер (бесплатно)';
 
 	if(form.payment[0].checked){
+		orderConfirmSubmitBtn.innerText = 'ПОДТВЕРДИТЬ';
 		paymentMethod = 'при получении';
-	} else paymentMethod = 'оплата онлайн';
+	} else {
+		orderConfirmSubmitBtn.innerText = 'ОПЛАТИТЬ';
+		paymentMethod = 'оплата онлайн';
+	}
 
 	customerBlock.innerText = '';
 
