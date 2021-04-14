@@ -1159,7 +1159,6 @@ h1 {
 	position: fixed;
 	width: 80%;
 	max-height: calc(100% - 50px);
-	/*height: 500px;*/
 	box-shadow: 5px 5px 10px rgba(100, 100, 100, 0.5);
 	z-index: 99;
 	padding-bottom: 20px;

@@ -72,6 +72,11 @@ if(isset($_POST['action'])){
 		}
 	}
 
+	if($_POST['action'] == 'getCart'){
+		echo json_encode($_SESSION['cart']);
+	}
+
+
 }
 
 

@@ -44,7 +44,7 @@ for (var i = cartItem.length - 1; i >= 0; i--) {
 	showAmount(cartItem[i]);
 	let productId = cartItem[i].id;
 	let cartCount = cartItem[i].querySelector('.cart__count');
-	cartItem[i].querySelector('.delete-from-cart').addEventListener('click', ()=> deleteFromCart(productId));	
+	cartItem[i].querySelector('.delete-from-cart').addEventListener('click', ()=> deleteFromCart(productId));
 	cartCount.children[0].addEventListener('click', () => decreaseQuantity(cartCount.children[1], productId));
 	cartCount.children[2].addEventListener('click', () => increaseQuantity(cartCount.children[1], productId));
 }

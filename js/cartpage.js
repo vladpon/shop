@@ -71,6 +71,10 @@ function fillConfirmBlock () {
 	let deliveryBlock = document.querySelector('.order-confirm__delivery');
 	let orderItemsBlock = document.querySelector('ol');
 
+	customerBlock.innerText = '';
+	deliveryBlock.innerText = '';
+	orderItemsBlock.innerText = '';
+
 	let deliveryMethod = '';
 
 	if(form.delivery.checked)
@@ -82,9 +86,7 @@ function fillConfirmBlock () {
 	} else {
 		orderConfirmSubmitBtn.innerText = 'ОПЛАТИТЬ';
 		paymentMethod = 'оплата онлайн';
-	}
-
-	customerBlock.innerText = '';
+	}	
 
 	customerBlock.insertAdjacentHTML('beforeend', 
 		'<p>' + form.clientName.value + '<br>' +
@@ -94,4 +96,26 @@ function fillConfirmBlock () {
 		'<p>Способ доставки: ' + deliveryMethod + '<br>' +
 		'Способ оплаты: ' + paymentMethod + '</p>'
 		);
+
+	orderItemsBlock.insertAdjacentHTML('beforeend',
+		'<li>' + 
+		'</li>'
+		)
+}
+
+let a;
+
+function getCart(){
+	var params = 'action=getCart';
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'include/session.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+	xhr.onload = function () {
+		if(this.status == 200){	
+			a = JSON.parse(this.responseText);
+			console.log(a);
+		}
+	}
+	xhr.send(params);
 }
