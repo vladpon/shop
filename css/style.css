@@ -37,6 +37,7 @@ h1 {
 .content {
 	padding-top: 80px;
 	min-height: 100%;
+	pointer-events: '';
 }
 
 
@@ -110,6 +111,7 @@ h1 {
 .header__logo svg {
 	/*text-rendering: geometricPrecision;*/
 	shape-rendering: geometricPrecision;
+	z-index: 2;
 }
 
 .header__logo.active {

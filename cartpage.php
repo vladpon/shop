@@ -119,11 +119,19 @@ function showForm($totalPrice){
 			<link rel="stylesheet" href="css/swiper-bundle.min.css">
 		</head>
 		<body>
+			<div class="order-confirm">
+					<img src="svg/close.svg">
+					<div class="order-confirm__title">Проверьте, пожалуйста, данные заказа:</div>
+					<div class="odred-confirm__customer"></div>
+					<div class="order-confirm__delivery"></div>
+					<div class="order-confirm__title">Выбранные товары:</div>
+					<ol></ol>
+					<p>Итого: </p>
+					<div class="big-button"></div>
+			</div>
 			<div class="wrapper">
 
-				<div class="order-confirm">
-					<div class="order-confirm__title">Title</div>
-				</div>
+				
 				<header class="header">
 					<div class="container">
 						
