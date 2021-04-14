@@ -1152,17 +1152,51 @@ h1 {
 
 
 .order-confirm {
+	display: none;
 	background-color: #fff;
 	margin-left: 10%;
 	margin-top: 50px;
 	position: absolute;
 	width: 80%;
-	height: 500px;
+	/*height: 500px;*/
 	box-shadow: 5px 5px 10px rgba(100, 100, 100, 0.5);
 	z-index: 99;
+	padding-bottom: 20px;
+}
+
+.order-confirm.active {
+	display: block;
+}
+
+.order-confirm__header {
+	height: 40px;
+	width: 100%;
+	display: flex;
+	flex-direction: row-reverse;
+	margin-bottom: 20px;
+}
+.order-confirm__content {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.order-confirm p {
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
+
+.order-confirm img {
+	cursor: pointer;
+	margin: 15px;
+	height: 15px;
+	text-align: right;
 }
 
 
 .order-confirm__title {
-
+	font-weight: 700;
+	margin-bottom: 20px;
 }
+
+.odred-confirm__customer {}
+.order-confirm__delivery {}

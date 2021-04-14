@@ -73,7 +73,7 @@ function showTotalPrice($data){
 function showForm($totalPrice){
 	?>
 
-		<form action="#" method="POST" accept-charset="UTF-8" name="clientData" class="cart__form">
+		<form action="#" method="POST" accept-charset="UTF-8" name="clientData" class="cart__form" onsubmit="return false;">
 			<div class="cart__client-data">							
 				<input type="text" name="clientName" placeholder="ФИО">
 				<input type="e-mail" name="clientEmail" placeholder="e-mail">
@@ -82,7 +82,7 @@ function showForm($totalPrice){
 				<div class="cart__delivery">
 					<div class="cart__delivery-title">Способ доставки:</div>
 					<div class="cart__deliveries">
-						<p><input type="radio" name="delivery">Курьер (только Красноярск) - бесплатно<p>
+						<p><input type="radio" name="delivery" checked="checked">Курьер (только Красноярск) - бесплатно<p>
 <!-- 						<p><input type="radio" name="delivery">СДЭК</p>
 						<p><input type="radio" name="delivery">Почта</p> -->
 					</div>
@@ -96,7 +96,7 @@ function showForm($totalPrice){
 				</div>
 			</div>
 			<div class="cart__totality"><span><?=$totalPrice?></span></div>
-			<input class="big-button" type="submit" name="" value="Оформить заказ">
+			<input class="big-button" type="submit" name="submit" value="Оформить заказ">
 		</form>
 	<?php
 }
@@ -120,14 +120,18 @@ function showForm($totalPrice){
 		</head>
 		<body>
 			<div class="order-confirm">
-					<img src="svg/close.svg">
-					<div class="order-confirm__title">Проверьте, пожалуйста, данные заказа:</div>
-					<div class="odred-confirm__customer"></div>
-					<div class="order-confirm__delivery"></div>
-					<div class="order-confirm__title">Выбранные товары:</div>
-					<ol></ol>
-					<p>Итого: </p>
-					<div class="big-button"></div>
+					<div class="order-confirm__header">
+						<img src="svg/close.svg">
+					</div>
+					<div class="order-confirm__content">
+						<div class="order-confirm__title">Проверьте, пожалуйста, данные заказа:</div>
+						<div class="order-confirm__customer"></div>
+						<div class="order-confirm__delivery"></div>
+						<div class="order-confirm__title">Выбранные товары:</div>
+						<ol></ol>
+						<p>Итого: </p>
+						<div class="big-button"></div>
+					</div>
 			</div>
 			<div class="wrapper">
 
