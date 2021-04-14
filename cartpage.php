@@ -4,6 +4,7 @@ require_once 'include/session.php';
 require_once 'include/const.php';
 require 'include/db.php';
 
+
 global $pdo;
 global $aAtr;
 global $aAtrItems;
@@ -119,6 +120,10 @@ function showForm($totalPrice){
 		</head>
 		<body>
 			<div class="wrapper">
+
+				<div class="order-confirm">
+					<div class="order-confirm__title">Title</div>
+				</div>
 				<header class="header">
 					<div class="container">
 						
@@ -130,6 +135,7 @@ function showForm($totalPrice){
 
 
 				<div class="content container">
+
 
 
 					<div class="breadcrumbs">
