@@ -1,6 +1,6 @@
 <?php
 
-	$host = '192.168.1.80';
+	$host = 'krasivo-online.ru';
 	$user = 'admin';
 	$password = 'admin';
 	$dbname = 'shop';
