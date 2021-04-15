@@ -128,8 +128,10 @@ function showForm($totalPrice){
 						<div class="order-confirm__customer"></div>
 						<div class="order-confirm__delivery"></div>
 						<div class="order-confirm__title">Выбранные товары:</div>
-						<ol></ol>
-						<p>Итого: </p>
+						<div class="order-confirm__items">
+							<ol></ol>
+						</div>
+						<p><div class="order-confirm__total">Итого: </div></p>
 						<div class="big-button"></div>
 					</div>
 			</div>

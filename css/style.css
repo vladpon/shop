@@ -1181,6 +1181,12 @@ h1 {
 	margin: 0 auto;
 }
 
+.order-confirm__items li div{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
 .order-confirm p {
 	line-height: 1.5;
 	margin-bottom: 20px;
@@ -1202,3 +1208,9 @@ h1 {
 .odred-confirm__customer {}
 
 .order-confirm__delivery {}
+
+.order-confirm__total {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}

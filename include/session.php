@@ -2,6 +2,7 @@
 session_start();
 
 require_once 'const.php';
+require_once 'db.php';
 
 
 
@@ -73,7 +74,16 @@ if(isset($_POST['action'])){
 	}
 
 	if($_POST['action'] == 'getCart'){
-		echo json_encode($_SESSION['cart']);
+		$cartData = $_SESSION['cart'];
+		foreach ($cartData as &$value) {
+			$data = getProductData($value['product_id']);
+			$value += array('price' => myPrice($data[0]['price']),
+				'product_name' => $data[0]['product_name'],
+				'vendor_code' => $data[0]['vendor_code']
+			);
+		}
+
+		echo json_encode($cartData);
 	}
 
 
@@ -92,7 +102,7 @@ function getProductsAmount() {
 }
 
 function getTotalPrice($products){
-	require_once 'db.php';
+	// require_once 'db.php';
 	$sqlReqStr = "SELECT price, product_id FROM shop.products WHERE product_id IN (";
 	if (!empty($products)){
 		foreach ($products as $product){
@@ -101,6 +111,7 @@ function getTotalPrice($products){
 		$sqlReqStr = substr_replace($sqlReqStr, ');', -2);
 
 		try{
+			global $pdo;
 			$stmt = $pdo->prepare($sqlReqStr);
 			$state = $stmt->execute();
 			$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -124,4 +135,22 @@ function getTotalPrice($products){
 	}
 
 	return $totalPrice;
+}
+
+
+
+function getProductData($productId){
+	global $pdo; 
+
+	$sqlReqStr = "SELECT product_name, vendor_code, price FROM shop.products WHERE product_id = " . $productId . ';';
+
+	try{		
+		$stmt = $pdo->prepare($sqlReqStr);
+		$state = $stmt->execute();
+		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	} catch (Exception $e) {
+	    echo $e->getMessage();
+	    exit;
+	}
+	return $data;
 }

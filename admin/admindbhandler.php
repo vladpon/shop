@@ -159,6 +159,7 @@ if(isset($_SESSION['user'])){
 
 					try{
 						global $pdo;
+						var_dump($pdo);
 						
 						$handle = fopen('php://memory', 'w+');
 						fwrite($handle, iconv('CP1251', 'UTF-8', file_get_contents($_FILES['availfile']['tmp_name'])));

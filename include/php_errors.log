@@ -1,1 +1,116 @@
 [25-Dec-2020 13:36:50 UTC] PHP Warning:  Undefined variable $product_id in C:\Users\User\Desktop\s\lst\include\session.php on line 35
+[15-Apr-2021 06:36:13 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:143
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('126')
+#1 {main}
+  thrown in E:\www\include\session.php on line 143
+[15-Apr-2021 06:37:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:143
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('126')
+#1 {main}
+  thrown in E:\www\include\session.php on line 143
+[15-Apr-2021 06:40:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:140
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('126')
+#1 {main}
+  thrown in E:\www\include\session.php on line 140
+[15-Apr-2021 06:43:59 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:142
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 142
+[15-Apr-2021 06:51:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:142
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 142
+[15-Apr-2021 07:02:00 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:142
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 142
+[15-Apr-2021 07:03:35 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:142
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 142
+[15-Apr-2021 07:04:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:143
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 143
+[15-Apr-2021 07:05:18 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepre() on null in E:\www\include\session.php:142
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 142
+[15-Apr-2021 07:06:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:142
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 142
+[15-Apr-2021 07:10:31 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:146
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 146
+[15-Apr-2021 07:11:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:146
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 146
+[15-Apr-2021 07:12:10 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:146
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 146
+[15-Apr-2021 07:12:42 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:147
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 147
+[15-Apr-2021 07:40:11 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:147
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 147
+[15-Apr-2021 07:42:50 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:147
+Stack trace:
+#0 E:\www\include\session.php(78): getProductData('103')
+#1 {main}
+  thrown in E:\www\include\session.php on line 147
+[15-Apr-2021 07:47:56 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:111
+Stack trace:
+#0 E:\www\include\session.php(63): getTotalPrice(Array)
+#1 {main}
+  thrown in E:\www\include\session.php on line 111
+[15-Apr-2021 07:48:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:111
+Stack trace:
+#0 E:\www\include\session.php(63): getTotalPrice(Array)
+#1 {main}
+  thrown in E:\www\include\session.php on line 111
+[15-Apr-2021 07:50:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:111
+Stack trace:
+#0 E:\www\include\session.php(63): getTotalPrice(Array)
+#1 {main}
+  thrown in E:\www\include\session.php on line 111
+[15-Apr-2021 07:50:45 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:111
+Stack trace:
+#0 E:\www\include\session.php(63): getTotalPrice(Array)
+#1 {main}
+  thrown in E:\www\include\session.php on line 111
+[15-Apr-2021 07:50:47 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:111
+Stack trace:
+#0 E:\www\include\session.php(63): getTotalPrice(Array)
+#1 {main}
+  thrown in E:\www\include\session.php on line 111
+[15-Apr-2021 07:51:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:111
+Stack trace:
+#0 E:\www\include\session.php(63): getTotalPrice(Array)
+#1 {main}
+  thrown in E:\www\include\session.php on line 111
+[15-Apr-2021 07:52:34 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in E:\www\include\session.php:111
+Stack trace:
+#0 E:\www\include\session.php(63): getTotalPrice(Array)
+#1 {main}
+  thrown in E:\www\include\session.php on line 111

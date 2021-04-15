@@ -37,6 +37,9 @@ let orderConfirmCloseBtn = orderConfirmBlock.querySelector('img');
 let orderConfirmSubmitBtn = orderConfirmBlock.querySelector('.big-button');
 let form = document.clientData;
 
+
+
+
 orderConfirmCloseBtn.addEventListener('click', () => {
 	orderConfirmBlock.classList.remove('active');
 	bdy.classList.remove('lock');
@@ -55,7 +58,7 @@ function validate() {
 
 document.clientData.submit.addEventListener('click', () => {
 			if(validate()){
-				fillConfirmBlock();
+				getCart();
 				wrapper.style.pointerEvents = 'none';
 				orderConfirmBlock.classList.add('active');
 				bdy.classList.add('lock');
@@ -66,10 +69,11 @@ document.clientData.submit.addEventListener('click', () => {
 
 
 
-function fillConfirmBlock () {
+function fillConfirmBlock (sessionData) {
 	let customerBlock = document.querySelector('.order-confirm__customer');
 	let deliveryBlock = document.querySelector('.order-confirm__delivery');
-	let orderItemsBlock = document.querySelector('ol');
+	let orderItemsBlock = orderConfirmBlock.querySelector('ol');
+	let orderConfirmTotal = orderConfirmBlock.querySelector('.order-confirm__total');
 
 	customerBlock.innerText = '';
 	deliveryBlock.innerText = '';
@@ -97,13 +101,24 @@ function fillConfirmBlock () {
 		'Способ оплаты: ' + paymentMethod + '</p>'
 		);
 
-	orderItemsBlock.insertAdjacentHTML('beforeend',
-		'<li>' + 
-		'</li>'
+	let total = 0;
+	sessionData.forEach((product) => {
+		total += product.price;
+		orderItemsBlock.insertAdjacentHTML('beforeend',
+			'<li><div><span>' + product.product_name + ' ' +
+			+ product.vendor_code + ' </span>' +
+			'<span>'+ product.amount + '</span>' +
+			'<span>' + product.price + 
+			'</span></div></li>'
 		)
+	})
+
+	orderConfirmTotal.insertAdjacentHTML('beforeend', total);
+
+	
 }
 
-let a;
+
 
 function getCart(){
 	var params = 'action=getCart';
@@ -113,8 +128,10 @@ function getCart(){
 
 	xhr.onload = function () {
 		if(this.status == 200){	
-			a = JSON.parse(this.responseText);
-			console.log(a);
+			let answer = JSON.parse(this.responseText);
+			// let answer = this.responseText;
+			// console.log(answer);
+			fillConfirmBlock(answer);
 		}
 	}
 	xhr.send(params);
