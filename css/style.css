@@ -1162,7 +1162,7 @@ h1 {
 	box-shadow: 5px 5px 10px rgba(100, 100, 100, 0.5);
 	z-index: 99;
 	padding-bottom: 20px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .order-confirm.active {
@@ -1200,4 +1200,5 @@ h1 {
 }
 
 .odred-confirm__customer {}
+
 .order-confirm__delivery {}
