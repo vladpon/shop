@@ -38,7 +38,22 @@ let orderConfirmSubmitBtn = orderConfirmBlock.querySelector('.big-button');
 let form = document.clientData;
 
 
+let sessionData;
 
+orderConfirmSubmitBtn.addEventListener('click', () => confirmOrder(sessionData));
+
+
+function confirmOrder (sessionData){
+	let clientData = new FormData(form);
+	clientData.append('action', 'confirmOrder');
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'include/session.php');
+	xhr.send(clientData);
+	xhr.onload = () => {
+			let answer = xhr.response;
+			console.log(answer);
+		};
+	}
 
 orderConfirmCloseBtn.addEventListener('click', () => {
 	orderConfirmBlock.classList.remove('active');
@@ -50,7 +65,9 @@ orderConfirmCloseBtn.addEventListener('click', () => {
 function validate() {
 	if((form.clientName.value != '') && (form.clientEmail != '') && (form.clientTel != '') 
 		&& (form.clientAddress != '') && (form.clientEmail != '') && (form.delivery.checked) &&
-		(form.payment[0].checked || form.payment[1].checked))
+		form.payment.checked
+		// (form.payment[0].checked || form.payment[1].checked)
+		)
 		return true;
 	return false;
 
@@ -78,19 +95,20 @@ function fillConfirmBlock (sessionData) {
 	customerBlock.innerText = '';
 	deliveryBlock.innerText = '';
 	orderItemsBlock.innerText = '';
+	orderConfirmTotal.innerText = '';
 
 	let deliveryMethod = '';
 
 	if(form.delivery.checked)
 		deliveryMethod = 'курьер (бесплатно)';
 
-	if(form.payment[0].checked){
+	// if(form.payment[1].checked){
+	// 	orderConfirmSubmitBtn.innerText = 'ОПЛАТИТЬ';
+	// 	paymentMethod = 'оплата онлайн';
+	// } else {
 		orderConfirmSubmitBtn.innerText = 'ПОДТВЕРДИТЬ';
 		paymentMethod = 'при получении';
-	} else {
-		orderConfirmSubmitBtn.innerText = 'ОПЛАТИТЬ';
-		paymentMethod = 'оплата онлайн';
-	}	
+	// }	
 
 	customerBlock.insertAdjacentHTML('beforeend', 
 		'<p>' + form.clientName.value + '<br>' +
@@ -108,12 +126,13 @@ function fillConfirmBlock (sessionData) {
 			'<li><div><span>' + product.product_name + ' ' +
 			+ product.vendor_code + ' </span>' +
 			'<span>'+ product.amount + '</span>' +
-			'<span>' + product.price + 
-			'</span></div></li>'
+			'<span> ' + product.price + 
+			' </span></div></li>'
 		)
 	})
 
-	orderConfirmTotal.insertAdjacentHTML('beforeend', total);
+
+	orderConfirmTotal.insertAdjacentHTML('beforeend', 'Итого: ' + total);
 
 	
 }
@@ -128,10 +147,10 @@ function getCart(){
 
 	xhr.onload = function () {
 		if(this.status == 200){	
-			let answer = JSON.parse(this.responseText);
+			sessionData = JSON.parse(this.responseText);
 			// let answer = this.responseText;
 			// console.log(answer);
-			fillConfirmBlock(answer);
+			fillConfirmBlock(sessionData);
 		}
 	}
 	xhr.send(params);

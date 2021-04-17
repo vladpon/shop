@@ -1027,7 +1027,7 @@ h1 {
 	padding-bottom: 30px;
 }
 
-.cart__client-data:after {
+/*.cart__client-data:after {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -1036,7 +1036,7 @@ h1 {
 	width: 100%;
 	background-color: #ccc;
 }
-
+*/
 .cart__client-data > input {
 	width: 100%;
 	padding: 5px;
@@ -1187,6 +1187,14 @@ h1 {
 	justify-content: space-between;
 }
 
+.order-confirm__items li div span:last-child:after{
+	content: "  \20BD";
+}
+
+.order-confirm__items li div span:nth-child(2):after{
+	content: "  шт.";
+}
+
 .order-confirm p {
 	line-height: 1.5;
 	margin-bottom: 20px;
@@ -1213,4 +1221,8 @@ h1 {
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
+}
+
+.order-confirm__total:after{
+	content: "  \20BD";
 }

@@ -86,6 +86,10 @@ if(isset($_POST['action'])){
 		echo json_encode($cartData);
 	}
 
+	if($_POST['action'] == 'confirmOrder'){
+		var_dump($_POST);
+	}
+
 
 }
 

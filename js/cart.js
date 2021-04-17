@@ -117,7 +117,7 @@ function deleteFromCart(product_id)
 			cartAmountSpan.innerText = answer.amount;
 			document.getElementById(product_id).remove();
 			setTotalPrice(answer.totalPrice);
-			setTotality(answer.totalPrice);
+			// setTotality(answer.totalPrice);
 			
 			if(answer.amount == 0){
 				let strEmptyCart = '<div class="cart__empty"><i>Корзина пуста...</i></div>';
@@ -143,7 +143,7 @@ function getTotalPrice(){
 			let answer = JSON.parse(this.responseText);
 			totalPrice = answer.totalPrice;
 			setTotalPrice(totalPrice);
-			setTotality(totalPrice);
+			// setTotality(totalPrice);
 		}
 	}
 	xhr.send(params);

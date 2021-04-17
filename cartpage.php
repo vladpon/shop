@@ -91,11 +91,11 @@ function showForm($totalPrice){
 					<div class="cart__payment-title">Способ оплаты:</div>
 					<div class="cart__payments">
 						<p><input type="radio" name="payment">При получении<p>
-						<p><input type="radio" name="payment">Оплата онлайн</p>
+						<!-- <p><input type="radio" name="payment">Оплата онлайн</p> -->
 					</div>									
 				</div>
 			</div>
-			<div class="cart__totality"><span><?=$totalPrice?></span></div>
+			<!-- <div class="cart__totality"><span><?=$totalPrice?></span></div> -->
 			<input class="big-button" type="submit" name="submit" value="Оформить заказ">
 		</form>
 	<?php
@@ -201,3 +201,4 @@ function showForm($totalPrice){
 			<script type="text/javascript" src="/js/cart.js"></script>
 		</body>
 	</html>
+
