@@ -87,10 +87,72 @@ if(isset($_POST['action'])){
 	}
 
 	if($_POST['action'] == 'confirmOrder'){
-		var_dump($_POST);
+
+		if (!empty($_SESSION['cart'])){
+	
+			$order = [];
+
+			$order['customerName'] = $_POST['clientName'];
+			$order['customerEmail'] = $_POST['clientEmail'];
+			$order['customerTel'] = $_POST['clientTel'];
+			$order['customerAddress'] = $_POST['clientAddress'];
+			$order['deliveryMethod'] = $_POST['delivery'];
+			$order['paymentMethod'] = $_POST['payment'];
+			$order['orderItems'] = $_SESSION['cart'];
+
+//			INSERT TO shop.orders
+
+			$sqlStr = 'INSERT INTO shop.orders (customer_name, customer_tel, customer_email, customer_address, payment_method, delivery_method) 
+				VALUES ("' . $order['customerName'] . '", "' . $order['customerTel'] . '", "' . $order['customerEmail'] . 
+				'", "' . $order['customerAddress'] . '", "' . $order['paymentMethod'] . '", "' . $order['deliveryMethod'] . '");';
+
+			try{
+				global $pdo;
+				$stmt = $pdo->prepare($sqlStr);
+				$state = $stmt->execute();
+			} catch (Exception $e) {
+			    echo $e->getMessage();
+			    exit;
+			}
+
+
+//			INSERT TO shop.orders_items		
+
+			$sqlStr = 'INSERT INTO shop.orders_items (order_id, product_id, amount) VALUES ';
+
+			foreach ($order['orderItems'] as $product){				
+				$sqlStr .= '(LAST_INSERT_ID(), ' . $product['product_id'] . ', ' . $product['amount'] . '),';
+			}
+			$sqlStr = substr_replace($sqlStr, ';', -1);
+
+			try{
+				global $pdo;
+				$stmt = $pdo->prepare($sqlStr);
+				$state = $stmt->execute();
+			} catch (Exception $e) {
+			    echo $e->getMessage();
+			    exit;
+			}
+
+			// echo $sqlStr;
+
+
+
+//			TEST
+			// foreach ($_SESSION['cart'] as $value) {
+			// 	var_dump(getProductData($value['product_id']));
+			// }
+
+			// var_dump($order);
+			echo json_encode(['confirm'=>'success']);
+
+			
+	//		END OF TEST
+
+
+		}
+	else echo 'empty cart';
 	}
-
-
 }
 
 

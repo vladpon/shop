@@ -114,3 +114,22 @@ Stack trace:
 #0 E:\www\include\session.php(63): getTotalPrice(Array)
 #1 {main}
   thrown in E:\www\include\session.php on line 111
+[17-Apr-2021 05:28:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getProductsData() in E:\www\include\session.php:92
+Stack trace:
+#0 {main}
+  thrown in E:\www\include\session.php on line 92
+[18-Apr-2021 12:31:54 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT LAST_INSERT_ID()' at line 2 in E:\www\include\session.php:121
+Stack trace:
+#0 E:\www\include\session.php(121): PDOStatement->execute()
+#1 {main}
+  thrown in E:\www\include\session.php on line 121
+[18-Apr-2021 12:35:18 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT LAST_INSERT_ID()' at line 2 in E:\www\include\session.php:121
+Stack trace:
+#0 E:\www\include\session.php(121): PDOStatement->execute()
+#1 {main}
+  thrown in E:\www\include\session.php on line 121
+[18-Apr-2021 12:36:06 UTC] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT LAST_INSERT_ID()' at line 2 in E:\www\include\session.php:121
+Stack trace:
+#0 E:\www\include\session.php(121): PDOStatement->execute()
+#1 {main}
+  thrown in E:\www\include\session.php on line 121

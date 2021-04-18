@@ -32,12 +32,15 @@ $createOrdersString = 'CREATE TABLE orders(
 							customer_name VARCHAR(16),
 							customer_tel VARCHAR(16),
 							customer_email VARCHAR(32),
-							order_price DECIMAL(8,2),
-							order_status INT,
+							customer_address VARCHAR(512),							
+							order_price DECIMAL(8,2),							
+							order_status INT DEFAULT 0,
+							delivery_method ENUM("courier") DEFAULT "courier",
 							payment_method ENUM("card", "cash")
+							order_time DATETIME DEFAULT CURRENT_TIMESTAMP,
 							);';
 
-$createOrdersItemsString = 'CREATE TABLE orders_irtems(
+$createOrdersItemsString = 'CREATE TABLE orders_items(
 								order_id INT,
 								product_id INT,
 								amount INT,
