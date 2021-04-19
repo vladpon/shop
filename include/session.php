@@ -102,9 +102,9 @@ if(isset($_POST['action'])){
 
 //			INSERT TO shop.orders
 
-			$sqlStr = 'INSERT INTO shop.orders (customer_name, customer_tel, customer_email, customer_address, payment_method, delivery_method) 
-				VALUES ("' . $order['customerName'] . '", "' . $order['customerTel'] . '", "' . $order['customerEmail'] . 
-				'", "' . $order['customerAddress'] . '", "' . $order['paymentMethod'] . '", "' . $order['deliveryMethod'] . '");';
+			$sqlStr = 'INSERT INTO shop.orders (customer_name, payment_method, delivery_method, customer_tel, customer_email, customer_address) 			
+				VALUES ("' . $order['customerName'] . '" , "'. $order['paymentMethod'] . '", "' . $order['deliveryMethod'] . '", "' .  $order['customerTel'] . '", "' . $order['customerEmail'] . 
+				'", "' . $order['customerAddress']  . '");';
 
 			try{
 				global $pdo;
