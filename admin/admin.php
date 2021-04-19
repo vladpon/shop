@@ -45,7 +45,7 @@ $createOrdersItemsString = 'CREATE TABLE orders_items(
 								product_id INT,
 								amount INT,
 								price DECIMAL(7,2),
-								FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE SET NULL
+								FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE
 							);';
 
 $createUsersString = 'CREATE TABLE users(
