@@ -69,6 +69,13 @@ $pass = password_hash('admin', PASSWORD_DEFAULT);
 
 
 
+if(mail('cppcoder@mail.ru' , 'subj', 'message')){
+	echo 'TRUE';
+} else echo 'FALSE';
+
+
+
+
 if(isset($_SESSION['user'])){
 	if($_SESSION['user'] == 'admin'){
 		if(password_verify($_SESSION['password'], $pass)){
@@ -82,6 +89,7 @@ if(isset($_SESSION['user'])){
 						<title>admin</title>
 					</head>
 					<body>
+
 						<div>
 								<h1>Admin page</h1>
 						</div>
