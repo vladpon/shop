@@ -54,3 +54,4 @@ Stack trace:
 [15-Apr-2021 07:38:14 UTC] PHP Warning:  file_get_contents(): Filename cannot be empty in E:\www\admin\admindbhandler.php on line 165
 [20-Apr-2021 02:41:02 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 90
 [20-Apr-2021 02:41:31 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72
+[20-Apr-2021 02:44:42 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72

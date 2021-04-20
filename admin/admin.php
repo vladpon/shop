@@ -607,6 +607,8 @@ if(isset($_SESSION['user'])){
 	} else echo "<h1>User is {$_SESSION['user']}</h1>";
 } else echo '<h1>no user</h1>';
 
+phpinfo();
+
 ?>
 
 
