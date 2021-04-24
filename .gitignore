@@ -1,3 +1,4 @@
 *.log
 php_errors.log
 /include/db.php
+/include/def.php

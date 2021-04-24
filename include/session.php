@@ -102,7 +102,7 @@ if(isset($_POST['action'])){
 
 //			INSERT TO shop.orders
 
-			$sqlStr = 'INSERT INTO shop.orders (customer_name, payment_method, delivery_method, customer_tel, customer_email, customer_address) 			
+			$sqlStr = 'INSERT INTO shop.orders (customer_name, payment_method, delivery_method, customer_tel, customer_email, customer_address) 
 				VALUES ("' . $order['customerName'] . '" , "'. $order['paymentMethod'] . '", "' . $order['deliveryMethod'] . '", "' .  $order['customerTel'] . '", "' . $order['customerEmail'] . 
 				'", "' . $order['customerAddress']  . '");';
 
@@ -118,20 +118,94 @@ if(isset($_POST['action'])){
 
 //			INSERT TO shop.orders_items		
 
-			$sqlStr = 'INSERT INTO shop.orders_items (order_id, product_id, amount) VALUES ';
+			if($state){
 
-			foreach ($order['orderItems'] as $product){				
-				$sqlStr .= '(LAST_INSERT_ID(), ' . $product['product_id'] . ', ' . $product['amount'] . '),';
-			}
-			$sqlStr = substr_replace($sqlStr, ';', -1);
+				$sqlStr = 'INSERT INTO shop.orders_items (order_id, product_id, amount) VALUES ';
 
-			try{
-				global $pdo;
-				$stmt = $pdo->prepare($sqlStr);
-				$state = $stmt->execute();
-			} catch (Exception $e) {
-			    echo $e->getMessage();
-			    exit;
+				foreach ($order['orderItems'] as $product){				
+					$sqlStr .= '(LAST_INSERT_ID(), ' . $product['product_id'] . ', ' . $product['amount'] . '),';
+				}
+				$sqlStr = substr_replace($sqlStr, ';', -1);
+
+				try{
+					global $pdo;
+					$stmt = $pdo->prepare($sqlStr);
+					$state = $stmt->execute();
+				} catch (Exception $e) {
+				    echo $e->getMessage();
+				    exit;
+				}
+
+				if ($state){
+
+
+					// Файлы phpmailer
+					require '../phpmailer/PHPMailer.php';
+					require '../phpmailer/SMTP.php';
+					require '../phpmailer/Exception.php';
+					require 'def.php'
+
+					global $emailPass;
+
+
+					// Формирование самого письма
+					$title = "Поступил новый заказ";
+					$body = "<p>Имя: " .  $order['customerName'] . "</p>	";
+
+					// Настройки PHPMailer
+					$mail = new PHPMailer\PHPMailer\PHPMailer();
+					try {
+					    $mail->isSMTP();   
+					    $mail->CharSet = "UTF-8";
+					    $mail->SMTPAuth   = true;
+					//    $mail->SMTPDebug = 2;
+					    $mail->Debugoutput = function($str, $level) {$GLOBALS['status'][] = $str;};
+
+					    // Настройки вашей почты
+					    $mail->Host       = 'smtp.gmail.com'; // SMTP сервера вашей почты
+					    $mail->Username   = '2874787@gmail.com'; // Логин на почте
+					    $mail->Password   = $emailPass; // Пароль на почте
+					    $mail->SMTPSecure = 'ssl';
+					    $mail->Port       = 465;
+					    $mail->setFrom('2874787@gmail.com', 'Владислав'); // Адрес самой почты и имя отправителя
+
+					    // Получатель письма
+					    $mail->addAddress('cppcoder@mail.ru');  
+					    // $mail->addAddress('youremail@gmail.com'); // Ещё один, если нужен
+
+					    // Прикрипление файлов к письму
+					if (!empty($file['name'][0])) {
+					    for ($ct = 0; $ct < count($file['tmp_name']); $ct++) {
+					        $uploadfile = tempnam(sys_get_temp_dir(), sha1($file['name'][$ct]));
+					        $filename = $file['name'][$ct];
+					        if (move_uploaded_file($file['tmp_name'][$ct], $uploadfile)) {
+					            $mail->addAttachment($uploadfile, $filename);
+					            $rfile[] = "Файл $filename прикреплён";
+					        } else {
+					            $rfile[] = "Не удалось прикрепить файл $filename";
+					        }
+					    }   
+					}
+					// Отправка сообщения
+					$mail->isHTML(true);
+					$mail->Subject = $title;
+					$mail->Body = $body;    
+
+					// Проверяем отравленность сообщения
+					if ($mail->send()) {$result = "success";} 
+					else {$result = "error";}
+
+					} catch (Exception $e) {
+					    $result = "error";
+					    $status = "Сообщение не было отправлено. Причина ошибки: {$mail->ErrorInfo}";
+					}
+
+					// Отображение результата
+					echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status]);
+
+
+
+				}
 			}
 
 			// echo $sqlStr;
@@ -144,7 +218,8 @@ if(isset($_POST['action'])){
 			// }
 
 			// var_dump($order);
-			echo json_encode(['confirm'=>'success']);
+			// echo json_encode(['confirm'=>'success']);
+			// echo $state;
 
 			
 	//		END OF TEST
