@@ -150,7 +150,7 @@ if(isset($_POST['action'])){
 					    exit;
 					}
 
-					var_dump($orderId);
+					// var_dump($orderId);
 
 					// Файлы phpmailer
 					require '../phpmailer/PHPMailer.php';
@@ -181,7 +181,7 @@ if(isset($_POST['action'])){
 						$body .= '<li>' . $productData[0]['product_name'] . ' ' . $value['amount'] .  ' шт. ' . myPrice($productData[0]['price']) . 'р. </li>'; 
 					};
 
-					$bodu .= '</ol>';
+					$body .= '</ol>';
 
 					// Настройки PHPMailer
 					$mail = new PHPMailer\PHPMailer\PHPMailer();
