@@ -46,19 +46,21 @@
 	function importCSV($file) {
 		try{
 			global $pdo;
-			$jsonFile = fopen('filteritems.json', 'r');
-			$filterItems = '';
-			while (!feof($jsonFile)) {
-				$filterItems .= fgets($jsonFile);
-			}
-			fclose($jsonFile);
-			$filterItemsArr = json_decode($filterItems, true);
 
-			function getItem ($a){
-				return $a['product_id'];
-			}
+			
+			// $jsonFile = fopen('filteritems.json', 'r');
+			// $filterItems = '';
+			// while (!feof($jsonFile)) {
+			// 	$filterItems .= fgets($jsonFile);
+			// }
+			// fclose($jsonFile);
+			// $filterItemsArr = json_decode($filterItems, true);
 
-			$filterItemsArr = array_map('getItem', $filterItemsArr);
+			// function getItem ($a){
+			// 	return $a['product_id'];
+			// }
+
+			// $filterItemsArr = array_map('getItem', $filterItemsArr);
 
 			$handle = fopen('php://memory', 'w+');
 			fwrite($handle, iconv('CP1251', 'UTF-8', file_get_contents($file)));
@@ -75,7 +77,7 @@
 		//		$bigPic = $row[8];
 				$smallPic = $row[9];
 
-				if (in_array($productId, $filterItemsArr)) {
+				// if (in_array($productId, $filterItemsArr)) {
 					$spec = [
 						'manufacturer' => '',
 						'fineness' => '',
@@ -127,7 +129,7 @@
 					if(!$state) {
 						echo "FAILED to add product id$productId</br>";
 					}	else echo '<span style="font-size: 10px">' . $productId . ' </span>';
-				}
+				// }
 
 				
 			}
