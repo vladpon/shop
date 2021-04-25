@@ -139,18 +139,49 @@ if(isset($_POST['action'])){
 				if ($state){
 
 
+					$sqlStr = 'SELECT LAST_INSERT_ID() AS order_id;';
+					try{
+						global $pdo;
+						$stmt = $pdo->prepare($sqlStr);
+						$state = $stmt->execute();
+						$orderId = $stmt->fetchAll();
+					} catch (Exception $e) {
+					    echo $e->getMessage();
+					    exit;
+					}
+
+					var_dump($orderId);
+
 					// Файлы phpmailer
 					require '../phpmailer/PHPMailer.php';
 					require '../phpmailer/SMTP.php';
 					require '../phpmailer/Exception.php';
-					require 'def.php'
+					require 'def.php';
 
 					global $emailPass;
 
 
+
 					// Формирование самого письма
-					$title = "Поступил новый заказ";
-					$body = "<p>Имя: " .  $order['customerName'] . "</p>	";
+					$title = "Ваш заказ принят";
+					$body = '<img src = "pyxl.site/logo.jpg">' . 
+					'<h1>Благодарим Вас за заказ в нашем интернет магазине! </h1>' .
+					'<h2>В ближайшее время с Вами свяжется наш менеджер</h2>' .
+					'<p>С радостью ответим на ваши вопросы по телефону: <a href="tel: +7 923 570 41 53">+7 923 570 41 53</a></p>' .
+					'<p> Номер Вашего заказа: '	. $orderId[0]['order_id'] . 				
+					"<p>Имя: " .  $order['customerName'] . "</p>	" .
+					'<p>e-mail:' . $order['customerEmail'] . '</p>' .
+					'<p>Tel:' . $order['customerTel'] . '</p>' .
+					'<p>Address:' . $order['customerAddress'] . '</p>';
+
+					$body .= '<ol>';
+
+					foreach ($order['orderItems'] as  $value) {
+						$productData = getProductData($value['product_id']);
+						$body .= '<li>' . $productData[0]['product_name'] . ' ' . $value['amount'] .  ' шт. ' . myPrice($productData[0]['price']) . 'р. </li>'; 
+					};
+
+					$bodu .= '</ol>';
 
 					// Настройки PHPMailer
 					$mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -163,15 +194,15 @@ if(isset($_POST['action'])){
 
 					    // Настройки вашей почты
 					    $mail->Host       = 'smtp.gmail.com'; // SMTP сервера вашей почты
-					    $mail->Username   = '2874787@gmail.com'; // Логин на почте
+					    $mail->Username   = 'krasivokrsk@gmail.com'; // Логин на почте
 					    $mail->Password   = $emailPass; // Пароль на почте
 					    $mail->SMTPSecure = 'ssl';
 					    $mail->Port       = 465;
-					    $mail->setFrom('2874787@gmail.com', 'Владислав'); // Адрес самой почты и имя отправителя
+					    $mail->setFrom('krasivokrsk@gmail.com', 'Интернет магазин KRASIVO'); // Адрес самой почты и имя отправителя
 
 					    // Получатель письма
-					    $mail->addAddress('cppcoder@mail.ru');  
-					    // $mail->addAddress('youremail@gmail.com'); // Ещё один, если нужен
+					    $mail->addAddress('krasivokrsk@gmail.com');  
+					    $mail->addAddress($order['customerEmail']); // Ещё один, если нужен
 
 					    // Прикрипление файлов к письму
 					if (!empty($file['name'][0])) {
@@ -201,8 +232,8 @@ if(isset($_POST['action'])){
 					}
 
 					// Отображение результата
-					echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status]);
-
+					// echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status, 'confirm'=>'success']);
+					echo $answer;
 
 
 				}
