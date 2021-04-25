@@ -47,7 +47,7 @@
 		try{
 			global $pdo;
 
-			
+
 			// $jsonFile = fopen('filteritems.json', 'r');
 			// $filterItems = '';
 			// while (!feof($jsonFile)) {
@@ -128,7 +128,7 @@
 										]);
 					if(!$state) {
 						echo "FAILED to add product id$productId</br>";
-					}	else echo '<span style="font-size: 10px">' . $productId . ' </span>';
+					}	else echo '<span style="font-size: 12px">' . $productId . ' </span>';
 				// }
 
 				
