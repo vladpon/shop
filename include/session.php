@@ -232,8 +232,8 @@ if(isset($_POST['action'])){
 					}
 
 					// Отображение результата
-					// echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status, 'confirm'=>'success']);
-					echo $answer;
+					echo json_encode(["result" => $result, "resultfile" => $rfile, "status" => $status, 'confirm'=>'success']);
+					// echo $answer;
 
 
 				}

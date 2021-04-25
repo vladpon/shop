@@ -55,13 +55,13 @@ function confirmOrder (sessionData){
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'include/session.php');
 	xhr.send(clientData);
-	// xhr.responseType = 'json';
+	xhr.responseType = 'json';
 	xhr.onload = () => {
 			let answer = xhr.response;
 			console.log(answer);
-			// if (answer.confirm == 'success'){
-			// 	document.location.href = 'confirmorder.php';
-			// }
+			if (answer.confirm == 'success'){
+				document.location.href = 'confirmorder.php';
+			}
 		};
 	}
 
