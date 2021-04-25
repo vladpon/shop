@@ -94,6 +94,7 @@ function showForm($totalPrice){
 						<!-- <p><input type="radio" name="payment">Оплата онлайн</p> -->
 					</div>									
 				</div>
+				<input type="checkbox" name="publicy"> Я прочитал и согласен с условиями <a href="documents.php#terms_of_use">пользовательского соглашения</a>
 			</div>
 			<!-- <div class="cart__totality"><span><?=$totalPrice?></span></div> -->
 			<input class="big-button" type="submit" name="submit" value="Оформить заказ">
@@ -195,7 +196,7 @@ function showForm($totalPrice){
 			</div>
 			
 			<script src="js/swiper-bundle.min.js"></script>
-			<script src="../js/productswiper.js"></script>
+			<!-- <script src="../js/productswiper.js"></script> -->
 			<script type="text/javascript" src="js/cartpage.js"></script>
 			<script type="text/javascript">window.isCartPage = true;</script>
 			<script type="text/javascript" src="/js/cart.js"></script>

@@ -457,7 +457,7 @@ if(isset($_SESSION['user'])){
 								xhr.responseType = 'json';								
 								xhr.onload = () => {
 									let hitsData=xhr.response;
-									// console.log(hitsData);
+									console.log(hitsData);
 									for (let i = 0; i < hitsData.length; i++ ){
 										let htmlString = '<div class="hit" id = "' + hitsData[i]['product_id'] + '"><img src="' + hitsData[i]['small_pic'] + '"><span>' + hitsData[i]['product_name'] + '</span><div class = "hit__close"><span></span><span></span></div>';
 										hitsBlock.insertAdjacentHTML('beforeEnd', htmlString);										
