@@ -94,7 +94,7 @@ function showForm($totalPrice){
 						<!-- <p><input type="radio" name="payment">Оплата онлайн</p> -->
 					</div>									
 				</div>
-				<input type="checkbox" name="publicy"> Я прочитал и согласен с условиями <a href="documents.php#terms_of_use">пользовательского соглашения</a>
+				<div class="cart__agreement"><input type="checkbox" name="agreement">Я прочитал и согласен с условиями <a href="documents.php#terms_of_use">пользовательского соглашения</a></div>
 			</div>
 			<!-- <div class="cart__totality"><span><?=$totalPrice?></span></div> -->
 			<input class="big-button" type="submit" name="submit" value="Оформить заказ">

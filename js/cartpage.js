@@ -44,6 +44,10 @@ orderConfirmSubmitBtn.addEventListener('click', () => confirmOrder(sessionData))
 
 
 function confirmOrder (sessionData){
+
+	orderConfirmSubmitBtn.style.pointerEvents = 'none';
+
+
 	let clientData = new FormData(form);
 
 
@@ -75,7 +79,7 @@ orderConfirmCloseBtn.addEventListener('click', () => {
 function validate() {
 	if((form.clientName.value != '') && (form.clientEmail != '') && (form.clientTel != '') 
 		&& (form.clientAddress != '') && (form.clientEmail != '') && (form.delivery.checked) &&
-		form.payment.checked
+		form.payment.checked && form.agreement.checked
 		// (form.payment[0].checked || form.payment[1].checked)
 		)
 		return true;
