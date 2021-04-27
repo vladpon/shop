@@ -21,9 +21,11 @@ if(isset($_POST['action'])){
 
 					if($cartProduct['product_id'] == $_POST['product_id']){						
 
-						//SIZEBLE PRODUCT 
+						
 						if($_SESSION['cart'][$key]['size']){
-							echo 'bom bom';
+
+							//SIZEBLE PRODUCT
+							$size = isset($_POST['size']) ? $_POST['size'] : false; 							
 							$arr = array('product_id'=>$_POST['product_id'], 'amount'=>'1', 'size'=>$size);
 							array_push($_SESSION['cart'], $arr);
 
