@@ -119,9 +119,10 @@ if (isset($_GET['product_id'])){
 												);
 										if(in_array($var[0]['cat_id'], $sizingCats)){	?>
 
-											<form class="other__item">
+											<form name="sizeselect" class="other__item">
 												<span>Размер</span>
-												<select>
+												<select name="sel">
+
 													<option>Выбрать размер</option>
 
 													<?php

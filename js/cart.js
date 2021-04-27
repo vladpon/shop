@@ -76,18 +76,31 @@ function showAmount(cartItem){
 
 function addToCart (product_id) {
 
-		//Ajax Req
 
-		var params = 'action=add&product_id=' + product_id;
-		var xhr = new XMLHttpRequest();		
-		xhr.open('POST', '../include/session.php', true);		
-		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		//Ajax Req		
+
+		let params = new FormData();
+
+		if(document.forms.sizeselect){
+			var size = document.forms.sizeselect.sel.value;
+			params.append('size', size);
+		}
+
+		params.append('action', 'add');
+		params.append('product_id', product_id);
+
+
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open('POST', '../include/session.php', true);
+		// xhr.setRequestHeader('Content-type', 'multipart/form-data');
+		// xhr.responseType = 'json';		
 
 		xhr.onload = function () {
 			if(this.status == 200){
 
+				console.log(xhr.response);
 		//analyze ajax answer
-				
 		//if ok cartSpanAmount++
 
 				cartAmountSpan.innerText = Number(cartAmountSpan.innerText) + 1;
@@ -96,7 +109,9 @@ function addToCart (product_id) {
 		//if not OK alert
 			}
 		}
+
 		xhr.send(params);
+		
 };
 
 

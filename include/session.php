@@ -7,35 +7,58 @@ require_once 'db.php';
 
 
 		// POST actions
-
-if(isset($_POST['action'])){
+if(isset($_POST['action'])){	
 	$fl = false;
+
+
 	if($_POST['action'] == 'add'){
+
+		//ADD TO SESSION FROM AJAX POST
+
 		if(isset($_POST['product_id'])){
 			if(!empty($_SESSION['cart'])){
-					foreach($_SESSION['cart'] as $key => $cartProduct){
-						if($cartProduct['product_id'] == $_POST['product_id']){
-							$_SESSION['cart'][$key]['amount']++;
-							$fl = true;
-							$answer = json_encode(['success' => true]);
-							break;
+				foreach($_SESSION['cart'] as $key => $cartProduct){
+
+					if($cartProduct['product_id'] == $_POST['product_id']){						
+
+						//SIZEBLE PRODUCT 
+						if($_SESSION['cart'][$key]['size']){
+							echo 'bom bom';
+							$arr = array('product_id'=>$_POST['product_id'], 'amount'=>'1', 'size'=>$size);
+							array_push($_SESSION['cart'], $arr);
+
+						} else $_SESSION['cart'][$key]['amount']++;
+
+						$fl = true;
+						$answer = json_encode(['success' => true]);
+						break;
 						}
+
 					}
+				}
 				if(!$fl){
-					$arr = array('product_id'=>$_POST['product_id'], 'amount'=>'1');
+					$size = isset($_POST['size']) ? $_POST['size'] : false;
+					$arr = array('product_id'=>$_POST['product_id'], 'amount'=>'1', 'size'=>$size);
 					 array_push($_SESSION['cart'], $arr);
 					 $answer = json_encode(['success' => true]);
 				}
-			} else {
-				$_SESSION['cart'] = [0 =>['product_id' => $_POST['product_id'],
-							'amount' => 1]];
+
+			 else {
+			 	$size = isset($_POST['size']) ? $_POST['size'] : false;
+				$_SESSION['cart'] = [0 =>['product_id' => $_POST['product_id'],	'amount' => 1, 'size' => $size]];
 				$answer = json_encode(['success' => true]);
+				echo $answer;
 			}
+
 		}else {
 			$answer = json_encode(['success' => false]);
 		}
 		echo $answer;
 	}
+	//END OF ADD
+
+
+
 	if($_POST['action'] == 'delete'){
 		if(!empty($_SESSION['cart'])){
 			foreach($_SESSION['cart'] as $key => $cartProduct){
