@@ -19,38 +19,39 @@ if(isset($_POST['action'])){
 			if(!empty($_SESSION['cart'])){
 				foreach($_SESSION['cart'] as $key => $cartProduct){
 
-					if($cartProduct['product_id'] == $_POST['product_id']){						
+					if($cartProduct['product_id'] == $_POST['product_id']){
 
 						
 						if($_SESSION['cart'][$key]['size']){
 
 							//SIZEBLE PRODUCT
-							$size = isset($_POST['size']) ? $_POST['size'] : false; 							
+							$size = isset($_POST['size']) ? $_POST['size'] : false;
 							$arr = array('product_id'=>$_POST['product_id'], 'amount'=>'1', 'size'=>$size);
 							array_push($_SESSION['cart'], $arr);
 
 						} else $_SESSION['cart'][$key]['amount']++;
 
 						$fl = true;
-						$answer = json_encode(['success' => true]);
+						$answer = json_encode(['success' => true]);  
 						break;
 						}
 
 					}
-				}
-				if(!$fl){
-					$size = isset($_POST['size']) ? $_POST['size'] : false;
-					$arr = array('product_id'=>$_POST['product_id'], 'amount'=>'1', 'size'=>$size);
-					 array_push($_SESSION['cart'], $arr);
-					 $answer = json_encode(['success' => true]);
+				
+					if(!$fl){
+						$size = isset($_POST['size']) ? $_POST['size'] : false;
+						$arr = array('product_id'=>$_POST['product_id'], 'amount'=>'1', 'size'=>$size);
+						array_push($_SESSION['cart'], $arr);
+						$answer = json_encode(['success' => true]);
+					}
 				}
 
-			 else {
-			 	$size = isset($_POST['size']) ? $_POST['size'] : false;
-				$_SESSION['cart'] = [0 =>['product_id' => $_POST['product_id'],	'amount' => 1, 'size' => $size]];
-				$answer = json_encode(['success' => true]);
-				echo $answer;
-			}
+				 else {
+				 	$size = isset($_POST['size']) ? $_POST['size'] : false;
+					$_SESSION['cart'] = [0 =>['product_id' => $_POST['product_id'],	'amount' => 1, 'size' => $size]];
+					$answer = json_encode(['success' => true]);
+					echo $answer;
+				}
 
 		}else {
 			$answer = json_encode(['success' => false]);
