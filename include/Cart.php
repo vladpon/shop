@@ -4,17 +4,18 @@ class Cart
 {
 	private array $items = [];
 
-	public function addProduct(Product $product, int $quantity)
+	public function addProduct(Product $product, int $quantity, int $size)
 	{
 			$cartItem = new CartItem($product, $quantity);
-			foreach ($this->$items as $item) {
-				if($item->getProduct()->getId() === $product->getId()){
-					if($item->getTotalQuantity() + $quantity > $product->getProduct()->getAvailableQuantity()){
-						throw new Exception('Product quantity can not be more than ' . $product->getAvailableQuantity());
-					}
-					$item->setQuantity($item->getQuantity() + $quantity);
-				}
-			}
+			// foreach ($this->items as $item) {
+			// 	if($item->getProduct()->getId() === $product->getId()){
+			// 		if($item->getTotalQuantity() + $quantity > $product->getProduct()->getAvailableQuantity()){
+			// 			throw new Exception('Product quantity can not be more than ' . $product->getAvailableQuantity());
+			// 		}
+			// 		$item->setQuantity($item->getQuantity() + $quantity);
+			// 	}
+			// }
+			array_push($this->items, $cartItem);
 	}
 
 	public function removeProduct(Product $product)
@@ -31,4 +32,11 @@ class Cart
 	{
 
 	}
+
+	public function getItems()
+	{
+		return $this->items;
+	}
+
+
 }

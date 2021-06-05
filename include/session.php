@@ -1,9 +1,13 @@
 <?php 
 session_start();
+// session_unset();
 
 require_once 'const.php';
 require_once 'db.php';
 
+require_once 'Product.php';
+require_once 'CartItem.php';
+require_once 'Cart.php';
 
 
 		// POST actions
@@ -16,6 +20,7 @@ if(isset($_POST['action'])){
 		//ADD TO SESSION FROM AJAX POST
 
 		if(isset($_POST['product_id'])){
+
 			if(!empty($_SESSION['cart'])){
 				foreach($_SESSION['cart'] as $key => $cartProduct){
 

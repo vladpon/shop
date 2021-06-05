@@ -27,9 +27,11 @@ function refreshAmountSpan () {
 // }
 
 addToCartBtns.forEach(function(element) {
+	
 		element.addEventListener('click', function() {
 		let productId = element.dataset.productId;
 		addToCart(productId);
+
 		element.classList.add('white');
 		element.value = 'ПЕРЕЙТИ В КОРЗИНУ';
 		element.addEventListener('click', function(){
@@ -92,7 +94,7 @@ function addToCart (product_id) {
 
 		var xhr = new XMLHttpRequest();
 		
-		xhr.open('POST', '../include/session.php', true);
+		xhr.open('POST', '../include/carthandler.php', true);
 		// xhr.setRequestHeader('Content-type', 'multipart/form-data');
 		// xhr.responseType = 'json';		
 

@@ -60,3 +60,37 @@ Stack trace:
 [29-Apr-2021 04:37:16 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72
 [29-Apr-2021 04:37:18 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72
 [29-Apr-2021 04:45:01 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72
+[20-May-2021 04:49:13 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in E:\www\admin\sessionunset.php on line 4
+[20-May-2021 04:51:06 UTC] PHP Warning:  session_unset() expects exactly 0 parameters, 1 given in E:\www\admin\sessionunset.php on line 3
+[20-May-2021 04:51:06 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in E:\www\admin\sessionunset.php on line 4
+[20-May-2021 04:51:28 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in E:\www\admin\sessionunset.php on line 4
+[31-May-2021 11:52:01 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in E:\www\admin\sessionunset.php on line 4
+[31-May-2021 12:07:11 UTC] PHP Parse error:  syntax error, unexpected '<', expecting end of file in E:\www\admin\vardumpsession.php on line 6
+[31-May-2021 12:07:48 UTC] PHP Fatal error:  Uncaught Error: Cannot use object of type __PHP_Incomplete_Class as array in E:\www\admin\vardumpsession.php:8
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 8
+[31-May-2021 12:10:30 UTC] PHP Parse error:  syntax error, unexpected '->' (T_OBJECT_OPERATOR), expecting ';' in E:\www\include\Cart.php on line 37
+[31-May-2021 12:11:56 UTC] PHP Fatal error:  main(): The script tried to execute a method or access a property of an incomplete object. Please ensure that the class definition &quot;Cart&quot; of the object you are trying to operate on was loaded _before_ unserialize() gets called or provide an autoloader to load the class definition in E:\www\admin\vardumpsession.php on line 14
+[05-Jun-2021 04:57:22 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in E:\www\admin\sessionunset.php on line 4
+[05-Jun-2021 04:57:39 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in E:\www\admin\sessionunset.php on line 4
+[05-Jun-2021 05:18:15 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[05-Jun-2021 05:20:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[05-Jun-2021 05:22:21 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[05-Jun-2021 05:24:54 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[05-Jun-2021 05:48:29 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13

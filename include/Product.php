@@ -2,37 +2,36 @@
 
 class Product
 {
-	private int $id;
-	private string $title;
+	private int $productId;
+	private string $productName;
 	private float $price;
 	private int $availableQuantity;
 
-	public function __construct($id, $title, $price, $availableQuantity)
+	public function __construct($productId, $productName, $price)
 	{
-		$this->id = $id;
-		$this->title = $title;
+		$this->productId = $productId;
+		$this->productName = $productName;
 		$this->price = $price;
-		$this->availableQuantity = $availableQuantity;
 	}
 
 
 
 
-	public function getId()
+	public function getProductId()
 	{
-		return $this->id;
+		return $this->productId;
 	}
-	public function setId($id)
+	public function setId($productId)
 	{
-		$this->id = $id;
+		$this->productId = $productId;
 	}
-	public function getTitle()
+	public function getProductName()
 	{
-		return $this->title;
+		return $this->productName;
 	}
-	public function setTitle($title)
+	public function setProductName($productName)
 	{
-		$this->title = $title;
+		$this->productName = $productName;
 	}
 	public function getPrice()
 	{

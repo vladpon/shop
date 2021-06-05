@@ -2,7 +2,7 @@
 
 require_once 'include/session.php';
 require_once 'include/const.php';
-
+// session_unset();
 
 if (isset($_GET['product_id'])){
 	$product_id = $_GET['product_id'];
