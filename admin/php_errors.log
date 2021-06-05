@@ -140,3 +140,7 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in E:\www\admin\vardumpsession.php on line 13
+[05-Jun-2021 17:23:38 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13

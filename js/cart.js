@@ -6,20 +6,24 @@ let cart;
 getCart();
 refreshAmountSpan();
 
-function redrawHeaderAmountSpan(cart){
+
+function redrawHeaderAmountSpan(){
 	cartAmountSpan.innerText = cart.totalQuantity;
+	refreshAmountSpan();
 }
 
-function redrawTotalPrice(cart){
+function redrawTotalPrice(){
 	document.querySelector('.cart__total').children[0].innerText = cart.totalSum;
 }
 
-function redrawProductAmountSpan(cart, productId){
+function redrawProductAmountSpan(productId){
 }
 
 
 
-function getCart(){
+function getCart(func = function (){},
+					func2 = function (){},
+					func3 = function (){}){
 	var params = 'action=getCart';
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'include/carthandler.php', true);
@@ -29,6 +33,9 @@ function getCart(){
 	xhr.onload = function () {
 		if(this.status == 200){	
 			cart = this.response;
+			func();
+			func2();
+			func3();
 		}
 	}
 	xhr.send(params);
@@ -41,6 +48,54 @@ function refreshAmountSpan () {
 	} else cartAmountSpan.style.display = 'none';
 }
 
+function addToCart (element) {
+		let product_id = element.dataset.productId;
+
+		//Ajax Req		
+
+		let params = new FormData();
+		if(document.forms.sizeselect){
+			var size = document.forms.sizeselect.sel.value;
+			if (size == 'Выбрать размер'){
+				alert('Выберите, пожалуйста размер изделия');
+				return;
+			} else {
+				params.append('size', size);
+			}
+		}
+
+		element.classList.add('white');
+		element.value = 'ПЕРЕЙТИ В КОРЗИНУ';
+		element.addEventListener('click', function(){
+			document.location.href = "cartpage.php";
+		})
+
+		params.append('action', 'add');
+		params.append('product_id', product_id);
+
+
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open('POST', '../include/carthandler.php', true);
+
+		xhr.onload = function () {
+			if(this.status == 200){
+		//analyze ajax answer
+		//if ok cartSpanAmount++
+				getCart(redrawHeaderAmountSpan);
+				// cartAmountSpan.innerText = Number(cartAmountSpan.innerText) + 1;
+				// refreshAmountSpan();
+		//if not OK alert
+			}
+		}
+		xhr.send(params);
+		
+};
+
+
+addToCartBtns.forEach(function(element) {
+		element.addEventListener('click', () => addToCart(element), {once: true});
+});
 
 // function showAmount(cartItem){
 // 	product_id = cartItem.id;
@@ -94,9 +149,7 @@ function refreshAmountSpan () {
 // 	, {once: true});
 // });
 
-// addToCartBtns.forEach(function(element) {
-// 		element.addEventListener('click', () => addToCart(element), {once: true});
-// });
+
 
 
 // for (var i = cartItem.length - 1; i >= 0; i--) {
@@ -114,56 +167,7 @@ function refreshAmountSpan () {
 
 
 
-function addToCart (element) {
-		// console.log(element);
-		let product_id = element.dataset.productId;
-		//Ajax Req		
 
-		let params = new FormData();
-
-		if(document.forms.sizeselect){
-			var size = document.forms.sizeselect.sel.value;
-			if (size == 'Выбрать размер'){
-				alert('Выберите, пожалуйста размер изделия');
-				return;
-			} else {
-				params.append('size', size);
-			}
-		}
-
-		element.classList.add('white');
-		element.value = 'ПЕРЕЙТИ В КОРЗИНУ';
-		element.addEventListener('click', function(){
-			document.location.href = "cartpage.php";
-		})
-
-		params.append('action', 'add');
-		params.append('product_id', product_id);
-
-
-		var xhr = new XMLHttpRequest();
-		
-		xhr.open('POST', '../include/carthandler.php', true);
-		// xhr.setRequestHeader('Content-type', 'multipart/form-data');
-		// xhr.responseType = 'json';		
-
-		xhr.onload = function () {
-			if(this.status == 200){
-
-				console.log(xhr.response);
-		//analyze ajax answer
-		//if ok cartSpanAmount++
-
-				cartAmountSpan.innerText = Number(cartAmountSpan.innerText) + 1;
-				refreshAmountSpan();
-
-		//if not OK alert
-			}
-		}
-
-		xhr.send(params);
-		
-};
 
 
 
