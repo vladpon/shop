@@ -1,20 +1,25 @@
 <?php
+require_once 'Product.php';
+require_once 'CartItem.php';
+
 
 class Cart
 {
 	private array $items = [];
 
-	public function addProduct(Product $product, int $quantity, int $size)
+	public function addProduct(Product $product, int $quantity, $size)
 	{
-			$cartItem = new CartItem($product, $quantity);
-			// foreach ($this->items as $item) {
-			// 	if($item->getProduct()->getId() === $product->getId()){
-			// 		if($item->getTotalQuantity() + $quantity > $product->getProduct()->getAvailableQuantity()){
-			// 			throw new Exception('Product quantity can not be more than ' . $product->getAvailableQuantity());
-			// 		}
-			// 		$item->setQuantity($item->getQuantity() + $quantity);
-			// 	}
-			// }
+			$cartItem = new CartItem($product, $quantity, $size);
+
+			foreach ($this->items as $item) {
+				if($item->getProduct()->getProductId() === $product->getproductId()){
+					//SAME PRODUCT ALREADY IN THE CART
+					if(!$size || ($size == $item->getSize())) {  //if not sizable || same size
+						$item->increaseQuantity();
+						return;
+					}
+				}
+			}
 			array_push($this->items, $cartItem);
 	}
 

@@ -117,22 +117,23 @@ if (isset($_GET['product_id'])){
 										$sizingCats = array(
 												127, 135, 137, 138, 140, 141, 142, 143, 148, 152, 264, 265
 												);
-										if(in_array($var[0]['cat_id'], $sizingCats)){	?>
+										if(in_array($var[0]['cat_id'], $sizingCats) && $var[0]['size']){	?>
 
 											<form name="sizeselect" class="other__item">
 												<span>Размер</span>
 												<select name="sel">
 
-													<option>Выбрать размер</option>
-
+													
 													<?php
-														// var_dump($var[0]['size']);
-														$sizeArr = explode(';', $var[0]['size'], -1);													
-														foreach ($sizeArr as $key => $value) {
-															$value = preg_replace('/[^0-9^,]/', '', $value);
-															echo '<option>' . $value . '</option>';
-														}
-													?>
+														var_dump($var[0]['size']);
+														$sizeArr = explode(';', $var[0]['size'], -1);	
+														if (count($sizeArr) > 1) {	
+															echo '<option>Выбрать размер</option>';										
+															foreach ($sizeArr as $key => $value) {
+																$value = preg_replace('/[^0-9^,]/', '', $value);
+																echo '<option>' . $value . '</option>';
+															}
+														} else echo '<option>' . $sizeArr[0] . '</option>';													?>
 
 												</select>
 											</form>

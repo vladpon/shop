@@ -1,17 +1,26 @@
 <?php
+require_once 'Product.php';
+
 
 class CartItem
 {
 	private Product $product;
 	private int $quantity;
+	private $size;
 
 
-	public function __construct(\Product $product, $quantity)
+	public function __construct(\Product $product, $quantity, $size)
 	{
 		$this->product = $product;
 		$this->quantity = $quantity;
+		$this->size = $size;
 	}
 
+
+	public function getSize()
+	{
+		return $this->size;
+	}
 	public function getQuantity()
 	{
 		return $this->quantity;
@@ -31,9 +40,7 @@ class CartItem
 
 	public function increaseQuantity($amount =1)
 	{
-		if($this->getQuantity() + $amount > $this->getProduct()->getAvailableQuantity()){
-			throw new Exception('Product quantity can not be more than ' . $this->getProduct()->getAvailableQuantity());
-		}
+		$this->quantity++;
 	}
 
 	public function decreaseQuantity()

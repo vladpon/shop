@@ -5,7 +5,7 @@ class Product
 	private int $productId;
 	private string $productName;
 	private float $price;
-	private int $availableQuantity;
+	private int $availableQuantity = 5;
 
 	public function __construct($productId, $productName, $price)
 	{
@@ -21,7 +21,7 @@ class Product
 	{
 		return $this->productId;
 	}
-	public function setId($productId)
+	public function setProductId($productId)
 	{
 		$this->productId = $productId;
 	}

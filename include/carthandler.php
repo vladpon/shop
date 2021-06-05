@@ -1,17 +1,19 @@
 <?php 
-session_start();
-
-require_once 'const.php';
-require_once 'db.php';
 
 require_once 'Product.php';
 require_once 'CartItem.php';
 require_once 'Cart.php';
 
+session_start();
 
+require_once 'const.php';
+require_once 'dbhandler.php';
+
+
+var_dump([$_POST]);
 
 if(isset($_POST['action'])){
-	$fl = false;
+	// $fl = false;
 
 	if($_POST['action'] == 'add'){
 
@@ -21,23 +23,17 @@ if(isset($_POST['action'])){
 			$productData = getProductData($_POST['product_id']);
 			$product = new Product($_POST['product_id'], $productData[0]['product_name'], $productData[0]['price']);
 
-
 			$cart = empty($_SESSION['cart']) ? new Cart() : $_SESSION['cart'];
+			$size = isset($_POST['size']) ? $_POST['size'] : false;
 
-			// if(empty($_SESSION['cart'])){
-			// 	$cart = new Cart();
-			// }
-			// else {
-			// 	$cart = $_SESSION['cart']
-			// }
-				
-			$cart->addProduct($product, 1, );
-
+			var_dump($cart);
+			$cart->addProduct($product, 1, $size);
 
 			$_SESSION['cart'] = $cart;
 		
 
 		}else {
+			//err: no product id in POST
 			$answer = json_encode(['success' => false]);
 		}
 		echo $answer;
@@ -327,18 +323,3 @@ if(isset($_POST['action'])){
 
 
 
-function getProductData($productId){
-	global $pdo; 
-
-	$sqlReqStr = "SELECT product_name, vendor_code, price FROM shop.products WHERE product_id = " . $productId . ';';
-
-	try{		
-		$stmt = $pdo->prepare($sqlReqStr);
-		$state = $stmt->execute();
-		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	} catch (Exception $e) {
-	    echo $e->getMessage();
-	    exit;
-	}
-	return $data;
-}

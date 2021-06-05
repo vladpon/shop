@@ -26,19 +26,23 @@ function refreshAmountSpan () {
 // 	addToCartBtns[0].value = 'ПЕРЕЙТИ В КОРЗИНУ';
 // }
 
-addToCartBtns.forEach(function(element) {
-	
-		element.addEventListener('click', function() {
-		let productId = element.dataset.productId;
-		addToCart(productId);
+// addToCartBtns.forEach(function(element) {
 
-		element.classList.add('white');
-		element.value = 'ПЕРЕЙТИ В КОРЗИНУ';
-		element.addEventListener('click', function(){
-			document.location.href = "cartpage.php";
-		})
-	}
-	, {once: true});
+// 		element.addEventListener('click', function() {
+// 		let productId = element.dataset.productId;
+// 		addToCart(productId);
+
+// 		element.classList.add('white');
+// 		element.value = 'ПЕРЕЙТИ В КОРЗИНУ';
+// 		element.addEventListener('click', function(){
+// 			document.location.href = "cartpage.php";
+// 		})
+// 	}
+// 	, {once: true});
+// });
+
+addToCartBtns.forEach(function(element) {
+		element.addEventListener('click', () => addToCart(element));
 });
 
 
@@ -76,17 +80,28 @@ function showAmount(cartItem){
 }
 
 
-function addToCart (product_id) {
+function addToCart (element) {
 
-
+		let product_id = element.dataset.productId;
 		//Ajax Req		
 
 		let params = new FormData();
 
 		if(document.forms.sizeselect){
 			var size = document.forms.sizeselect.sel.value;
-			params.append('size', size);
+			if (size == 'Выбрать размер'){
+				alert('Выберите, пожалуйста размер изделия');
+				return;
+			} else {
+				params.append('size', size);
+			}
 		}
+
+		element.classList.add('white');
+		element.value = 'ПЕРЕЙТИ В КОРЗИНУ';
+		element.addEventListener('click', function(){
+			document.location.href = "cartpage.php";
+		})
 
 		params.append('action', 'add');
 		params.append('product_id', product_id);
