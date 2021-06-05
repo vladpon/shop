@@ -1,23 +1,17 @@
 <?php
-
-require_once 'include/session.php';
+require_once 'include/dbhandler.php';
 require_once 'include/const.php';
+require_once 'include/Product.php';
+require_once 'include/CartItem.php';
+require_once 'include/Cart.php';
+
+session_start();
+
 // session_unset();
 
 if (isset($_GET['product_id'])){
 	$product_id = $_GET['product_id'];
-	try{
-		//$k=2;
-		require 'include/db.php';
-		global $pdo;
-		$sql = "SELECT * FROM shop.products WHERE product_id = :product_id;";
-		$stmt = $pdo->prepare($sql);
-		$state = $stmt->execute(['product_id'=> $product_id]);
-		$var = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	} catch (Exception $e) {
-	    echo $e->getMessage();
-	    exit;
-	}
+	$var = getProductData($product_id);
 }
 
 
@@ -125,7 +119,7 @@ if (isset($_GET['product_id'])){
 
 													
 													<?php
-														var_dump($var[0]['size']);
+														// var_dump($var[0]['size']);
 														$sizeArr = explode(';', $var[0]['size'], -1);	
 														if (count($sizeArr) > 1) {	
 															echo '<option>Выбрать размер</option>';										

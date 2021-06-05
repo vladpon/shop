@@ -1,6 +1,5 @@
 <?php
-	require_once 'include/session.php';
-
+require_once 'include/carthandler.php';
 	
 
 
@@ -8,7 +7,6 @@
 	require "include/db.php";
 	global $pdo;
 
-//	$sql = 'SELECT small_pic, price, product_name, product_id FROM shop.products WHERE product_id IN (SELECT product_id FROM shop.hits WHERE TRUE) LIMIT ' . $cn . ';';
 	$sql = 'SELECT small_pic, product_name, product_id FROM shop.hits WHERE TRUE LIMIT ' . $cn . ';';
 	$stmt = $pdo->prepare($sql);
 	$stmt->execute();

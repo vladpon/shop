@@ -1,16 +1,14 @@
 <?php 
-
 require_once 'Product.php';
 require_once 'CartItem.php';
 require_once 'Cart.php';
-
 session_start();
 
 require_once 'const.php';
 require_once 'dbhandler.php';
 
 
-var_dump([$_POST]);
+// var_dump([$_POST]);
 
 if(isset($_POST['action'])){
 	// $fl = false;
@@ -20,13 +18,13 @@ if(isset($_POST['action'])){
 	//ADD PRODUCT 
 
 		if(isset($_POST['product_id'])){
-			$productData = getProductData($_POST['product_id']);
-			$product = new Product($_POST['product_id'], $productData[0]['product_name'], $productData[0]['price']);
+			$productData = getProductData($_POST['product_id']);	
+			$product = new Product($_POST['product_id'], $productData[0]['product_name'], myPrice($productData[0]['price']));
 
 			$cart = empty($_SESSION['cart']) ? new Cart() : $_SESSION['cart'];
 			$size = isset($_POST['size']) ? $_POST['size'] : false;
 
-			var_dump($cart);
+			// var_dump($cart);
 			$cart->addProduct($product, 1, $size);
 
 			$_SESSION['cart'] = $cart;
@@ -41,9 +39,55 @@ if(isset($_POST['action'])){
 
 	//END OF ADD
 
+	if($_POST['action'] == 'getCart'){
+
+	//GET CART JSON
+		$cart_json =  array();
+
+		if(isset($_SESSION['cart'])){			
+			$cart = $_SESSION['cart'];
+			$cart_json['totalSum'] = $cart->getTotalSum();
+			$cart_json['totalQuantity'] = $cart->getTotalQuantity();
+			$cartItems = $cart->getItems();			
+			
+			foreach ($cartItems as $cartItem) {
+				$arr =  array();
+				$arr['product'] =  array();
+				$arr['product']['productId'] = $cartItem->getProduct()->getProductId();
+				$arr['product']['productName'] = $cartItem->getProduct()->getProductName();
+				$arr['product']['price'] = $cartItem->getProduct()->getPrice();
+				$arr['quantity'] = $cartItem->getQuantity();
+				$arr['size'] = $cartItem->getSize();
+				array_push($cart_json, $arr);
+			}
+
+		} else $answer = json_encode(['success' => false]);
+		echo json_encode($cart_json);
+	}
+
 }
 
+function getProductsAmount(){
+	if(isset($_SESSION['cart'])){
+		//count products in cart
+		$cart = $_SESSION['cart'];
+		return $cart->getTotalQuantity();
+	}
+}
 
+function getTotalPrice() {
+	if(isset($_SESSION['cart'])){
+		$cart = $_SESSION['cart'];
+		return $cart->getTotalSum();
+	} else return 0;
+}
+
+function getCartItems(){
+	if(isset($_SESSION['cart'])){
+		$cart = $_SESSION['cart'];
+		return $cart->getItems();
+	} else return false;
+}
 
 
 

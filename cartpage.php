@@ -1,56 +1,43 @@
 <?php
-require_once 'include/session.php';
+require_once 'include/carthandler.php';
+require_once 'include/dbhandler.php';
 
 require_once 'include/const.php';
 require 'include/db.php';
 
 
-global $pdo;
 global $aAtr;
 global $aAtrItems;
 
-$data;
-$sqlReqStr = "SELECT * FROM shop.products WHERE product_id IN (";
-if (!empty($_SESSION['cart'])){
-	foreach ($_SESSION['cart'] as $product){
-		$sqlReqStr .= $product['product_id'] . ', ';
-	}
-	$sqlReqStr = substr_replace($sqlReqStr, ');', -2);
 
-	try{
-		$stmt = $pdo->prepare($sqlReqStr);
-		$state = $stmt->execute();
-		$data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	} catch (Exception $e) {
-	    echo $e->getMessage();
-	    exit;
-	}
-}
+$cartItems = getCartItems();
 
-
-function showCartItem($product){
+function showCartItem($cartItem){
+	$productData = getProductData($cartItem->getProduct()->getProductId())[0];
+	// var_dump($productData);
 	?>
+
 	
-		<div class="cart__product" id=<?=$product['product_id']?>>
+		<div class="cart__product" id=<?=$productData['product_id']?>>
 			<div class="cart__product-left">
-				<img class="cart__product-image" src=<?=$product['small_pic']?>>
+				<img class="cart__product-image" src=<?=$productData['small_pic']?>>
 				<div class="cart__count">
 					<span>-</span>
-					<span>7</span>
+					<span><?=$cartItem->getQuantity()?></span>
 					<span>+</span>
 				</div>
 			</div>
 			<div class="cart__product-right">
 				<div class="cart__product-describe">
-					<p><?=$product['product_name']?></p>
-					<p>Артикул: <?=$product['vendor_code']?></p>
-					<p>Проба: <?=$product['fineness']?></p>
-					<p>Покрытик: <?=$product['cover']?></p>
-					<p>Вставка: <?=$product['stone']?></p>								
+					<p><?=$productData['product_name']?></p>
+					<p>Артикул: <?=$productData['vendor_code']?></p>
+					<p>Проба: <?=$productData['fineness']?></p>
+					<p>Покрытие: <?=$productData['cover']?></p>
+					<p>Вставка: <?=$productData['stone']?></p>								
 				</div>
 				<div class="cart__price">							
-					<span><?=myPrice($product['price'])?></span>
-					<img class='delete-from-cart' data-product-id=<?=$product['product_id'];?> src="svg/close.svg">
+					<span><?=myPrice($productData['price'])?></span>
+					<img class='delete-from-cart' data-product-id=<?=$productData['product_id'];?> src="svg/close.svg">
 				</div>
 			</div>
 			<div class="cart__line"></div>
@@ -58,19 +45,16 @@ function showCartItem($product){
 	<?php	
 }
 
-function showTotalPrice($data){
-	$totalPrice = 0;
-	foreach ($data as $product) {
-		$totalPrice += myPrice($product['price']);
-	}
+function showTotalPrice(){
 	echo 	'<div class="cart__total">
-				Итого: <span>' . $totalPrice . '</span>
+				Итого: <span>' . getTotalPrice() . '</span>
 			</div>';
 	return $totalPrice;
+
 }
 
 
-function showForm($totalPrice){
+function showForm(){
 	?>
 
 		<form action="#" method="POST" accept-charset="UTF-8" name="clientData" class="cart__form" onsubmit="return false;">
@@ -164,12 +148,12 @@ function showForm($totalPrice){
 						
 						<div class="cart__product-container">
 							<?php
-								if(!empty($_SESSION['cart'])){
-									foreach($data as $product){
-										showCartItem($product);
+								if($cartItems){
+									foreach($cartItems as $cartItem){
+										showCartItem($cartItem);
 									}
-									$totalPrice = showTotalPrice($data);
-									showForm($totalPrice);
+									$totalPrice = showTotalPrice();
+									showForm();
 								} else {
 									echo '<div class="cart__empty"><i>Корзина пуста...</i></div>';
 								}

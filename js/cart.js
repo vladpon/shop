@@ -2,14 +2,67 @@ let cartAmountSpan = document.querySelector('.header__cart-btn').children[1];
 let addToCartBtns = document.querySelectorAll('.add-to-cart');
 let cartItem = document.querySelectorAll('.cart__product')
 
-
+let cart;
+getCart();
 refreshAmountSpan();
 
+function redrawHeaderAmountSpan(cart){
+	cartAmountSpan.innerText = cart.totalQuantity;
+}
+
+function redrawTotalPrice(cart){
+	document.querySelector('.cart__total').children[0].innerText = cart.totalSum;
+}
+
+function redrawProductAmountSpan(cart, productId){
+}
+
+
+
+function getCart(){
+	var params = 'action=getCart';
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', 'include/carthandler.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.responseType = 'json';
+
+	xhr.onload = function () {
+		if(this.status == 200){	
+			cart = this.response;
+		}
+	}
+	xhr.send(params);
+}
+
+
 function refreshAmountSpan () {
-	if (Number(cartAmountSpan.innerText)){
+	if(Number(cartAmountSpan.innerText)){
 		cartAmountSpan.style.display = 'block';
 	} else cartAmountSpan.style.display = 'none';
 }
+
+
+// function showAmount(cartItem){
+// 	product_id = cartItem.id;
+// 	var params = 'action=getAmount&product_id=' + product_id;
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.open('POST', 'include/session.php', true);
+// 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+// 	xhr.onload = function () {
+// 		if(this.status == 200){	
+// 			let answer = JSON.parse(this.responseText);
+// 			let cartCount = cartItem.querySelector('.cart__count');
+// 			cartCount.children[1].innerText = answer.amount;
+// 			if(answer.amount == 0){
+// 				deleteFromCart(product_id);				
+// 			}
+// 		}
+// 	}
+// 	xhr.send(params);
+// }
+
+
 
 // for (var i = addToCartBtns.length - 1; i >= 0; i--) {
 // 	let productId = addToCartBtns[i].dataset.productId;
@@ -41,47 +94,28 @@ function refreshAmountSpan () {
 // 	, {once: true});
 // });
 
-addToCartBtns.forEach(function(element) {
-		element.addEventListener('click', () => addToCart(element));
-});
+// addToCartBtns.forEach(function(element) {
+// 		element.addEventListener('click', () => addToCart(element), {once: true});
+// });
 
 
-for (var i = cartItem.length - 1; i >= 0; i--) {
-	showAmount(cartItem[i]);
-	let productId = cartItem[i].id;
-	let cartCount = cartItem[i].querySelector('.cart__count');
-	cartItem[i].querySelector('.delete-from-cart').addEventListener('click', ()=> deleteFromCart(productId));
-	cartCount.children[0].addEventListener('click', () => decreaseQuantity(cartCount.children[1], productId));
-	cartCount.children[2].addEventListener('click', () => increaseQuantity(cartCount.children[1], productId));
-}
+// for (var i = cartItem.length - 1; i >= 0; i--) {
+// 	showAmount(cartItem[i]);
+// 	let productId = cartItem[i].id;
+// 	let cartCount = cartItem[i].querySelector('.cart__count');
+// 	cartItem[i].querySelector('.delete-from-cart').addEventListener('click', ()=> deleteFromCart(productId));
+// 	cartCount.children[0].addEventListener('click', () => decreaseQuantity(cartCount.children[1], productId));
+// 	cartCount.children[2].addEventListener('click', () => increaseQuantity(cartCount.children[1], productId));
+// }
 
-if(window.isCartPage){
-	getTotalPrice();
-}
+// if(window.isCartPage){
+// 	getTotalPrice();
+// }
 
-function showAmount(cartItem){
-	product_id = cartItem.id;
-	var params = 'action=getAmount&product_id=' + product_id;
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'include/session.php', true);
-	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-	xhr.onload = function () {
-		if(this.status == 200){	
-			let answer = JSON.parse(this.responseText);
-			let cartCount = cartItem.querySelector('.cart__count');
-			cartCount.children[1].innerText = answer.amount;
-			if(answer.amount == 0){
-				deleteFromCart(product_id);				
-			}
-		}
-	}
-	xhr.send(params);
-}
 
 
 function addToCart (element) {
-
+		// console.log(element);
 		let product_id = element.dataset.productId;
 		//Ajax Req		
 

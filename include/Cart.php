@@ -1,7 +1,5 @@
 <?php
-require_once 'Product.php';
-require_once 'CartItem.php';
-
+require_once 'const.php';
 
 class Cart
 {
@@ -30,12 +28,19 @@ class Cart
 
 	public function getTotalQuantity()
 	{
+		$count = 0;
+		foreach ($this->items as $item) $count += $item->getQuantity();
+		return $count;
 
 	}
 
 	public function getTotalSum()
 	{
+		$totalSum = 0;
+		foreach ($this->items as $item) 
+			$totalSum += ($item->getProduct()->getPrice()) * $item->getQuantity();		
 
+		return $totalSum;
 	}
 
 	public function getItems()

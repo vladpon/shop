@@ -131,3 +131,12 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in E:\www\admin\vardumpsession.php on line 13
+[05-Jun-2021 14:58:57 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in E:\www\admin\sessionunset.php on line 4
+[05-Jun-2021 14:59:22 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[05-Jun-2021 17:12:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
