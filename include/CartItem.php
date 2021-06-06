@@ -11,13 +11,21 @@ class CartItem
 	{
 		$this->product = $product;
 		$this->quantity = $quantity;
-		$this->size = $size;
+		$this->setSize($size);
 	}
 
 
 	public function getSize()
 	{
 		return $this->size;
+	}
+	public function setSize($size)
+	{
+
+		$pattern = array('/,/', '/ \D+/');
+		$replace = array('.', '');
+		if($size)
+			$this->size = preg_replace($pattern, $replace, $size);
 	}
 	public function getQuantity()
 	{
@@ -43,6 +51,7 @@ class CartItem
 
 	public function decreaseQuantity()
 	{
-
+		if($this->quantity > 1)
+			$this->quantity--;
 	}
 }

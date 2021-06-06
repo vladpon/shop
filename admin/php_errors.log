@@ -144,3 +144,50 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 10:49:02 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 12:12:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 12:12:26 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 12:13:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 12:15:57 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 13:18:59 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 13:26:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 13:28:00 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 13:29:01 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 14:08:16 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 14:15:47 UTC] PHP Fatal error:  Uncaught Error: Call to a member function getItems() on null in E:\www\admin\vardumpsession.php:13
+Stack trace:
+#0 {main}
+  thrown in E:\www\admin\vardumpsession.php on line 13
+[06-Jun-2021 15:45:39 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72
+[06-Jun-2021 15:45:41 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72
+[06-Jun-2021 15:45:55 UTC] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in E:\www\admin\admin.php on line 72

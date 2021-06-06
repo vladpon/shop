@@ -34,7 +34,8 @@ if(isset($_POST['action'])){
 			//err: no product id in POST
 			$answer = json_encode(['success' => false]);
 		}
-		echo $answer;
+		$cart_arr = getCart();
+		echo json_encode($cart_arr);
 	}
 
 	//END OF ADD
@@ -48,20 +49,18 @@ if(isset($_POST['action'])){
 		$productId = $_POST['product_id'];
 		$size = $_POST['size'];
 		$cart = $_SESSION['cart'];
+		$cart->removeCartItem($productId, $size);
+		$cart_arr = getCart();	
+		echo json_encode($cart_arr);
+	}
 
-		$a = new Cart();
-		$b = $a;
-		var_dump($b);
-		$p = new Product(1, 'name', 1);
-		$a->addProduct($p, 1, 1);
-		var_dump($b);
-
-		// $cart->removeCartItem($productId, $size);		
-		// var_dump($_SESSION['cart']);
-		// var_dump($cart);
-		// echo getCart();
-
-		// $_SESSION['cart'] = $cart;
+	if($_POST['action'] == 'decrease'){
+		$productId = $_POST['product_id'];
+		$size = $_POST['size'];
+		$cart = $_SESSION['cart'];
+		$cart->decreaseCartItem($productId, $size);
+		$cart_arr = getCart();
+		echo json_encode($cart_arr);
 	}
 
 }

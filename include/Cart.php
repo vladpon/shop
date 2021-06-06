@@ -10,9 +10,9 @@ class Cart
 			$cartItem = new CartItem($product, $quantity, $size);
 
 			foreach ($this->items as $item) {
-				if($item->getProduct()->getProductId() === $product->getproductId()){
+				if($item->getProduct()->getProductId() === $product->getProductId()){
 					//SAME PRODUCT ALREADY IN THE CART
-					if(!$size || ($size == $item->getSize())) {  //if not sizable || same size
+					if(!$size || ($cartItem->getSize() == $item->getSize())) {  //if not sizable || same size
 						$item->increaseQuantity();
 						return;
 					}
@@ -31,11 +31,28 @@ class Cart
 		foreach ($this->items as $item)
 		{
 			if($item->getProduct()->getProductId() == $productId)
+			{
 				if(!$size || ($size == $item->getSize()))
 				{
 					unset($this->items[array_search($item, $this->items)]);
 					break;
 				}
+			}
+		}
+	}
+
+	public function decreaseCartItem($productId, $size)
+	{
+		foreach ($this->items as $item)
+		{
+			if($item->getProduct()->getProductId() == $productId)
+			{
+				if(!$size || ($size == $item->getSize()))
+				{
+					$this->items[array_search($item, $this->items)]->decreaseQuantity();
+					break;
+				}
+			}
 		}
 	}
 
