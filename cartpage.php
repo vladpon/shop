@@ -10,15 +10,15 @@ global $aAtr;
 global $aAtrItems;
 
 
+
 $cartItems = getCartItems();
 
 function showCartItem($cartItem){
 	$productData = getProductData($cartItem->getProduct()->getProductId())[0];
-	// var_dump($productData);
 	?>
 
 	
-		<div class="cart__product" id=<?=$productData['product_id']?>>
+		<div class="cart__product" data-product-id=<?=$productData['product_id']?> data-size=<?=$cartItem->getSize()?>>
 			<div class="cart__product-left">
 				<img class="cart__product-image" src=<?=$productData['small_pic']?>>
 				<div class="cart__count">
@@ -33,7 +33,8 @@ function showCartItem($cartItem){
 					<p>Артикул: <?=$productData['vendor_code']?></p>
 					<p>Проба: <?=$productData['fineness']?></p>
 					<p>Покрытие: <?=$productData['cover']?></p>
-					<p>Вставка: <?=$productData['stone']?></p>								
+					<p>Вставка: <?=$productData['stone']?></p>	
+					<?php if($cartItem->getSize()) echo '<p>Размер: ' . $cartItem->getSize() . '</p>'; ?>					
 				</div>
 				<div class="cart__price">							
 					<span><?=myPrice($productData['price'])?></span>

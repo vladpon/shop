@@ -26,6 +26,19 @@ class Cart
 
 	}
 
+	public function removeCartItem($productId, $size = false)
+	{
+		foreach ($this->items as $item)
+		{
+			if($item->getProduct()->getProductId() == $productId)
+				if(!$size || ($size == $item->getSize()))
+				{
+					unset($this->items[array_search($item, $this->items)]);
+					break;
+				}
+		}
+	}
+
 	public function getTotalQuantity()
 	{
 		$count = 0;

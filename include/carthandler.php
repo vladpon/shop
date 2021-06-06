@@ -40,31 +40,53 @@ if(isset($_POST['action'])){
 	//END OF ADD
 
 	if($_POST['action'] == 'getCart'){
-
-	//GET CART JSON
-		$cart_json =  array();
-
-		if(isset($_SESSION['cart'])){			
-			$cart = $_SESSION['cart'];
-			$cart_json['totalSum'] = $cart->getTotalSum();
-			$cart_json['totalQuantity'] = $cart->getTotalQuantity();
-			$cartItems = $cart->getItems();			
-			
-			foreach ($cartItems as $cartItem) {
-				$arr =  array();
-				$arr['product'] =  array();
-				$arr['product']['productId'] = $cartItem->getProduct()->getProductId();
-				$arr['product']['productName'] = $cartItem->getProduct()->getProductName();
-				$arr['product']['price'] = $cartItem->getProduct()->getPrice();
-				$arr['quantity'] = $cartItem->getQuantity();
-				$arr['size'] = $cartItem->getSize();
-				array_push($cart_json, $arr);
-			}
-
-		} else $answer = json_encode(['success' => false]);
-		echo json_encode($cart_json);
+		$cart = getCart();		 
+		echo json_encode($cart);
 	}
 
+	if($_POST['action'] == 'delete'){
+		$productId = $_POST['product_id'];
+		$size = $_POST['size'];
+		$cart = $_SESSION['cart'];
+
+		$a = new Cart();
+		$b = $a;
+		var_dump($b);
+		$p = new Product(1, 'name', 1);
+		$a->addProduct($p, 1, 1);
+		var_dump($b);
+
+		// $cart->removeCartItem($productId, $size);		
+		// var_dump($_SESSION['cart']);
+		// var_dump($cart);
+		// echo getCart();
+
+		// $_SESSION['cart'] = $cart;
+	}
+
+}
+
+function getCart(){
+	$cart_arr = array();
+	if(isset($_SESSION['cart'])){			
+		$cart = $_SESSION['cart'];
+		$cart_arr['totalSum'] = $cart->getTotalSum();
+		$cart_arr['totalQuantity'] = $cart->getTotalQuantity();
+		$cartItems = $cart->getItems();			
+		
+		foreach ($cartItems as $cartItem) {
+			$arr =  array();
+			$arr['product'] =  array();
+			$arr['product']['productId'] = $cartItem->getProduct()->getProductId();
+			$arr['product']['productName'] = $cartItem->getProduct()->getProductName();
+			$arr['product']['price'] = $cartItem->getProduct()->getPrice();
+			$arr['quantity'] = $cartItem->getQuantity();
+			$arr['size'] = $cartItem->getSize();
+			array_push($cart_arr, $arr);
+		}
+		return $cart_arr;
+
+	} else return false;
 }
 
 function getProductsAmount(){
