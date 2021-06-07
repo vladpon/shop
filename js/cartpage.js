@@ -1,33 +1,3 @@
-// let cartProduct = document.querySelectorAll('.cart__product');
-// let cartImg = document.querySelector('.header__cart');
-
-// cartProduct.forEach((element) => {
-// 	element.querySelector('.cart__price').children[1].addEventListener('touchend', () => deleteFromCart(element.id, element));
-// });
-
-
-// function deleteFromCart(id, element)
-// {
-// 	cartImg.children[1].innerText = Number(cartImg.children[1].innerText) - 1;
-// 	element.remove();
-// 	ajaxDeleteFromCart(id);
-// }
-
-// function ajaxDeleteFromCart(product_id){
-
-// 		var params = 'action=delete&product_id=' + product_id;
-// 		var xhr = new XMLHttpRequest();		
-// 		xhr.open('POST', 'include/session.php', true);		
-// 		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-// 		xhr.onload = function () {
-// 			if(this.status == 200){
-// 				console.log(this.responseText);
-// 			}
-// 		}
-// 		xhr.send(params);
-
-// }
 
 
 // let bdy = document.body;
@@ -38,36 +8,18 @@ let orderConfirmSubmitBtn = orderConfirmBlock.querySelector('.big-button');
 let form = document.clientData;
 
 
-let sessionData;
+orderConfirmSubmitBtn.addEventListener('click', () => confirmOrder());
 
-orderConfirmSubmitBtn.addEventListener('click', () => confirmOrder(sessionData));
-
-
-function confirmOrder (sessionData){
-
-	orderConfirmSubmitBtn.style.pointerEvents = 'none';
-
-
-	let clientData = new FormData(form);
-
-
-	clientData.append('payment', 'cash');
-	clientData.append('delivery', 'courier');
-
-	clientData.append('action', 'confirmOrder');
-
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', 'include/session.php');
-	xhr.send(clientData);
-	xhr.responseType = 'json';
-	xhr.onload = () => {
-			let answer = xhr.response;
-			console.log(answer);
-			if (answer.confirm == 'success'){
-				document.location.href = 'confirmorder.php';
+document.clientData.submit.addEventListener('click', () => {
+			if(validate()){
+				getCart(fillConfirmBlock);
+				wrapper.style.pointerEvents = 'none';
+				orderConfirmBlock.classList.add('active');
+				bdy.classList.add('lock');
+				scrollTo(top);
 			}
-		};
-	}
+			else alert('Заполните пожалуйста все поля формы с вашими данными для заказа');
+		});
 
 orderConfirmCloseBtn.addEventListener('click', () => {
 	orderConfirmBlock.classList.remove('active');
@@ -75,6 +27,8 @@ orderConfirmCloseBtn.addEventListener('click', () => {
 	wrapper.style.pointerEvents = '';
 	}
 );
+
+
 
 function validate() {
 	if((form.clientName.value != '') && (form.clientEmail != '') && (form.clientTel != '') 
@@ -87,20 +41,7 @@ function validate() {
 
 }
 
-document.clientData.submit.addEventListener('click', () => {
-			if(validate()){
-				getCart();
-				wrapper.style.pointerEvents = 'none';
-				orderConfirmBlock.classList.add('active');
-				bdy.classList.add('lock');
-				scrollTo(top);
-			}
-			else alert('Заполните пожалуйста все поля формы с вашими данными для заказа');
-		});
-
-
-
-function fillConfirmBlock (sessionData) {
+function fillConfirmBlock () {
 	let customerBlock = document.querySelector('.order-confirm__customer');
 	let deliveryBlock = document.querySelector('.order-confirm__delivery');
 	let orderItemsBlock = orderConfirmBlock.querySelector('ol');
@@ -133,39 +74,43 @@ function fillConfirmBlock (sessionData) {
 		'Способ оплаты: ' + paymentMethod + '</p>'
 		);
 
-	let total = 0;
-	sessionData.forEach((product) => {
-		total += product.price;
+	 
+
+	 for(i in cart){
+	 	// if(i == 'totalQuantity' || i == 'totalSum') break; //костыль xD
+	 	if(isNaN(i)) break;
 		orderItemsBlock.insertAdjacentHTML('beforeend',
-			'<li><div><span>' + product.product_name + ' ' +
-			+ product.vendor_code + ' </span>' +
-			'<span>'+ product.amount + '</span>' +
-			'<span> ' + product.price + 
+			'<li><div><span>' + cart[i].product.productName + ' ' +
+			cart[i].product.vendorCode + ' </span>' +
+			'<span>'+ cart[i].quantity + '</span>' +
+			'<span> ' + cart[i].product.price + 
 			' </span></div></li>'
 		)
-	})
+	}
+	
 
 
-	orderConfirmTotal.insertAdjacentHTML('beforeend', 'Итого: ' + total);
+	orderConfirmTotal.insertAdjacentHTML('beforeend', 'Итого: ' + cart.totalSum);
 
 	
 }
 
 
-
-function getCart(){
-	var params = 'action=getCart';
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'include/session.php', true);
-	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-	xhr.onload = function () {
-		if(this.status == 200){	
-			sessionData = JSON.parse(this.responseText);
-			// let answer = this.responseText;
-			// console.log(answer);
-			fillConfirmBlock(sessionData);
-		}
-	}
-	xhr.send(params);
+function confirmOrder (){
+	orderConfirmSubmitBtn.style.pointerEvents = 'none';
+	let clientData = new FormData(form);
+	clientData.append('payment', 'cash');		//!
+	clientData.append('delivery', 'courier');	//!
+	clientData.append('action', 'confirmOrder');
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'include/carthandler.php');
+	xhr.send(clientData);
+	xhr.responseType = 'json';
+	xhr.onload = () => {
+			let answer = xhr.response;
+			console.log(answer);
+			if (answer.confirm == 'success'){
+				document.location.href = 'confirmorder.php';
+			}
+		};
 }

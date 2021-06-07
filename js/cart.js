@@ -279,36 +279,36 @@ for (var i = cartItem.length - 1; i >= 0; i--) {
 // 	xhr.send(params);
 // }
 
-function getTotalPrice(){
-	var params = 'action=getTotalPrice';
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'include/session.php', true);
-	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	let totalPrice;
+// function getTotalPrice(){
+// 	var params = 'action=getTotalPrice';
+// 	var xhr = new XMLHttpRequest();
+// 	xhr.open('POST', 'include/session.php', true);
+// 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+// 	let totalPrice;
 
-	xhr.onload = function () {
-		if(this.status == 200){	
-			let answer = JSON.parse(this.responseText);
-			totalPrice = answer.totalPrice;
-			setTotalPrice(totalPrice);
-			// setTotality(totalPrice);
-		}
-	}
-	xhr.send(params);
-}
+// 	xhr.onload = function () {
+// 		if(this.status == 200){	
+// 			let answer = JSON.parse(this.responseText);
+// 			totalPrice = answer.totalPrice;
+// 			setTotalPrice(totalPrice);
+// 			// setTotality(totalPrice);
+// 		}
+// 	}
+// 	xhr.send(params);
+// }
 
 
-function setTotalPrice(totalPrice){
-	if(totalPrice){
-		document.querySelector('.cart__total').children[0].innerText = totalPrice;
-	}
-}
+// function setTotalPrice(totalPrice){
+// 	if(totalPrice){
+// 		document.querySelector('.cart__total').children[0].innerText = totalPrice;
+// 	}
+// }
 
-function setTotality(totalPrice, deliveryCost = 300){
-	if(totalPrice){
-		let totality = totalPrice + deliveryCost;
-		document.querySelector('.cart__totality').children[0].innerText = totality;
+// function setTotality(totalPrice, deliveryCost = 300){
+// 	if(totalPrice){
+// 		let totality = totalPrice + deliveryCost;
+// 		document.querySelector('.cart__totality').children[0].innerText = totality;
 		
-	}
-}
+// 	}
+// }
 

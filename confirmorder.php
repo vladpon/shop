@@ -1,7 +1,8 @@
 <?php
-
- require_once 'include/session.php';
+require_once 'include/carthandler.php';
+session_start();
 session_unset();
+ // require_once 'include/session.php';
 
 
 ?>

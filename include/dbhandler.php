@@ -19,3 +19,16 @@ function getProductData($productId){
 	}
 	return $data;
 }
+
+function dbReq($str){
+	try{
+		global $pdo;
+		$stmt = $pdo->prepare($str);
+		$state = $stmt->execute();
+	} catch (Exception $e) {
+	    echo $e->getMessage();
+	    exit;
+	}
+
+	return $state;
+}

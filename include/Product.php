@@ -6,12 +6,14 @@ class Product
 	private string $productName;
 	private float $price;
 	private int $availableQuantity = 5;
+	private string $vandorCode;
 
-	public function __construct($productId, $productName, $price)
+	public function __construct($productId, $productName, $price, $vendorCode)
 	{
 		$this->productId = $productId;
 		$this->productName = $productName;
 		$this->price = $price;
+		$this->vendorCode = $vendorCode;
 	}
 
 
@@ -48,6 +50,14 @@ class Product
 	public function setavAilableQuantity($availableQuantity)
 	{
 		$this->availableQuantity = $availableQuantity;
+	}
+	public function getVendorCode()
+	{
+		return $this->vendorCode;
+	}
+	public function setVendorCode($vendorCode)
+	{
+		$this->vendorCode = $vendorCode;
 	}
 
 
