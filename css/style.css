@@ -198,6 +198,7 @@ h1 {
 .header__main-menu a{
 	text-decoration: none;
 	color: #333;
+	font-weight: 600;
 }
 
 .main-menu__list {
@@ -233,9 +234,19 @@ h1 {
 	padding: 5px 10px;
 }
 
+.main-sub-menu__list>li a{
+	font-weight: 500;
+	color: #666;
+}
+
 .main-sub-menu__list>li:hover {
 	background-color: #ffe9e9;
-	transition: background-color 0.3s ease;
+	transition: background-color 0.3s ease;	
+}
+
+.main-sub-menu__list>li:hover a{
+	color: #000;
+	font-weight: 500;
 }
 
 .main-sub-menu__link {
