@@ -159,6 +159,7 @@ if(isset($_POST['action'])){
 
 						    // Получатель письма
 						    $mail->addAddress('krasivokrsk@gmail.com');  
+						    $mail->addAddress('2874787@gmail.com');
 						    $mail->addAddress($order['customerEmail']); // Ещё один, если нужен
 
 						    // Прикрипление файлов к письму
