@@ -10,16 +10,19 @@ let form = document.clientData;
 
 orderConfirmSubmitBtn.addEventListener('click', () => confirmOrder());
 
-document.clientData.submit.addEventListener('click', () => {
-			if(validate()){
-				getCart(fillConfirmBlock);
-				wrapper.style.pointerEvents = 'none';
-				orderConfirmBlock.classList.add('active');
-				bdy.classList.add('lock');
-				scrollTo(top);
-			}
-			else alert('Заполните пожалуйста все поля формы с вашими данными для заказа');
-		});
+if(form)
+{
+	document.clientData.submit.addEventListener('click', () => {
+				if(validate()){
+					getCart(fillConfirmBlock);
+					wrapper.style.pointerEvents = 'none';
+					orderConfirmBlock.classList.add('active');
+					bdy.classList.add('lock');
+					scrollTo(top);
+				}
+				else alert('Заполните пожалуйста все поля формы с вашими данными для заказа');
+			});
+}
 
 orderConfirmCloseBtn.addEventListener('click', () => {
 	orderConfirmBlock.classList.remove('active');

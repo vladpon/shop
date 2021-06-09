@@ -1,6 +1,7 @@
 <?php
 
 require_once 'carthandler.php';
+require_once 'const.php';
 
 ?>
 
@@ -26,7 +27,14 @@ require_once 'carthandler.php';
 			<li>
 				<a href="catalog.php" class="header__link"><b>SALE</b></a>
 			</li> -->
-			<li>
+
+
+			<?php
+				foreach($aAtrItems['cat_id'] as $key => $value)
+					echo '<li><a href="catalog.php?cat_id%5B%5D=' . "{$value}" . '" class="header__link">' . "{$key}" . '</a></li>';
+			?>
+			
+<!-- 			<li>
 				<a href="catalog.php?cat_id%5B%5D=131" class="header__link">Серьги</a>
 			</li>
 			<li>
@@ -50,7 +58,7 @@ require_once 'carthandler.php';
 			<li>
 				<a href="catalog.php?cat_id%5B%5D=126" class="header__link">Аксессуары</a>
 			</li>
-			<li>
+ 			<li>
 				<a href="catalog.php?cat_id%5B%5D=128" class="header__link">Мужчинам</a>
 			</li>
 			<li>
@@ -58,7 +66,7 @@ require_once 'carthandler.php';
 			</li>
 			<li>
 				<a href="catalog.php?cat_id%5B%5D=134" class="header__link">Часы</a>
-			</li>
+			</li> -->
 		</ul>
 	</nav>
 	<nav class="header__main-menu main-menu">
@@ -66,7 +74,11 @@ require_once 'carthandler.php';
 			<li>
 				<a href="catalog.php" class="main-menu__link header__link">Каталог</a>
 				<ul class="main-sub-menu__list">
-					<li>
+					<?php
+						foreach($aAtrItems['cat_id'] as $key => $value)
+							echo '<li><a href="catalog.php?cat_id%5B%5D=' . "{$value}" . '" class="main-sub-menu__link">' . "{$key}" . '</a></li>';
+					?>
+<!-- 					<li>
 						<a href="catalog.php?cat_id%5B%5D=131" class="main-sub-menu__link">Серьги</a>
 					</li>
 					<li>
@@ -100,14 +112,13 @@ require_once 'carthandler.php';
 						<a href="catalog.php?cat_id%5B%5D=134" class="main-sub-menu__link">Часы</a>
 					</li>
 				</ul>
-					<!-- </li>
 					<li>
 						<a href="" class="main-menu__link header__link">New</a>
 					</li>
 					<li>
 						<a href="" class="main-menu__link header__link">Sale</a>
-					</li>
-				</ul> -->
+					</li> -->
+				</ul> 
 	</nav>
 	<div class="header__search">
 		<form action="catalog.php" method='GET'>

@@ -180,6 +180,7 @@ if(isset($_SESSION['user'])){
 								
 							$sql = "INSERT INTO shop.products(product_id, product_name, manufacturer, cat_id, price, vendor_code, fineness, stone, size, cover, big_pic, small_pic) 
 								VALUES(:productId, :productName, :manufacturer, :catId, :price, :vendorCode, :fineness, :stone, :size, :cover, :bigPic, :smallPic);";
+							echo $sql;
 							$stmt = $pdo->prepare($sql);
 							$state = $stmt->execute([
 													'productId'=> $productId,									

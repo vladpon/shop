@@ -6,7 +6,7 @@
 			body {
 				background-color: black;
 				color: #0f0;
-				font-size: 8px;
+				font-size: 14px;
 				display: flex;
 				flex-direction: column;
 				flex-wrap: wrap;
@@ -46,21 +46,6 @@
 	function importCSV($file) {
 		try{
 			global $pdo;
-
-
-			// $jsonFile = fopen('filteritems.json', 'r');
-			// $filterItems = '';
-			// while (!feof($jsonFile)) {
-			// 	$filterItems .= fgets($jsonFile);
-			// }
-			// fclose($jsonFile);
-			// $filterItemsArr = json_decode($filterItems, true);
-
-			// function getItem ($a){
-			// 	return $a['product_id'];
-			// }
-
-			// $filterItemsArr = array_map('getItem', $filterItemsArr);
 
 			$handle = fopen('php://memory', 'w+');
 			fwrite($handle, iconv('CP1251', 'UTF-8', file_get_contents($file)));
@@ -107,9 +92,10 @@
 						}
 					}
 
-					
 					$sql = "INSERT INTO products (product_id, product_name, manufacturer, cat_id,  price, vendor_code, fineness, stone, size, cover, small_pic, link_products)
 										VALUES(:productId, :productName, :manufacturer, :category, :price, :vendorCode, :fineness, :stone, :size, :cover, :smallPic, :linkProducts);";
+
+										
 					$stmt = $pdo->prepare($sql);
 					$state = $stmt->execute([
 											'productId'=> $productId,									
@@ -128,7 +114,7 @@
 										]);
 					if(!$state) {
 						echo "FAILED to add product id$productId</br>";
-					}	else echo '<span style="font-size: 12px">' . $productId . ' </span>';
+					}	else echo '<span style="font-size: 18px">' . $productId . ' </span>';
 				// }
 
 				
