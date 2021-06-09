@@ -53,15 +53,17 @@ function addToCart (element) {
 
 		//Ajax Req		
 
+		if(element.classList.contains('white'))
+			return;
+
 		let params = new FormData();
 		if(document.forms.sizeselect){
 			var size = document.forms.sizeselect.sel.value;
-			if (size == 'Выбрать размер'){
-				alert('Выберите, пожалуйста размер изделия');
-				return;
-			} else {
-				params.append('size', size);
+			if(size == 'Выбрать размер'){
+				alert('Выберите, пожалуйста размер изделия');	
+				return;		
 			}
+			params.append('size', size);
 		}
 
 		element.classList.add('white');
@@ -171,7 +173,7 @@ function decreaseQuantity (itemCount, item) {
 
 
 addToCartBtns.forEach(function(element) {
-		element.addEventListener('click', () => addToCart(element), {once: true});
+		element.addEventListener('click', () => addToCart(element));
 });
 
 for (var i = cartItem.length - 1; i >= 0; i--) {
