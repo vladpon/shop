@@ -1,4 +1,8 @@
 
+var cb = document.querySelectorAll('input[type="checkbox"][name="cat_id[]"][value="127"]');
+cb[0].checked = true;
+
+
 
 let arr = document.querySelectorAll(".filter__title");
 let list = document.querySelectorAll(".filter__list");

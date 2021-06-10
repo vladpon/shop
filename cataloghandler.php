@@ -122,8 +122,7 @@ function showFilter() {
 									<div class="filter__arrow"><span></span></div>
 								</div>
 								<div class="filter__list">
-
-									<?php 
+									<?php
 									if($reqName == 'size')
 									{ ?>
 										<div class="filter__size-ring">
@@ -155,7 +154,7 @@ function showFilter() {
 										<div class="filter__size-chain">
 											<?php
 												for($reqValue = (int)$aAtrItems['size']['chain'][0];
-														 (int)$reqValue <= (int)$aAtrItems['size']['chain'][1]; 
+														 (int)$reqValue <= (int)$aAtrItems['size']['chain'][1];
 														 (int) $reqValue+=5) {
 											?>
 													<div class="filter__item">
@@ -163,9 +162,9 @@ function showFilter() {
 														<span><?=$reqValue?></span>
 													</div>
 											<?php } ?>
-										</div>										
-										
-									<?php } 
+										</div>
+
+									<?php }
 
 									elseif($reqName == 'cat_id'){
 										foreach ($aAtrItems[$reqName] as $itemName => $reqValue) { 
@@ -207,7 +206,7 @@ function showFilter() {
 							</div>
 							<?php } ?>													
 					</div>
-					<input type="submit" class="filter__submit-btn" value="Применить">
+					<input type="submit" class=" big-button" value="Применить">
 				</form>
 			</div>
 <?php
