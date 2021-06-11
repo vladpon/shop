@@ -1,6 +1,18 @@
 
-var cb = document.querySelectorAll('input[type="checkbox"][name="cat_id[]"][value="127"]');
-cb[0].checked = true;
+// var cb = document.querySelectorAll('input[type="checkbox"][name="cat_id[]"][value="127"]');
+// cb[0].checked = true;
+
+var srch = document.location.search;
+
+// function getParam ()
+// {
+// 	var params = new Array();
+// 	if(srch)
+// 		if(srch.indexOf('&') != -1){
+// 			// params.push(srch.slice(1, srch.indexOf('&')));
+// 		}
+// 		return params;
+// }
 
 
 
