@@ -2,7 +2,34 @@
 // var cb = document.querySelectorAll('input[type="checkbox"][name="cat_id[]"][value="127"]');
 // cb[0].checked = true;
 
-var srch = document.location.search;
+function setParams (params)
+{
+	params.forEach((element)=>
+	{
+		var cb = document.querySelector('input[type="checkbox"][name="' + element[0] + '[]"][value="' + element[1] + '"]');
+		cb.checked = true;
+	})
+}
+
+function getGetParams () {
+	let searchStr = window.location.search;
+	let params = new Array();
+	if(searchStr){
+		searchStr = searchStr.slice(1, searchStr.length);
+		let arr = searchStr.split('&');
+		arr.forEach((element)=>
+		{
+			params.push(element.split('='));
+		});
+		console.log(params);
+		return params;
+	}
+}
+
+
+
+
+//var srch = document.location.search;
 
 // function getParam ()
 // {
@@ -111,13 +138,6 @@ function endPage () {
 window.addEventListener('scroll', endPage);
 
 
-function getGetParams () {
-	let searchStr = window.location.search;
-	if(searchStr){
-		searchStr = searchStr.slice(1, searchStr.length);
-		let arr = searchStr.split('&');
-		console.log(arr);
-	}
-}
+
 
 // getGetParams();
